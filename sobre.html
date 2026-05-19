@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre First Patagonia — Lodge Petrohué</title>
+  <meta name="description" content="Conoce la historia, el equipo y el compromiso medioambiental de First Patagonia. 110 años de familia Schirmer en la Patagonia chilena.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .brands-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-top: 3rem;
+    }
+    .brand-card {
+      background: var(--black);
+      padding: 3rem 2.5rem;
+      transition: background var(--transition);
+    }
+    .brand-card:hover { background: #111; }
+    .brand-card__logo {
+      height: 48px; margin-bottom: 2rem;
+      filter: brightness(0) invert(1);
+      opacity: 0.7;
+    }
+    .brand-card h4 { color: var(--white); margin-bottom: 0.75rem; }
+    .brand-card p  { color: rgba(245,242,236,0.55); font-size: 0.875rem; line-height: 1.65; }
+
+    .commitment-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 560px;
+    }
+    .commitment-media {
+      background: linear-gradient(160deg, #0a1a0a 0%, #1a3520 50%, #2a5035 100%);
+      position: relative; overflow: hidden;
+    }
+    .commitment-media img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    }
+    .commitment-body {
+      background: var(--black);
+      padding: clamp(3rem,6vw,5rem);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .commitment-body h2 { color: var(--white); margin-bottom: 1.25rem; }
+    .commitment-body p  { margin-bottom: 1rem; }
+    .commitment-list { margin-top: 1.5rem; list-style: none; }
+    .commitment-list li {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.9rem; color: rgba(245,242,236,0.65);
+    }
+    .commitment-list li:last-child { border-bottom: none; }
+    .commitment-list li::before {
+      content: '✓';
+      color: var(--orange); font-weight: 700;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    .numbers-bar {
+      background: var(--orange);
+      padding: 3rem clamp(1.5rem,5vw,4rem);
+      display: flex;
+      justify-content: center;
+      gap: clamp(2rem,6vw,6rem);
+      flex-wrap: wrap;
+    }
+    .number-item { text-align: center; }
+    .number-item__value {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem,5vw,4rem);
+      font-weight: 400; color: var(--white);
+      line-height: 1; display: block;
+    }
+    .number-item__label {
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(245,242,236,0.65); display: block; margin-top: 0.4rem;
+    }
+
+    @media (max-width: 768px) {
+      .commitment-block { grid-template-columns: 1fr; }
+      .commitment-media { min-height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="Logos/Logo First Patagonia.png" alt="First Patagonia">
+    </a>
+    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="lodge.html">Lodge</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="programas.html">Programas</a></li>
+      <li><a href="paso-vuriloche.html">Paso Vuriloche</a></li>
+      <li><a href="espiritupionero.html">Espíritu Pionero</a></li>
+      <li><a href="planifica.html">Planifica</a></li>
+      <li>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="nav__cta" target="_blank" rel="noopener">Reservar</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero page-hero--sobre">
+    <div class="page-hero__media">
+      <!-- IMAGEN: <img src="assets/sobre-hero.jpg" alt="First Patagonia"> -->
+    </div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <span class="page-hero__label">Petrohué, Patagonia Chilena</span>
+      <h1 class="page-hero__title">Sobre<br><em>First Patagonia</em></h1>
+      <p class="page-hero__subtitle">Más de 110 años custodiando uno de los rincones más prístinos del planeta.</p>
+    </div>
+  </section>
+
+  <!-- NÚMEROS -->
+  <div class="numbers-bar">
+    <div class="number-item">
+      <span class="number-item__value">110+</span>
+      <span class="number-item__label">Años de historia</span>
+    </div>
+    <div class="number-item">
+      <span class="number-item__value">5ª</span>
+      <span class="number-item__label">Generación familiar</span>
+    </div>
+    <div class="number-item">
+      <span class="number-item__value">24</span>
+      <span class="number-item__label">Habitaciones y cabañas</span>
+    </div>
+    <div class="number-item">
+      <span class="number-item__value">10+</span>
+      <span class="number-item__label">Actividades disponibles</span>
+    </div>
+    <div class="number-item">
+      <span class="number-item__value">50km</span>
+      <span class="number-item__label">Paso Vuriloche</span>
+    </div>
+  </div>
+
+  <!-- MISIÓN -->
+  <section class="section" style="background:var(--white);">
+    <div class="section__inner" style="max-width:860px;margin:0 auto;text-align:center;">
+      <span class="section__label">Nuestra misión</span>
+      <h2 style="color:var(--black);margin-bottom:1.5rem;">No vendemos habitaciones.<br><em>Vendemos la Patagonia.</em></h2>
+      <p style="font-size:1.05rem;line-height:1.75;margin-bottom:1.25rem;">First Patagonia existe para que cada viajero que llegue a Petrohué viva una experiencia transformadora. El alojamiento es la consecuencia, no el producto. El producto es la conexión profunda con la naturaleza, la historia y el espíritu pionero que define este lugar.</p>
+      <p style="line-height:1.75;">Somos la puerta de entrada a todo lo que el Parque Nacional Vicente Pérez Rosales tiene para ofrecer. Y llevamos más de un siglo haciéndolo bien.</p>
+    </div>
+  </section>
+
+  <!-- LAS MARCAS -->
+  <section class="section section--dark">
+    <div class="section__inner">
+      <div class="section__header section__header--center">
+        <span class="section__label">Nuestro ecosistema</span>
+        <h2>Las marcas de<br><em>First Patagonia</em></h2>
+        <p style="max-width:480px;margin:1rem auto 0;">Tres marcas, un solo propósito: hacer de Petrohué el mejor destino de la Patagonia chilena.</p>
+      </div>
+      <div class="brands-grid">
+        <div class="brand-card">
+          <img src="Logos/Logo Petrohue Lodge.png" alt="Lodge Petrohué" class="brand-card__logo">
+          <h4>Lodge Petrohué</h4>
+          <p>El corazón de todo. 20 habitaciones y 4 cabañas lacustres con 110 años de historia familiar. Restaurante Amancay, tinajas, spa y acceso directo al Lago Todos los Santos.</p>
+        </div>
+        <div class="brand-card">
+          <img src="Logos/Logo Petrohue Expediciones.png" alt="Petrohué Expediciones" class="brand-card__logo">
+          <h4>Petrohué Expediciones</h4>
+          <p>El brazo aventurero de First Patagonia. Guías certificados, equipos de primera línea y las mejores rutas de trekking, kayak, rafting y expediciones de la Patagonia.</p>
+        </div>
+        <div class="brand-card">
+          <img src="Logos/Logo Nana Roth.png" alt="Nana Roth" class="brand-card__logo">
+          <h4>Nana Roth</h4>
+          <p>El refugio de alta montaña que lleva el nombre de la matriarca de la familia Schirmer. Un punto de descanso en las rutas más remotas de la cordillera patagónica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPO -->
+  <section class="section section--gray">
+    <div class="section__inner">
+      <div class="section__header section__header--center">
+        <span class="section__label">Las personas detrás</span>
+        <h2 style="color:var(--black);">El equipo<br><em>pionero</em></h2>
+      </div>
+      <div class="team-grid" style="margin-top:3rem;">
+        <div class="team-card fade-up">
+          <div class="team-card__photo" style="background:linear-gradient(135deg,#1a1208,#6b4c1e);">
+            <!-- IMAGEN: <img src="assets/equipo-matias.jpg" alt="Matías Schirmer"> -->
+          </div>
+          <h4>Matías Schirmer</h4>
+          <p>Director General · 5ª generación</p>
+        </div>
+        <div class="team-card fade-up">
+          <div class="team-card__photo" style="background:linear-gradient(135deg,#0d2b3e,#1a5276);">
+            <!-- IMAGEN: <img src="assets/equipo-guias.jpg" alt="Guías certificados"> -->
+          </div>
+          <h4>Equipo de Guías</h4>
+          <p>Certificados SERNATUR · Bilingüe</p>
+        </div>
+        <div class="team-card fade-up">
+          <div class="team-card__photo" style="background:linear-gradient(135deg,#2a1a0d,#8b5e3c);">
+            <!-- IMAGEN: <img src="assets/equipo-cocina.jpg" alt="Cocina Amancay"> -->
+          </div>
+          <h4>Cocina Amancay</h4>
+          <p>Chef · Gastronomía patagónica local</p>
+        </div>
+        <div class="team-card fade-up">
+          <div class="team-card__photo" style="background:linear-gradient(135deg,#1a2e1a,#3a6a3a);">
+            <!-- IMAGEN: <img src="assets/equipo-operaciones.jpg" alt="Operaciones"> -->
+          </div>
+          <h4>Operaciones</h4>
+          <p>Lodge · Logística · Experiencias</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPROMISO MEDIOAMBIENTAL -->
+  <div class="commitment-block">
+    <div class="commitment-media">
+      <!-- IMAGEN: <img src="assets/medioambiente.jpg" alt="Compromiso medioambiental"> -->
+    </div>
+    <div class="commitment-body">
+      <span class="section__label">Sostenibilidad</span>
+      <h2>Nuestro compromiso<br><em>con la Patagonia</em></h2>
+      <p>Operar en el Parque Nacional Vicente Pérez Rosales es un privilegio que tomamos con total seriedad. Somos custodios de un ecosistema frágil y único.</p>
+      <ul class="commitment-list">
+        <li>Gestión responsable de residuos y reciclaje en el Lodge</li>
+        <li>Uso eficiente del agua en todas las instalaciones</li>
+        <li>Compra preferente a proveedores locales de la región</li>
+        <li>Educación ambiental en todos los programas guiados</li>
+        <li>Respeto estricto a la capacidad de carga de los senderos</li>
+        <li>Participación activa en programas de reforestación nativa</li>
+        <li>Captura y liberación en todas las actividades de pesca</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CERTIFICACIONES -->
+  <section class="section" style="background:var(--white);">
+    <div class="section__inner" style="text-align:center;">
+      <span class="section__label">Reconocimientos</span>
+      <h2 style="color:var(--black);margin-bottom:3rem;">Certificaciones<br><em>&amp; Membresías</em></h2>
+      <div class="certs" style="justify-content:center;">
+        <div class="cert-item">
+          <div class="cert-item__icon">🏅</div>
+          <p>SERNATUR<br>Turismo Certificado</p>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item__icon">🌿</div>
+          <p>Parque Nacional<br>Vicente Pérez Rosales</p>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item__icon">🧭</div>
+          <p>Guías certificados<br>UIAA / ACMG</p>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item__icon">♻️</div>
+          <p>Gestión ambiental<br>responsable</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING BANNER -->
+  <section class="booking-banner">
+    <h2>Sé parte de la<br><em>historia pionera</em></h2>
+    <p>Cada visita apoya la conservación del patrimonio natural y cultural de Petrohué.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+         class="btn btn--light" target="_blank" rel="noopener">Reservar en GoFeels</a>
+      <a href="planifica.html" class="btn btn--ghost">Planifica tu viaje</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="Logos/Logo First Patagonia.png" alt="First Patagonia" class="footer__logo">
+          <p>Ruta 225 Km 58, Petrohué<br>Parque Nacional Vicente Pérez Rosales<br>Chile</p>
+        </div>
+        <nav class="footer__nav">
+          <div class="footer__col">
+            <h5>Explorar</h5>
+            <ul>
+              <li><a href="lodge.html">Lodge Petrohué</a></li>
+              <li><a href="actividades.html">Actividades</a></li>
+              <li><a href="programas.html">Programas</a></li>
+              <li><a href="paso-vuriloche.html">Paso Vuriloche</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5>Nosotros</h5>
+            <ul>
+              <li><a href="espiritupionero.html">Espíritu Pionero</a></li>
+              <li><a href="sobre.html">Sobre First Patagonia</a></li>
+              <li><a href="planifica.html">Planifica tu viaje</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5>Contacto</h5>
+            <ul>
+              <li><a href="mailto:reservas@petrohue.com">reservas@petrohue.com</a></li>
+              <li><a href="tel:+56984644870">+56 9 8464 4870</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2025 First Patagonia. Todos los derechos reservados.</p>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="btn btn--sm btn--orange" target="_blank" rel="noopener">Reservar ahora</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividades — First Patagonia</title>
+  <meta name="description" content="Kayak, rafting, trekking, navegación, pesca, escalada y más. Cuatro terrenos — Lago, Río, Montaña, Bosque — con guías certificados en Petrohué.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Oculta la página hasta posicionarla, evita el salto visual -->
+  <style>html { opacity: 0; }</style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var nav = document.querySelector('.terrain-nav');
+      if (nav) {
+        window.scrollTo(0, Math.max(0, nav.offsetTop - window.innerHeight * 0.45));
+      }
+      document.documentElement.style.transition = 'opacity 0.25s ease';
+      document.documentElement.style.opacity = '1';
+    });
+  </script>
+  <style>
+    .terrain-nav {
+      position: sticky;
+      top: var(--nav-h);
+      z-index: 50;
+      background: var(--black);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .terrain-nav::-webkit-scrollbar { display: none; }
+    .terrain-tab {
+      flex: 1;
+      min-width: 120px;
+      padding: 1.5rem 1rem;
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      color: rgba(245,242,236,0.35);
+      border-bottom: 2px solid transparent;
+      transition: all 0.35s ease;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .terrain-tab:hover { color: rgba(245,242,236,0.75); }
+    .terrain-tab.active {
+      color: var(--white);
+      border-bottom-color: var(--orange);
+      font-style: italic;
+    }
+    .terrain-panel { display: none; }
+    .terrain-panel.active { display: block; }
+    .terrain-hero {
+      position: relative;
+      height: 50vh;
+      min-height: 320px;
+      display: flex;
+      align-items: flex-end;
+      padding: clamp(2rem,5vw,4rem);
+      overflow: hidden;
+    }
+    .terrain-hero__media {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+    }
+    .terrain-hero__media img,
+    .terrain-hero__media video {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center;
+    }
+    .terrain-hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.2) 60%, transparent 100%);
+    }
+    .terrain-hero__content { position: relative; z-index: 2; }
+    .terrain-hero__content h2 { color: var(--white); margin-bottom: 0.5rem; }
+    .terrain-hero__content p  { color: rgba(245,242,236,0.7); max-width: 560px; }
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.05);
+    }
+    @media (max-width: 900px) {
+      .activities-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
+      .activities-grid { grid-template-columns: 1fr; }
+    }
+    .activity-card {
+      background: var(--black);
+      overflow: hidden;
+      transition: background var(--transition);
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+    }
+    .activity-card:hover { background: #111; }
+    .activity-card__img {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+    .activity-card__img img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .activity-card:hover .activity-card__img img { transform: scale(1.04); }
+    /* Ajuste de posición por imagen */
+    .activity-card:nth-child(2) .activity-card__img img { object-position: center 70%; }  /* Navegación — se ve el velero */
+    .activity-card:nth-child(4) .activity-card__img img { object-position: center 60%; }  /* Baño en el lago — baja un poco */
+    .activity-card__body { padding: 1.75rem 1.75rem 2rem; display: flex; flex-direction: column; }
+    .activity-card__icon {
+      font-size: 1.3125rem;
+      margin-bottom: 1.25rem;
+    }
+    .activity-card h4 { color: var(--white); margin-bottom: 0.5rem; }
+    .activity-card p  { color: rgba(245,242,236,0.55); font-size: 0.6562rem; margin-bottom: 1.25rem; }
+    .activity-meta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .activity-meta span {
+      font-size: 0.4875rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(245,242,236,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.25rem 0.6rem;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="Logos/Logo First Patagonia.png" alt="First Patagonia">
+    </a>
+    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="lodge.html">Lodge</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="programas.html">Programas</a></li>
+      <li><a href="paso-vuriloche.html">Paso Vuriloche</a></li>
+      <li><a href="espiritupionero.html">Espíritu Pionero</a></li>
+      <li><a href="planifica.html">Planifica</a></li>
+      <li>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="nav__cta" target="_blank" rel="noopener">Reservar</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero page-hero--actividades">
+    <div class="page-hero__media">
+      <!-- IMAGEN: <img src="assets/actividades-hero.jpg" alt="Actividades Petrohué"> -->
+    </div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <span class="page-hero__label" data-i18n="act.hero.label">Petrohué · Patagonia Chilena</span>
+      <h1 class="page-hero__title" data-i18n-html="act.hero.title">Cuatro mundos,<br><em>infinitas rutas</em></h1>
+      <p class="page-hero__subtitle" data-i18n="act.hero.sub">Lago, Río, Montaña y Bosque. Cada terreno es un universo de experiencias con guías certificados.</p>
+    </div>
+  </section>
+
+  <!-- TERRAIN NAVIGATION -->
+  <div class="terrain-nav">
+    <button class="terrain-tab active" data-terrain="lago" data-i18n="act.tab.lago">Lago</button>
+    <button class="terrain-tab" data-terrain="rio" data-i18n="act.tab.rio">Río</button>
+    <button class="terrain-tab" data-terrain="montana" data-i18n="act.tab.mtn">Montaña</button>
+    <button class="terrain-tab" data-terrain="bosque" data-i18n="act.tab.bos">Bosque</button>
+  </div>
+
+  <!-- LAGO -->
+  <div class="terrain-panel active" id="lago">
+    <div class="terrain-hero">
+      <div class="terrain-hero__media terreno__media--lago">
+        <video id="lagoSunsetVideo" muted playsinline preload="metadata">
+          <source src="assets/lago-sunset.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="terrain-hero__overlay"></div>
+      <div class="terrain-hero__content">
+        <h2 data-i18n-html="act.lago.title">Lago<br><em>Todos los Santos</em></h2>
+        <p data-i18n="act.lago.desc">Las aguas más transparentes de Chile. Esmeralda profunda enmarcada por volcanes y bosque nativo.</p>
+      </div>
+    </div>
+    <div style="height:12px;background:#0a0a0a;"></div>
+    <div class="activities-grid">
+
+      <div class="activity-card">
+        <div class="activity-card__img"><img src="assets/act-kayak-lago.jpg" alt="Kayak en el Lago Todos los Santos"></div>
+        <div class="activity-card__body">
+          <div class="activity-card__icon">🛶</div>
+          <h4 data-i18n="act.lago.kayak.h">Kayak en el Lago</h4>
+          <p data-i18n="act.lago.kayak.p">Recorre las orillas del Lago Todos los Santos en kayak con guía. Descubre islotes, cascadas y fauna lacustre a nivel del agua.</p>
+          <div class="activity-meta">
+            <span data-i18n="act.lago.kayak.m1">2–4 horas</span><span data-i18n="act.lago.kayak.m2">Todo nivel</span><span data-i18n="act.lago.kayak.m3">Equipo incluido</span>
+          </div>
+          <a href="https://reservation.gofeels.com/es/extra-detail/1468?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7" class="activity-book" target="_blank" rel="noopener" data-i18n="act.book.btn">Reservar →</a>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-card__img"><img src="assets/act-navegacion.jpg" alt="Navegación Lago Todos los Santos"></div>
+        <div class="activity-card__body">
+          <div class="activity-card__icon">⛵</div>
+          <h4 data-i18n="act.lago.nav.h">Navegación Lago</h4>
+          <p data-i18n="act.lago.nav.p">Travesía en embarcación por el lago con guía naturalista. El volcán Osorno, el Tronador y los bosques en una perspectiva única.</p>
+          <div class="activity-meta">
+            <span data-i18n="act.lago.nav.m1">3–5 horas</span><span data-i18n="act.lago.nav.m2">Todo nivel</span><span data-i18n="act.lago.nav.m3">Guía incluido</span>
+          </div>
+          <a href="https://reservation.gofeels.com/es/extra-detail/1514?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7" class="activity-book" target="_blank" rel="noopener" data-i18n="act.book.btn">Reservar →</a>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-card__img"><img src="assets/act-pesca.jpg" alt="Pesca Deportiva Lago Todos los Santos"></div>
+        <div class="activity-card__body">
+          <div class="activity-card__icon">🎣</div>
+          <h4 data-i18n="act.lago.pesca.h">Pesca Deportiva en el Lago</h4>
+          <p data-i18n="act.lago.pesca.p">Trucha arcoíris y trucha café en aguas prístinas. Fly fishing y spinning con guía especializado. Modalidad captura y liberación.</p>
+          <div class="activity-meta">
+            <span data-i18n="act.lago.pesca.m1">Día completo</span><span data-i18n="act.lago.pesca.m2">Principiantes OK</span><span data-i18n="act.lago.pesca.m3">Licencia incluida</span>
+          </div>
+          <a href="https://reservation.gofeels.com/es/extra-detail/1517?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7" class="activity-book" target="_blank" rel="noopener" data-i18n="act.book.btn">Reservar →</a>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-card__img"><img src="assets/act-lago-bano.jpg" alt="Baño en el Lago Todos los Santos"></div>
+        <div class="activity-card__body">
+          <div class="activity-card__icon">🏊</div>
+          <h4 data-i18n="act.lago.bano.h">Baño en el Lago</h4>
+          <p data-i18n="act.lago.bano.p">Acceso directo desde el Lodge a la playa del lago. Aguas limpias y temperatura fresca típica de la Patagonia.</p>
+          <div class="activity-meta">
+            <span data-i18n="act.lago.bano.m1">Libre</span><span data-i18n="act.lago.bano.m2">Acceso directo</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RÍO -->
+  <div class="terrain-panel" id="rio">
+    <div class="terrain-hero">
+      <div class="terrain-hero__media terreno__media--rio">
+        <!-- IMAGEN: <img src="assets/rio-petrohue.jpg" alt="Río Petrohué"> -->
+      </div>
+      <div class="terrain-hero__overlay"></div>
+      <div class="terrain-hero__content">
+        <h2 data-i18n-html="act.rio.title">Río<br><em>Petrohué</em></h2>
+        <p data-i18n="act.rio.desc">Uno de los ríos de montaña más hermosos de Chile. Rápidos de clase III y IV entre paredes de basalto volcánico.</p>
+      </div>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card"><div class="activity-card__img"><img src="assets/act-rafting.jpg" alt="Rafting Río Petrohué"></div>
+      <div class="activity-card__body">
+
+        <div class="activity-card__icon">🌊</div>
+        <h4 data-i18n="act.rio.raft.h">Rafting Clase III/IV</h4>
+        <p data-i18n="act.rio.raft.p">Desciende los rápidos del Río Petrohué en balsa neumática guiada. Adrenalina pura entre paredes de lava volcánica y bosque nativo.</p>
+        <div class="activity-meta">
+          <span data-i18n="act.rio.raft.m1">3–4 horas</span><span data-i18n="act.rio.raft.m2">Nivel medio</span><span data-i18n="act.rio.raft.m3">Mínimo 12 años</span><span data-i18n="act.rio.raft.m4">Equipo incluido</span>
+        </div>
+        <a href="https://reservation.gofeels.com/es/extra-detail/1470?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7" class="activity-book" target="_blank" rel="noopener" data-i18n="act.book.btn">Reservar →</a>
+      </div>
+      <div class="activity-card">
+        <div class="activity-card__icon">🏄</div>
+        <h4 data-i18n="act.rio.kayak.h">Kayak de Río</h4>
+        <p data-i18n="act.rio.kayak.p">Para kayakistas experimentados que quieren navegar el Petrohué en kayak individual. Rápidos técnicos en un entorno volcánico único.</p>
+        <div class="activity-meta">
+          <span data-i18n="act.rio.kayak.m1">4 horas</span><span data-i18n="act.rio.kayak.m2">Nivel avanzado</span><span data-i18n="act.rio.kayak.m3">Equipo incluido</span>
+        </div>
+        <a href="https://reservation.gofeels.com/es/extra-detail/1469?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7" class="activity-book" target="_blank" rel="noopener" data-i18n="act.book.btn">Reservar →</a>
+      </div>
+      <div class="activity-card">
+        <div class="activity-card__icon">🎣</div>
+        <h4 data-i18n="act.rio.pesca.h">Pesca en el Río</h4>
+        <p data-i18n="act.rio.pesca.p">Fly fishing en el Río Petrohué, uno de los mejores ríos de pesca con mosca de Sudamérica. Trucha en aguas cristalinas con fondo de basalto.</p>
+        <div class="activity-meta">
+          <span data-i18n="act.rio.pesca.m1">Día completo</span><span data-i18n="act.rio.pesca.m2">Todo nivel</span><span data-i18n="act.rio.pesca.m3">Licencia incluida</span>
+        </div>
+        <a href="https://reservation.gofeels.com/es/extra-detail/1516?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7" class="activity-book" target="_blank" rel="noopener" data-i18n="act.book.btn">Reservar →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONTAÑA -->
+  <div class="terrain-panel" id="montana">
+    <div class="terrain-hero">
+      <div class="terrain-hero__media terreno__media--montana">
+        <!-- IMAGEN: <img src="assets/volcan-osorno.jpg" alt="Volcán Osorno"> -->
+      </div>
+      <div class="terrain-hero__overlay"></div>
+      <div class="terrain-hero__content">
+        <h2 data-i18n-html="act.mtn.title">Montaña<br><em>&amp; Volcanes</em></h2>
+        <p data-i18n="act.mtn.desc">El Volcán Osorno, el Tronador y los Andes patagónicos como escenario de trekking, escalada y vuelos panorámicos.</p>
+      </div>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card"><div class="activity-card__img"><img src="assets/act-trekking.jpg" alt="Trek Paso Desolación"></div>
+      <div class="activity-card__body">
+
+        <div class="activity-card__icon">🥾</div>
+        <h4 data-i18n="act.mtn.trek.h">Trek Paso Desolación</h4>
+        <p data-i18n="act.mtn.trek.p">La ruta de alta montaña más espectacular de Petrohué. Vista completa al lago, al Osorno y hacia Argentina. Guía certificado obligatorio.</p>
+        <div class="activity-meta">
+          <span data-i18n="act.mtn.trek.m1">Día completo</span><span data-i18n="act.mtn.trek.m2">Nivel medio-alto</span><span data-i18n="act.mtn.trek.m3">Guía incluido</span>
+        </div>
+        <a href="https://reservation.gofeels.com/es/extra-detail/1463?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7" class="activity-book" target="_blank" rel="noopener" data-i18n="act.book.btn">Reservar →</a>
+      </div>
+      <div class="activity-card"><div class="activity-card__img"><img src="assets/act-escalada.jpg" alt="Escalada en Roca"></div>
+      <div class="activity-card__body">
+
+        <div class="activity-card__icon">🧗</div>
+        <h4 data-i18n="act.mtn.esc.h">Escalada en Roca</h4>
+        <p data-i18n="act.mtn.esc.p">Bautismo de escalada en paredes de basalto volcánico. Guías certificados UIAA. Sin experiencia previa necesaria.</p>
+        <div class="activity-meta">
+          <span data-i18n="act.mtn.esc.m1">3–4 horas</span><span data-i18n="act.mtn.esc.m2">Todo nivel</span><span data-i18n="act.mtn.esc.m3">Equipo completo</span>
+        </div>
+        <a href="https://reservation.gofeels.com/es/extra-detail/1518?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7" class="activity-book" target="_blank" rel="noopener" data-i18n="act.book.btn">Reservar →</a>
+      </div>
+      <div class="activity-card"><div class="activity-card__img"><img src="assets/act-heli.jpg" alt="Vuelo en Helicóptero"></div>
+      <div class="activity-card__body">
+
+        <div class="activity-card__icon">🚁</div>
+        <h4 data-i18n="act.mtn.heli.h">Vuelo en Helicóptero</h4>
+        <p data-i18n="act.mtn.heli.p">Sobrevuela el Volcán Osorno, el Lago Todos los Santos y los glaciares del Tronador desde el aire. La perspectiva que cambia todo.</p>
+        <div class="activity-meta">
+          <span data-i18n="act.mtn.heli.m1">30–60 min</span><span data-i18n="act.mtn.heli.m2">Todo nivel</span><span data-i18n="act.mtn.heli.m3">Reserva previa</span>
+        </div>
+        <a href="https://reservation.gofeels.com/es/extra-detail/1519?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7" class="activity-book" target="_blank" rel="noopener" data-i18n="act.book.btn">Reservar →</a>
+      </div>
+      <div class="activity-card">
+        <div class="activity-card__icon">❄️</div>
+        <h4 data-i18n="act.mtn.ski.h">Ski en el Osorno</h4>
+        <p data-i18n="act.mtn.ski.p">El Volcán Osorno tiene nieve garantizada en invierno. Clases y descenso en uno de los centros de ski más únicos del mundo.</p>
+        <div class="activity-meta">
+          <span data-i18n="act.mtn.ski.m1">Temporada jun–sep</span><span data-i18n="act.mtn.ski.m2">Todo nivel</span><span data-i18n="act.mtn.ski.m3">Traslado incluido</span>
+        </div>
+        <a href="https://wa.me/56984644870?text=Hola%2C%20me%20interesa%20reservar%20el%20Ski%20en%20el%20Osorno." class="activity-book" target="_blank" rel="noopener" data-i18n="act.book.btn">Reservar →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOSQUE -->
+  <div class="terrain-panel" id="bosque">
+    <div class="terrain-hero">
+      <div class="terrain-hero__media terreno__media--bosque">
+        <!-- IMAGEN: <img src="assets/bosque-patagonico.jpg" alt="Bosque Patagónico"> -->
+      </div>
+      <div class="terrain-hero__overlay"></div>
+      <div class="terrain-hero__content">
+        <h2 data-i18n-html="act.bos.title">Bosque<br><em>Patagónico</em></h2>
+        <p data-i18n="act.bos.desc">Alerces milenarios, arrayanes, tepas y nalcas. Un ecosistema único declarado Reserva de la Biosfera por la UNESCO.</p>
+      </div>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card"><div class="activity-card__img"><img src="assets/act-trekking.jpg" alt="Trek Rincón Los Alerces"></div>
+      <div class="activity-card__body">
+
+        <div class="activity-card__icon">🌲</div>
+        <h4 data-i18n="act.bos.trek.h">Trek Rincón Los Alerces</h4>
+        <p data-i18n="act.bos.trek.p">Caminata entre alerces de más de 1.000 años en el Parque Nacional. El sendero más emblemático y espiritual de Petrohué.</p>
+        <div class="activity-meta">
+          <span data-i18n="act.bos.trek.m1">3–4 horas</span><span data-i18n="act.bos.trek.m2">Nivel fácil</span><span data-i18n="act.bos.trek.m3">Guía incluido</span>
+        </div>
+        <a href="https://reservation.gofeels.com/es/extra-detail/1466?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7" class="activity-book" target="_blank" rel="noopener" data-i18n="act.book.btn">Reservar →</a>
+      </div>
+      <div class="activity-card">
+        <div class="activity-card__icon">🦜</div>
+        <h4 data-i18n="act.bos.fauna.h">Avistamiento de Fauna</h4>
+        <p data-i18n="act.bos.fauna.p">Monito del monte, pudú, martín pescador, cóndor. Caminata interpretativa con guía naturalista para identificar especies únicas.</p>
+        <div class="activity-meta">
+          <span data-i18n="act.bos.fauna.m1">2–3 horas</span><span data-i18n="act.bos.fauna.m2">Todo nivel</span><span data-i18n="act.bos.fauna.m3">Binoculares incluidos</span>
+        </div>
+        <a href="https://wa.me/56984644870?text=Hola%2C%20me%20interesa%20reservar%20el%20Avistamiento%20de%20Fauna%20en%20Petrohu%C3%A9." class="activity-book" target="_blank" rel="noopener" data-i18n="act.book.btn">Reservar →</a>
+      </div>
+      <div class="activity-card">
+        <div class="activity-card__icon">🏛</div>
+        <h4 data-i18n="act.bos.museo.h">Museo Pioneros</h4>
+        <p data-i18n="act.bos.museo.p">18.000 años de historia desde Monte Verde hasta la familia Schirmer. Un recorrido por la memoria viva de la Patagonia chilena.</p>
+        <div class="activity-meta">
+          <span data-i18n="act.bos.museo.m1">1 hora</span><span data-i18n="act.bos.museo.m2">Gratuito para huéspedes</span>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-card__icon">📸</div>
+        <h4 data-i18n="act.bos.foto.h">Fotografía de Naturaleza</h4>
+        <p data-i18n="act.bos.foto.p">Sesión guiada con fotógrafo especializado en naturaleza patagónica. Los mejores puntos y momentos de luz del parque.</p>
+        <div class="activity-meta">
+          <span data-i18n="act.bos.foto.m1">Amanecer / Atardecer</span><span data-i18n="act.bos.foto.m2">Todo nivel</span>
+        </div>
+        <a href="https://wa.me/56984644870?text=Hola%2C%20me%20interesa%20reservar%20la%20Sesi%C3%B3n%20de%20Fotograf%C3%ADa%20de%20Naturaleza." class="activity-book" target="_blank" rel="noopener" data-i18n="act.book.btn">Reservar →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKING BANNER -->
+  <section class="booking-banner">
+    <h2 data-i18n-html="act.booking.title">Las actividades se incluyen<br><em>en nuestros programas</em></h2>
+    <p data-i18n="act.booking.desc">Reserva un programa y todas las actividades, guías y equipos están incluidos.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="programas.html" class="btn btn--light" data-i18n="act.booking.btn1">Ver programas</a>
+      <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+         class="btn btn--ghost" target="_blank" rel="noopener" data-i18n="act.booking.btn2">Reservar directamente</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="Logos/Logo First Patagonia.png" alt="First Patagonia" class="footer__logo">
+          <p data-i18n-html="footer.addr">Ruta 225 Km 58, Petrohué<br>Parque Nacional Vicente Pérez Rosales<br>Chile</p>
+        </div>
+        <nav class="footer__nav">
+          <div class="footer__col">
+            <h5 data-i18n="footer.explore">Explorar</h5>
+            <ul>
+              <li><a href="lodge.html" data-i18n="footer.lodge">Lodge Petrohué</a></li>
+              <li><a href="actividades.html" data-i18n="nav.act">Actividades</a></li>
+              <li><a href="programas.html" data-i18n="nav.prog">Programas</a></li>
+              <li><a href="paso-vuriloche.html" data-i18n="footer.paso">Paso Vuriloche</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footer.us">Nosotros</h5>
+            <ul>
+              <li><a href="espiritupionero.html" data-i18n="footer.pioneer">Espíritu Pionero</a></li>
+              <li><a href="sobre.html" data-i18n="footer.about">Sobre First Patagonia</a></li>
+              <li><a href="planifica.html" data-i18n="footer.plan">Planifica tu viaje</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footer.contact">Contacto</h5>
+            <ul>
+              <li><a href="mailto:reservas@petrohue.com">reservas@petrohue.com</a></li>
+              <li><a href="tel:+56984644870">+56 9 8464 4870</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p data-i18n="footer.copy">© 2025 First Patagonia. Todos los derechos reservados.</p>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="footer.book">Reservar ahora</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

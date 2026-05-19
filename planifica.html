@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planifica tu Viaje — First Patagonia</title>
+  <meta name="description" content="Cómo llegar a Petrohué, cuándo ir, qué llevar y todo lo que necesitas saber para planificar tu viaje a Lodge Petrohué en la Patagonia chilena.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .season-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-top: 3rem;
+    }
+    .season-card {
+      background: var(--black);
+      padding: 2rem 1.75rem;
+      transition: background var(--transition);
+    }
+    .season-card:hover { background: #111; }
+    .season-card__months {
+      font-size: 0.4875rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--orange); display: block; margin-bottom: 0.75rem;
+    }
+    .season-card h4 { color: var(--white); margin-bottom: 0.5rem; }
+    .season-card p  { color: rgba(245,242,236,0.55); font-size: 0.6375rem; line-height: 1.6; }
+    .season-card__badge {
+      display: inline-block; margin-top: 1rem;
+      font-size: 0.4875rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.3rem 0.75rem; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(245,242,236,0.4);
+    }
+    .season-card__badge--hot {
+      border-color: var(--orange); color: var(--orange);
+    }
+
+    .route-step {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .route-step:last-child { border-bottom: none; }
+    .route-step__num {
+      flex-shrink: 0;
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 50%;
+      background: var(--orange);
+      color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; font-weight: 600;
+    }
+    .route-step__body h4 { color: var(--black); margin-bottom: 0.3rem; }
+    .route-step__body p  { font-size: 0.6562rem; }
+
+    .packing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .packing-list {
+      background: var(--white);
+      padding: 1.75rem;
+      border-radius: var(--radius);
+      border-top: 2px solid var(--orange);
+    }
+    .packing-list h4 { color: var(--black); margin-bottom: 1rem; }
+    .packing-list ul { list-style: none; }
+    .packing-list li {
+      font-size: 0.6562rem; color: var(--gray-600);
+      padding: 0.35rem 0;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .packing-list li:last-child { border-bottom: none; }
+    .packing-list li::before {
+      content: ''; display: block;
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--orange); flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="Logos/Logo First Patagonia.png" alt="First Patagonia">
+    </a>
+    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="lodge.html">Lodge</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="programas.html">Programas</a></li>
+      <li><a href="paso-vuriloche.html">Paso Vuriloche</a></li>
+      <li><a href="espiritupionero.html">Espíritu Pionero</a></li>
+      <li><a href="planifica.html">Planifica</a></li>
+      <li>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="nav__cta" target="_blank" rel="noopener">Reservar</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero page-hero--planifica">
+    <div class="page-hero__media">
+      <!-- IMAGEN: <img src="assets/planifica-hero.jpg" alt="Planifica tu viaje"> -->
+    </div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <span class="page-hero__label" data-i18n="plan.hero.label">Todo lo que necesitas saber</span>
+      <h1 class="page-hero__title" data-i18n-html="plan.hero.title">Planifica<br><em>tu viaje</em></h1>
+      <p class="page-hero__subtitle" data-i18n="plan.hero.sub">Cómo llegar, cuándo ir y qué llevar para vivir Petrohué al máximo.</p>
+    </div>
+  </section>
+
+  <!-- CUÁNDO IR -->
+  <section class="section section--dark">
+    <div class="section__inner">
+      <div class="section__header section__header--center">
+        <span class="section__label" data-i18n="plan.when.label">Temporadas</span>
+        <h2 data-i18n-html="plan.when.title">¿Cuándo<br><em>venir?</em></h2>
+        <p style="max-width:480px;margin:1rem auto 0;" data-i18n="plan.when.desc">Petrohué tiene algo que ofrecer todo el año. Cada estación tiene su carácter.</p>
+      </div>
+      <div class="season-grid">
+        <div class="season-card">
+          <span class="season-card__months" data-i18n="plan.s1.months">Noviembre — Marzo</span>
+          <h4 data-i18n="plan.s1.name">Verano Patagónico</h4>
+          <p data-i18n="plan.s1.p">Días largos, temperaturas agradables (15–22°C), toda la actividad disponible. La temporada más demandada.</p>
+          <span class="season-card__badge season-card__badge--hot" data-i18n="plan.s.high">Temporada alta</span>
+        </div>
+        <div class="season-card">
+          <span class="season-card__months" data-i18n="plan.s2.months">Abril — Mayo</span>
+          <h4 data-i18n="plan.s2.name">Otoño</h4>
+          <p data-i18n="plan.s2.p">Los bosques se tiñen de rojo y amarillo. Menos visitantes, precios más bajos, naturaleza en su máximo esplendor cromático.</p>
+          <span class="season-card__badge" data-i18n="plan.s.mid">Temporada media</span>
+        </div>
+        <div class="season-card">
+          <span class="season-card__months" data-i18n="plan.s3.months">Junio — Agosto</span>
+          <h4 data-i18n="plan.s3.name">Invierno</h4>
+          <p data-i18n="plan.s3.p">Nieve en el Volcán Osorno. Ski, tinajas y lodge acogedor. Una experiencia completamente diferente y muy íntima.</p>
+          <span class="season-card__badge" data-i18n="plan.s.low">Temporada baja</span>
+        </div>
+        <div class="season-card">
+          <span class="season-card__months" data-i18n="plan.s4.months">Septiembre — Octubre</span>
+          <h4 data-i18n="plan.s4.name">Primavera</h4>
+          <p data-i18n="plan.s4.p">El bosque renace. Flora nativa en floración, aves migratorias y condiciones ideales para trekking antes del verano.</p>
+          <span class="season-card__badge" data-i18n="plan.s.mid">Temporada media</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO LLEGAR -->
+  <section class="section section--gray" id="como-llegar">
+    <div class="section__inner" style="max-width:860px;margin:0 auto;">
+      <div class="section__header">
+        <span class="section__label" data-i18n="plan.how.label">Accesos</span>
+        <h2 style="color:var(--black);" data-i18n-html="plan.how.title">Cómo llegar<br><em>a Petrohué</em></h2>
+        <p data-i18n="plan.how.addr">Ruta 225 Km 58, Petrohué. Parque Nacional Vicente Pérez Rosales, Región de Los Lagos, Chile.</p>
+      </div>
+
+      <div style="margin-top:2rem;">
+        <h4 style="color:var(--black);margin-bottom:1.5rem;font-size: 0.75rem;letter-spacing:0.05em;" data-i18n="plan.how.from.h">Desde Santiago</h4>
+        <div class="route-step">
+          <div class="route-step__num">1</div>
+          <div class="route-step__body">
+            <h4 data-i18n="plan.step1.h4">Vuelo a Puerto Montt</h4>
+            <p data-i18n="plan.step1.p">Vuelo directo Santiago (SCL) → Puerto Montt (PMC). Duración aprox. 1h 40min. Múltiples frecuencias diarias con LATAM y Sky.</p>
+          </div>
+        </div>
+        <div class="route-step">
+          <div class="route-step__num">2</div>
+          <div class="route-step__body">
+            <h4 data-i18n="plan.step2.h4">Puerto Montt → Petrohué</h4>
+            <p data-i18n="plan.step2.p">Traslado en vehículo por la Ruta 225 hacia Petrohué. Duración aprox. 1h 30min pasando por Puerto Varas y Ensenada. Se puede contratar transfer privado con el Lodge.</p>
+          </div>
+        </div>
+        <div class="route-step">
+          <div class="route-step__num">3</div>
+          <div class="route-step__body">
+            <h4 data-i18n="plan.step3.h4">Llegada al Lodge</h4>
+            <p data-i18n="plan.step3.p">Check-in a partir de las 15:00. El Lodge está directamente sobre la Ruta 225, a 150m del Lago Todos los Santos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-grid" style="margin-top:3rem;">
+        <div class="info-card fade-up">
+          <div class="info-card__icon">✈️</div>
+          <h4 data-i18n="plan.how.fly.h">Desde Santiago</h4>
+          <p data-i18n="plan.how.fly.p">~3 horas total (vuelo + traslado). El acceso más rápido al Lodge.</p>
+        </div>
+        <div class="info-card fade-up">
+          <div class="info-card__icon">🚌</div>
+          <h4 data-i18n="plan.how.bus.h">Bus desde Santiago</h4>
+          <p data-i18n="plan.how.bus.p">~10 horas en bus nocturno a Puerto Montt + 1.5h en transfer. Opción económica.</p>
+        </div>
+        <div class="info-card fade-up">
+          <div class="info-card__icon">🚗</div>
+          <h4 data-i18n="plan.how.car.h">En auto propio</h4>
+          <p data-i18n="plan.how.car.p">Ruta 5 Sur hasta Puerto Montt, luego Ruta 225 hacia Petrohué. Estacionamiento gratuito en el Lodge.</p>
+        </div>
+        <div class="info-card fade-up">
+          <div class="info-card__icon">🚐</div>
+          <h4 data-i18n="plan.how.transfer.h">Transfer privado</h4>
+          <p data-i18n="plan.how.transfer.p">El Lodge coordina transfers privados desde Puerto Montt y Puerto Varas. Consulta disponibilidad al reservar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ LLEVAR -->
+  <section class="section" style="background:var(--white);" id="que-llevar">
+    <div class="section__inner">
+      <div class="section__header">
+        <span class="section__label" data-i18n="plan.pack.label">Equipamiento</span>
+        <h2 style="color:var(--black);" data-i18n-html="plan.pack.title">Qué llevar<br><em>a Petrohué</em></h2>
+        <p data-i18n="plan.pack.desc">La Patagonia tiene clima cambiante. La clave es el sistema de capas.</p>
+      </div>
+      <div class="packing-grid" style="margin-top:2.5rem;">
+        <div class="packing-list fade-up">
+          <h4 data-i18n="plan.pack.ropa.h">Ropa esencial</h4>
+          <ul>
+            <li data-i18n="plan.pack.ropa.li1">Capa base térmica (merino o sintético)</li>
+            <li data-i18n="plan.pack.ropa.li2">Polar o fleece grueso</li>
+            <li data-i18n="plan.pack.ropa.li3">Chaqueta impermeable (Gore-Tex o similar)</li>
+            <li data-i18n="plan.pack.ropa.li4">Pantalón trekking impermeable</li>
+            <li data-i18n="plan.pack.ropa.li5">Gorro y guantes</li>
+            <li data-i18n="plan.pack.ropa.li6">Ropa de recambio para 2 días extra</li>
+          </ul>
+        </div>
+        <div class="packing-list fade-up">
+          <h4 data-i18n="plan.pack.calzado.h">Calzado</h4>
+          <ul>
+            <li data-i18n="plan.pack.cal.li1">Botas de trekking impermeables</li>
+            <li data-i18n="plan.pack.cal.li2">Zapatillas cómodas para el Lodge</li>
+            <li data-i18n="plan.pack.cal.li3">Sandalias (opcional, para las tinajas)</li>
+            <li data-i18n="plan.pack.cal.li4">Polainas (recomendado en invierno)</li>
+          </ul>
+        </div>
+        <div class="packing-list fade-up">
+          <h4 data-i18n="plan.pack.equip.h">Equipos y accesorios</h4>
+          <ul>
+            <li data-i18n="plan.pack.eq.li1">Mochila de día 20–30L</li>
+            <li data-i18n="plan.pack.eq.li2">Bastones de trekking (recomendado)</li>
+            <li data-i18n="plan.pack.eq.li3">Botella de agua reutilizable</li>
+            <li data-i18n="plan.pack.eq.li4">Bloqueador solar FPS 50+</li>
+            <li data-i18n="plan.pack.eq.li5">Repelente de insectos</li>
+            <li data-i18n="plan.pack.eq.li6">Lentes de sol polarizados</li>
+          </ul>
+        </div>
+        <div class="packing-list fade-up">
+          <h4 data-i18n="plan.pack.docs.h">Documentos y salud</h4>
+          <ul>
+            <li data-i18n="plan.pack.doc.li1">Cédula de identidad o pasaporte</li>
+            <li data-i18n="plan.pack.doc.li2">Seguro de viaje con cobertura aventura</li>
+            <li data-i18n="plan.pack.doc.li3">Medicamentos personales</li>
+            <li data-i18n="plan.pack.doc.li4">Botiquín básico de primeros auxilios</li>
+            <li data-i18n="plan.pack.doc.li5">Tarjeta de acceso al Parque Nacional</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="section section--gray" id="faqs">
+    <div class="section__inner">
+      <div class="section__header section__header--center">
+        <span class="section__label" data-i18n="plan.faq.label">Preguntas frecuentes</span>
+        <h2 style="color:var(--black);" data-i18n-html="plan.faq.title">Todo lo que<br><em>necesitas saber</em></h2>
+      </div>
+      <div class="accordion" style="margin-top:3rem;">
+        <div class="accordion__item">
+          <button class="accordion__trigger">
+            <span data-i18n="plan.faq.q1">¿El Lodge acepta mascotas?</span>
+            <span class="accordion__icon"></span>
+          </button>
+          <div class="accordion__body">
+            <p data-i18n="plan.faq.a1">Por respeto al ecosistema del Parque Nacional Vicente Pérez Rosales y la fauna silvestre, no aceptamos mascotas en el Lodge ni en las áreas del parque.</p>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger">
+            <span data-i18n="plan.faq.q2">¿Qué nivel de condición física necesito para las actividades?</span>
+            <span class="accordion__icon"></span>
+          </button>
+          <div class="accordion__body">
+            <p data-i18n="plan.faq.a2">Depende de la actividad. El kayak en el lago y las caminatas cortas son aptas para cualquier nivel. El rafting requiere nivel medio. Los trekking de altura y el Paso Vuriloche requieren buena condición física. Nuestros guías adaptan el ritmo al grupo.</p>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger">
+            <span data-i18n="plan.faq.q3">¿Hay conexión a internet en el Lodge?</span>
+            <span class="accordion__icon"></span>
+          </button>
+          <div class="accordion__body">
+            <p data-i18n="plan.faq.a3">Sí, contamos con Wi-Fi gratuito en las áreas comunes y habitaciones. La velocidad es funcional para uso normal. Patagonia invita a desconectarse, ¡pero entendemos que no siempre es posible!</p>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger">
+            <span data-i18n="plan.faq.q4">¿El Restaurante Amancay está abierto para visitantes externos?</span>
+            <span class="accordion__icon"></span>
+          </button>
+          <div class="accordion__body">
+            <p data-i18n="plan.faq.a4">Sí. El Restaurante Amancay recibe visitantes externos, sujeto a disponibilidad. Recomendamos hacer reserva previa, especialmente en temporada alta (noviembre–marzo).</p>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger">
+            <span data-i18n="plan.faq.q5">¿Cómo es el clima en Petrohué?</span>
+            <span class="accordion__icon"></span>
+          </button>
+          <div class="accordion__body">
+            <p data-i18n="plan.faq.a5">El clima es templado-húmedo todo el año. En verano (dic–feb) las temperaturas van de 12°C a 22°C. En invierno bajan a 2–10°C con probabilidad de nieve en altura. La lluvia es frecuente en cualquier época — el sistema de capas es fundamental.</p>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger">
+            <span data-i18n="plan.faq.q6">¿Se puede visitar el Parque Nacional sin estar alojado en el Lodge?</span>
+            <span class="accordion__icon"></span>
+          </button>
+          <div class="accordion__body">
+            <p data-i18n="plan.faq.a6">Sí, el Parque Nacional Vicente Pérez Rosales es de acceso público con entrada CONAF. Nuestros programas y actividades están disponibles exclusivamente para huéspedes del Lodge y clientes de Petrohué Expediciones.</p>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger">
+            <span data-i18n="plan.faq.q7">¿Cuál es la política de cancelación?</span>
+            <span class="accordion__icon"></span>
+          </button>
+          <div class="accordion__body">
+            <p data-i18n="plan.faq.a7">Cancelaciones con más de 30 días de anticipación: reembolso completo. Entre 15 y 30 días: 50% de reembolso. Menos de 15 días: sin reembolso. Consulta condiciones específicas al reservar en GoFeels.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO CONSULTA -->
+  <section class="section" style="background:var(--white);" id="consulta">
+    <div class="section__inner" style="max-width:860px;margin:0 auto;">
+      <div class="section__header">
+        <span class="section__label" data-i18n="plan.contact.label">Consultas</span>
+        <h2 style="color:var(--black);" data-i18n-html="plan.contact.title">¿Tienes alguna<br><em>pregunta?</em></h2>
+        <p data-i18n="plan.contact.desc">Escríbenos y te respondemos en menos de 24 horas.</p>
+      </div>
+      <!-- FORMSPREE: reemplaza TU_ID_FORMSPREE con el código que te da formspree.io (ej: xAbCdEfG) -->
+      <form class="form" style="margin-top:2.5rem;"
+            action="https://formspree.io/f/TU_ID_FORMSPREE"
+            method="POST">
+        <!-- Campo oculto: asunto del email que llega a reservas@petrohue.com -->
+        <input type="hidden" name="_subject" value="Nueva consulta — First Patagonia">
+        <!-- Redirigir al usuario tras enviar (opcional, puedes crear una página gracias.html) -->
+        <!-- <input type="hidden" name="_next" value="https://tudominio.com/gracias.html"> -->
+        <div class="form__row">
+          <div class="form__group">
+            <label for="nombre" data-i18n="plan.form.name">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="form__group">
+            <label for="email" data-i18n="plan.form.email">Email</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="fecha" data-i18n="plan.form.dates">Fechas tentativas</label>
+            <input type="text" id="fecha" name="fecha" placeholder="Ej: diciembre 2025">
+          </div>
+          <div class="form__group">
+            <label for="personas" data-i18n="plan.form.people">Número de personas</label>
+            <input type="number" id="personas" name="personas" placeholder="Ej: 2" min="1">
+          </div>
+        </div>
+        <div class="form__group">
+          <label for="interes" data-i18n="plan.form.interest">¿Qué te interesa?</label>
+          <select id="interes" name="interes">
+            <option value="" data-i18n="plan.form.select">Seleccionar...</option>
+            <option data-i18n="plan.form.opt1">Alojamiento (Lodge o cabañas)</option>
+            <option data-i18n="plan.form.opt2">Programa específico</option>
+            <option data-i18n="plan.form.opt3">Paso Vuriloche</option>
+            <option data-i18n="plan.form.opt4">Tronador 360° Trail Running</option>
+            <option data-i18n="plan.form.opt5">Actividades sueltas</option>
+            <option data-i18n="plan.form.opt6">Grupo o evento corporativo</option>
+          </select>
+        </div>
+        <div class="form__group">
+          <label for="mensaje" data-i18n="plan.form.msg">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos sobre tu viaje ideal..."></textarea>
+        </div>
+        <button type="submit" class="btn btn--orange" data-i18n="plan.form.btn">Enviar consulta</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- BOOKING BANNER -->
+  <section class="booking-banner">
+    <h2 data-i18n-html="plan.booking.title">¿Todo listo<br><em>para reservar?</em></h2>
+    <p data-i18n="plan.booking.desc">Asegura tu lugar en el Lodge Petrohué directamente en GoFeels.</p>
+    <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+       class="btn btn--light" target="_blank" rel="noopener" data-i18n="plan.booking.btn">Reservar ahora en GoFeels</a>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="Logos/Logo First Patagonia.png" alt="First Patagonia" class="footer__logo">
+          <p data-i18n-html="footer.addr">Ruta 225 Km 58, Petrohué<br>Parque Nacional Vicente Pérez Rosales<br>Chile</p>
+        </div>
+        <nav class="footer__nav">
+          <div class="footer__col">
+            <h5 data-i18n="footer.explore">Explorar</h5>
+            <ul>
+              <li><a href="lodge.html" data-i18n="footer.lodge">Lodge Petrohué</a></li>
+              <li><a href="actividades.html" data-i18n="nav.act">Actividades</a></li>
+              <li><a href="programas.html" data-i18n="nav.prog">Programas</a></li>
+              <li><a href="paso-vuriloche.html" data-i18n="footer.paso">Paso Vuriloche</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footer.us">Nosotros</h5>
+            <ul>
+              <li><a href="espiritupionero.html" data-i18n="footer.pioneer">Espíritu Pionero</a></li>
+              <li><a href="sobre.html" data-i18n="footer.about">Sobre First Patagonia</a></li>
+              <li><a href="planifica.html" data-i18n="footer.plan">Planifica tu viaje</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footer.contact">Contacto</h5>
+            <ul>
+              <li><a href="mailto:reservas@petrohue.com">reservas@petrohue.com</a></li>
+              <li><a href="tel:+56984644870">+56 9 8464 4870</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p data-i18n="footer.copy">© 2025 First Patagonia. Todos los derechos reservados.</p>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="footer.book">Reservar ahora</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

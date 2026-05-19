@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programas — First Patagonia</title>
+  <meta name="description" content="8 programas integrados y 2 expediciones icónicas. Desde escapadas de 2 días hasta la travesía del Paso Vuriloche. Diseña tu experiencia en Petrohué.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .program-full-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 420px;
+      overflow: hidden;
+      background: var(--white);
+      margin-bottom: 1.5px;
+    }
+    .program-full-card:nth-child(even) { direction: rtl; }
+    .program-full-card:nth-child(even) > * { direction: ltr; }
+    .program-full-card__media {
+      background-size: cover;
+      background-position: center;
+      min-height: 320px;
+      position: relative;
+      overflow: hidden;
+    }
+    .program-full-card__media img {
+      width: 100%; height: 100%; object-fit: cover;
+      position: absolute; inset: 0;
+    }
+    .program-full-card__body {
+      padding: clamp(2rem, 5vw, 4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .program-full-card__tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .tag {
+      font-size: 0.4875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      border: 1px solid var(--gray-200);
+      color: var(--gray-600);
+    }
+    .tag--orange { border-color: var(--orange); color: var(--orange); }
+    .program-full-card__body h3 { color: var(--black); margin-bottom: 0.75rem; }
+    .program-full-card__body p { margin-bottom: 1.5rem; }
+    .program-includes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 2rem;
+    }
+    .program-includes li {
+      font-size: 0.6375rem;
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .program-includes li::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+    .expedition-card {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 460px;
+      overflow: hidden;
+      background: #111;
+    }
+    .expedition-card__media {
+      position: relative;
+      overflow: hidden;
+    }
+    .expedition-card__media img,
+    .expedition-card__media video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+    .expedition-card__overlay { display: none; }
+    .expedition-card__content {
+      padding: clamp(2rem, 4vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .expedition-card__content h3 { color: var(--white); margin-bottom: 0.75rem; font-size: clamp(1.2rem, 2.25vw, 1.875rem); }
+    .expedition-card__content p { color: rgba(245,242,236,0.75); margin-bottom: 1.5rem; }
+    .expedition-stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .expedition-stats span {
+      font-size: 0.5625rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245,242,236,0.55);
+    }
+    .expedition-stats strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: var(--white);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .expeditions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .expedition-card {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-top: 3px solid var(--orange);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .expedition-card:hover {
+      box-shadow: 0 24px 80px rgba(232,82,26,0.55), 0 0 40px rgba(232,82,26,0.3);
+      transform: translateY(-10px);
+    }
+    @media (max-width: 900px) {
+      .program-full-card { grid-template-columns: 1fr; }
+      .program-full-card:nth-child(even) { direction: ltr; }
+      .expeditions-grid { grid-template-columns: 1fr; }
+      .expedition-card { grid-template-columns: 1fr; }
+      .expedition-card__media { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="Logos/Logo First Patagonia.png" alt="First Patagonia">
+    </a>
+    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="lodge.html">Lodge</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="programas.html">Programas</a></li>
+      <li><a href="paso-vuriloche.html">Paso Vuriloche</a></li>
+      <li><a href="espiritupionero.html">Espíritu Pionero</a></li>
+      <li><a href="planifica.html">Planifica</a></li>
+      <li>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="nav__cta" target="_blank" rel="noopener">Reservar</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero page-hero--programas">
+    <div class="page-hero__media">
+      <!-- IMAGEN: <img src="assets/programas-hero.jpg" alt="Programas First Patagonia"> -->
+    </div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <span class="page-hero__label" data-i18n="prog.hero.label">Experiencias integradas</span>
+      <h1 class="page-hero__title" data-i18n-html="prog.hero.title">Diseña tu<br><em>experiencia</em></h1>
+      <p class="page-hero__subtitle" data-i18n="prog.hero.sub">Alojamiento, guías, comidas y actividades en un solo programa. Tú solo llega.</p>
+    </div>
+  </section>
+
+  <!-- EXPEDICIONES -->
+  <section class="section section--dark">
+    <div class="section__inner">
+      <div class="section__header section__header--center">
+        <span class="section__label" data-i18n="prog.exp.label">Expediciones icónicas</span>
+        <h2 data-i18n-html="prog.exp.title">Más allá del<br><em>horizonte</em></h2>
+        <p style="max-width:560px;margin:1rem auto 0;" data-i18n="prog.exp.desc">Para los que no les basta con llegar. Para los que necesitan cruzar.</p>
+      </div>
+      <div class="expeditions-grid" style="margin-top:3rem;">
+
+        <a href="paso-vuriloche.html" class="expedition-card">
+          <div class="expedition-card__media" style="background:#0c141e;">
+            <video autoplay muted loop playsinline>
+              <source src="assets/paso-card.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="expedition-card__content">
+            <div>
+              <span class="section__label" data-i18n="prog.paso.cat">Travesía andina</span>
+              <h3>Paso Vuriloche</h3>
+              <p data-i18n="prog.paso.desc">La travesía que creó Franz Schirmer. 8 días cruzando los Andes de Chile a Argentina a pie, a caballo y en barco.</p>
+              <div class="expedition-stats">
+                <span><span data-i18n="exp.stat.dur">Duración</span><strong>8 días</strong></span>
+                <span><span data-i18n="exp.stat.dist">Distancia</span><strong>50 km</strong></span>
+                <span><span data-i18n="exp.stat.drop">Desnivel</span><strong>2.052 m+</strong></span>
+                <span><span data-i18n="exp.stat.diff">Dificultad</span><strong data-i18n="prog.exp.paso.diff">Alta</strong></span>
+              </div>
+            </div>
+            <span class="btn btn--ghost" data-i18n="prog.paso.btn">Ver travesía →</span>
+          </div>
+        </a>
+
+        <div class="expedition-card">
+          <div class="expedition-card__media" style="background: linear-gradient(160deg, #1a0a0a 0%, #3d1a1a 50%, #6b3030 100%);">
+            <!-- IMAGEN: <img src="assets/tronador-360.jpg" alt="Tronador 360 Trail Running"> -->
+          </div>
+          <div class="expedition-card__content">
+            <div>
+              <span class="section__label">Trail Running</span>
+              <h3>Tronador 360°</h3>
+              <p data-i18n="prog.tronador.desc">80 kilómetros rodeando el Volcán Tronador a través de los Andes. Una de las rutas de trail running más espectaculares del mundo.</p>
+              <div class="expedition-stats">
+                <span><span data-i18n="exp.stat.dur">Duración</span><strong>3–4 días</strong></span>
+                <span><span data-i18n="exp.stat.dist">Distancia</span><strong>80 km</strong></span>
+                <span><span data-i18n="exp.stat.terr">Terreno</span><strong>Andes</strong></span>
+                <span><span data-i18n="exp.stat.level">Nivel</span><strong data-i18n="prog.exp.tronador.level">Avanzado</strong></span>
+              </div>
+            </div>
+            <a href="https://wa.me/56984644870?text=Hola%2C%20me%20interesa%20el%20Tronador%20360%C2%B0%20Trail%20Running."
+               class="btn btn--ghost" target="_blank" rel="noopener" data-i18n="prog.tronador.btn">Reservar →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMAS LISTA -->
+  <section style="background: var(--black);">
+
+    <!-- 1 -->
+    <div class="program-full-card">
+      <div class="program-full-card__media program-card__media--1">
+        <img src="assets/prog-1.jpg" alt="Escapada Express">
+      </div>
+      <div class="program-full-card__body">
+        <div class="program-full-card__tags">
+          <span class="tag tag--orange" data-i18n="prog1.tags">2D / 1N</span>
+          <span class="tag" data-i18n="prog1.tag2">Pareja</span>
+          <span class="tag" data-i18n="prog1.tag3">Relax</span>
+        </div>
+        <h3 data-i18n="prog1.h3">Escapada Express</h3>
+        <p data-i18n="prog1.p">La escapada perfecta para parejas que quieren desconectarse sin perder el tiempo. Navegación por el lago esmeralda + tinajas al atardecer con vista al Volcán Osorno.</p>
+        <ul class="program-includes">
+          <li data-i18n="prog1.inc1">1 noche en habitación Superior con vista al lago</li>
+          <li data-i18n="prog1.inc2">Desayuno y cena en Restaurante Amancay</li>
+          <li data-i18n="prog1.inc3">Navegación Lago Todos los Santos</li>
+          <li data-i18n="prog1.inc4">Sesión de tinajas (hot tubs) en el bosque</li>
+        </ul>
+        <a href="https://reservation.gofeels.com/es/package-detail/169?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+           class="btn btn--orange" target="_blank" rel="noopener" data-i18n="prog.book.btn">Reservar programa</a>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="program-full-card">
+      <div class="program-full-card__media program-card__media--2">
+        <img src="assets/prog-2.jpg" alt="Relax y Naturaleza">
+      </div>
+      <div class="program-full-card__body">
+        <div class="program-full-card__tags">
+          <span class="tag tag--orange" data-i18n="prog1.tags">2D / 1N</span>
+          <span class="tag" data-i18n="prog1.tag2">Pareja</span>
+          <span class="tag" data-i18n="prog1.tag3">Relax</span>
+        </div>
+        <h3 data-i18n="prog2.h3">Relax & Naturaleza</h3>
+        <p data-i18n="prog2.p">Camina entre alerces centenarios y termina la jornada sumergiéndote en tinajas al atardecer. La conexión perfecta entre movimiento y descanso.</p>
+        <ul class="program-includes">
+          <li data-i18n="prog2.inc1">1 noche en habitación Superior</li>
+          <li data-i18n="prog2.inc2">Desayuno y cena incluidos</li>
+          <li data-i18n="prog2.inc3">Trek guiado Rincón Los Alerces</li>
+          <li data-i18n="prog2.inc4">Sesión de tinajas privadas</li>
+        </ul>
+        <a href="https://reservation.gofeels.com/es/package-detail/170?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+           class="btn btn--orange" target="_blank" rel="noopener" data-i18n="prog.book.btn">Reservar programa</a>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="program-full-card">
+      <div class="program-full-card__media program-card__media--3">
+        <img src="assets/prog-3.jpg" alt="Sabores de Petrohué">
+      </div>
+      <div class="program-full-card__body">
+        <div class="program-full-card__tags">
+          <span class="tag tag--orange">3D / 2N</span>
+          <span class="tag" data-i18n="prog1.tag2">Pareja</span>
+          <span class="tag" data-i18n="prog3.tag2">Familia</span>
+        </div>
+        <h3 data-i18n="prog3.h3">Sabores de Petrohué</h3>
+        <p data-i18n="prog3.p">Una experiencia culinaria en el fin del mundo. Cocina patagónica elaborada con ingredientes locales, maridaje de vinos y bienestar completo.</p>
+        <ul class="program-includes">
+          <li data-i18n="prog3.inc1">2 noches en habitación Superior</li>
+          <li data-i18n="prog3.inc2">Pensión completa (desayuno, almuerzo, cena gourmet)</li>
+          <li data-i18n="prog3.inc3">Cena especial maridada en Restaurante Amancay</li>
+          <li data-i18n="prog3.inc4">Sesión de bienestar (tinajas + sauna)</li>
+          <li data-i18n="prog3.inc5">Caminata interpretativa por el bosque</li>
+        </ul>
+        <a href="https://reservation.gofeels.com/es/package-detail/166?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+           class="btn btn--orange" target="_blank" rel="noopener" data-i18n="prog.book.btn">Reservar programa</a>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="program-full-card">
+      <div class="program-full-card__media program-card__media--4">
+        <img src="assets/prog-4.jpg" alt="Aventura en la Montaña">
+      </div>
+      <div class="program-full-card__body">
+        <div class="program-full-card__tags">
+          <span class="tag tag--orange">3D / 2N</span>
+          <span class="tag" data-i18n="prog4.tag2">Aventura</span>
+          <span class="tag" data-i18n="prog1.tag2">Pareja</span>
+        </div>
+        <h3 data-i18n="prog4.h3">Aventura en la Montaña</h3>
+        <p data-i18n="prog4.p">Conquista el Paso Desolación con vistas panorámicas al Volcán Osorno y culmina con kayak en el lago. Para quienes necesitan ir más lejos.</p>
+        <ul class="program-includes">
+          <li data-i18n="prog4.inc1">2 noches en habitación Superior</li>
+          <li data-i18n="prog4.inc2">Desayuno y cena incluidos</li>
+          <li data-i18n="prog4.inc3">Trek Paso Desolación con guía certificado</li>
+          <li data-i18n="prog4.inc4">Kayak en Lago Todos los Santos</li>
+          <li data-i18n="prog4.inc5">Equipo técnico completo</li>
+        </ul>
+        <a href="https://reservation.gofeels.com/es/package-detail/167?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+           class="btn btn--orange" target="_blank" rel="noopener" data-i18n="prog.book.btn">Reservar programa</a>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="program-full-card">
+      <div class="program-full-card__media program-card__media--5">
+        <img src="assets/prog-5.jpg" alt="Petrohué Activo">
+      </div>
+      <div class="program-full-card__body">
+        <div class="program-full-card__tags">
+          <span class="tag tag--orange">3D / 2N</span>
+          <span class="tag" data-i18n="prog4.tag2">Aventura</span>
+          <span class="tag" data-i18n="prog5.tag2">Activo</span>
+        </div>
+        <h3 data-i18n="prog5.h3">Petrohué Activo</h3>
+        <p data-i18n="prog5.p">Kayak en el lago más transparente de Chile + 2 trekking en distintos terrenos. La máxima dosis de actividad física en tres días.</p>
+        <ul class="program-includes">
+          <li data-i18n="prog5.inc1">2 noches en Lodge Petrohué</li>
+          <li data-i18n="prog5.inc2">Desayuno y cena incluidos</li>
+          <li data-i18n="prog5.inc3">Kayak Lago Todos los Santos (4 horas)</li>
+          <li data-i18n="prog5.inc4">2 trekking guiados (bosque + volcán)</li>
+          <li data-i18n="prog5.inc5">Equipo completo incluido</li>
+        </ul>
+        <a href="https://reservation.gofeels.com/es/package-detail/168?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+           class="btn btn--orange" target="_blank" rel="noopener" data-i18n="prog.book.btn">Reservar programa</a>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="program-full-card">
+      <div class="program-full-card__media program-card__media--6">
+        <img src="assets/prog-6.jpg" alt="Escapada 4 Días">
+      </div>
+      <div class="program-full-card__body">
+        <div class="program-full-card__tags">
+          <span class="tag tag--orange">4D / 3N</span>
+          <span class="tag" data-i18n="prog1.tag3">Relax</span>
+          <span class="tag" data-i18n="prog6.tag2">Promo 3×2</span>
+        </div>
+        <h3 data-i18n="prog6.h3">Escapada 4 Días</h3>
+        <p data-i18n="prog6.p">Tres noches al precio de dos. Kayak en el lago, tinajas privadas y tiempo libre total para desconectar sin agenda.</p>
+        <ul class="program-includes">
+          <li data-i18n="prog6.inc1">3 noches en habitación Superior (promo 3×2)</li>
+          <li data-i18n="prog6.inc2">Desayuno incluido todos los días</li>
+          <li data-i18n="prog6.inc3">Kayak en lago (2 horas)</li>
+          <li data-i18n="prog6.inc4">Sesión diaria de tinajas</li>
+          <li data-i18n="prog6.inc5">Acceso libre a piscina y sauna</li>
+        </ul>
+        <a href="https://reservation.gofeels.com/es/package-detail/165?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+           class="btn btn--orange" target="_blank" rel="noopener" data-i18n="prog.book.btn">Reservar programa</a>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="program-full-card">
+      <div class="program-full-card__media program-card__media--7">
+        <img src="assets/prog-7.jpg" alt="Full Aventura Petrohué">
+      </div>
+      <div class="program-full-card__body">
+        <div class="program-full-card__tags">
+          <span class="tag tag--orange">4D / 3N</span>
+          <span class="tag" data-i18n="prog4.tag2">Aventura</span>
+          <span class="tag" data-i18n="prog7.tag2">Premium</span>
+        </div>
+        <h3 data-i18n="prog7.h3">Full Aventura Petrohué</h3>
+        <p data-i18n="prog7.p">El programa más completo de la Patagonia. Rafting en el Río Petrohué + trekking de altura + kayak en el lago. Todo en cuatro días.</p>
+        <ul class="program-includes">
+          <li data-i18n="prog7.inc1">3 noches en Lodge Petrohué</li>
+          <li data-i18n="prog7.inc2">Pensión completa</li>
+          <li data-i18n="prog7.inc3">Rafting Clase III/IV Río Petrohué</li>
+          <li data-i18n="prog7.inc4">Trek de altura con guía certificado</li>
+          <li data-i18n="prog7.inc5">Kayak Lago Todos los Santos</li>
+          <li data-i18n="prog7.inc6">Equipo técnico y seguridad completa</li>
+        </ul>
+        <a href="https://reservation.gofeels.com/es/package-detail/171?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+           class="btn btn--orange" target="_blank" rel="noopener" data-i18n="prog.book.btn">Reservar programa</a>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="program-full-card">
+      <div class="program-full-card__media program-card__media--8">
+        <img src="assets/prog-8.jpg" alt="Escapada de Pesca">
+      </div>
+      <div class="program-full-card__body">
+        <div class="program-full-card__tags">
+          <span class="tag tag--orange">4D / 3N</span>
+          <span class="tag" data-i18n="prog8.tag2">Pesca</span>
+          <span class="tag" data-i18n="prog8.tag3">All-inclusive</span>
+        </div>
+        <h3 data-i18n="prog8.h3">Escapada de Pesca</h3>
+        <p data-i18n="prog8.p">Tres días de pesca en las aguas más prístinas de la Patagonia chilena. Río Petrohué y Lago Todos los Santos. All-inclusive con coctelería artesanal incluida.</p>
+        <ul class="program-includes">
+          <li data-i18n="prog8.inc1">3 noches en Lodge Petrohué</li>
+          <li data-i18n="prog8.inc2">All-inclusive (todas las comidas + coctelería)</li>
+          <li data-i18n="prog8.inc3">3 días de pesca guiada (fly fishing + spinning)</li>
+          <li data-i18n="prog8.inc4">Equipos de pesca de última generación</li>
+          <li data-i18n="prog8.inc5">Licencia de pesca incluida</li>
+        </ul>
+        <a href="https://reservation.gofeels.com/es/package-detail/172?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+           class="btn btn--orange" target="_blank" rel="noopener" data-i18n="prog.book.btn">Reservar programa</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- BOOKING BANNER -->
+  <section class="booking-banner">
+    <h2 data-i18n-html="prog.booking.title">¿No encuentras<br><em>tu programa ideal?</em></h2>
+    <p data-i18n="prog.booking.desc">Contáctanos y diseñamos juntos una experiencia a tu medida.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&packages"
+         class="btn btn--light" target="_blank" rel="noopener" data-i18n="prog.booking.btn">Reservar en GoFeels</a>
+      <a href="https://wa.me/56984644870?text=Hola%2C%20quiero%20consultar%20disponibilidad%20de%20programas%20en%20First%20Patagonia%20%F0%9F%8F%94%EF%B8%8F"
+         class="btn btn--ghost" target="_blank" rel="noopener" data-i18n="prog.booking.btn2">Consultar disponibilidad</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="Logos/Logo First Patagonia.png" alt="First Patagonia" class="footer__logo">
+          <p data-i18n-html="footer.addr">Ruta 225 Km 58, Petrohué<br>Parque Nacional Vicente Pérez Rosales<br>Chile</p>
+        </div>
+        <nav class="footer__nav">
+          <div class="footer__col">
+            <h5 data-i18n="footer.explore">Explorar</h5>
+            <ul>
+              <li><a href="lodge.html" data-i18n="footer.lodge">Lodge Petrohué</a></li>
+              <li><a href="actividades.html" data-i18n="nav.act">Actividades</a></li>
+              <li><a href="programas.html" data-i18n="nav.prog">Programas</a></li>
+              <li><a href="paso-vuriloche.html" data-i18n="footer.paso">Paso Vuriloche</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footer.us">Nosotros</h5>
+            <ul>
+              <li><a href="espiritupionero.html" data-i18n="footer.pioneer">Espíritu Pionero</a></li>
+              <li><a href="sobre.html" data-i18n="footer.about">Sobre First Patagonia</a></li>
+              <li><a href="planifica.html" data-i18n="footer.plan">Planifica tu viaje</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footer.contact">Contacto</h5>
+            <ul>
+              <li><a href="mailto:reservas@petrohue.com">reservas@petrohue.com</a></li>
+              <li><a href="tel:+56984644870">+56 9 8464 4870</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p data-i18n="footer.copy">© 2025 First Patagonia. Todos los derechos reservados.</p>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="footer.book">Reservar ahora</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

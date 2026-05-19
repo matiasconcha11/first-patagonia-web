@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lodge Petrohué — First Patagonia</title>
+  <meta name="description" content="20 habitaciones y 4 cabañas lacustres a orillas del Lago Todos los Santos. Restaurante Amancay, tinajas, jacuzzi y spa en el Parque Nacional Vicente Pérez Rosales.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .amenity {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.675rem;
+      color: var(--gray-600);
+    }
+    .amenity::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+    .cabins-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .cabin-card {
+      background: var(--black);
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.45), 0 1px 6px rgba(0,180,169,0.08);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .cabin-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 32px 90px rgba(0,0,0,0.75), 0 8px 32px rgba(0,180,169,0.28);
+    }
+    .cabin-card__img {
+      height: 260px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cabin-card__img img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+    .cabin-card__body { padding: 1.75rem; }
+    .cabin-card__body h4 { color: var(--white); margin-bottom: 0.4rem; }
+    .cabin-card__body p  { color: rgba(245,242,236,0.6); font-size: 0.6562rem; margin-bottom: 1.25rem; }
+    .cabin-card__meta {
+      display: flex; gap: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .cabin-card__meta span {
+      font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(245,242,236,0.4);
+    }
+    .cabin-card__meta strong {
+      display: block; color: var(--white); font-size: 0.7125rem; letter-spacing: 0; text-transform: none;
+    }
+    .wellness-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .wellness-card {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      transition: background var(--transition);
+    }
+    .wellness-card:hover { background: rgba(255,255,255,0.07); }
+    .wellness-card__icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .wellness-card h4 { color: var(--white); margin-bottom: 0.5rem; }
+    .wellness-card p  { font-size: 0.6562rem; color: rgba(245,242,236,0.55); }
+    .restaurant-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 520px;
+    }
+    .restaurant-block__media {
+      background: linear-gradient(135deg, #2a1a0d 0%, #6b3a1a 60%, #8b5e3c 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .restaurant-block__media img {
+      width:100%; height:100%; object-fit:cover; position:absolute; inset:0;
+    }
+    .restaurant-block__body {
+      background: var(--black);
+      padding: clamp(3rem, 6vw, 5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .restaurant-block__body h2 { color: var(--white); margin-bottom: 1rem; }
+    .restaurant-block__body p  { color: rgba(245,242,236,0.65); margin-bottom: 1.5rem; }
+    .hours-list { margin-top: 1.5rem; }
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.6562rem;
+    }
+    .hours-list li span:first-child { color: rgba(245,242,236,0.5); }
+    .hours-list li span:last-child  { color: var(--white); font-weight: 500; }
+    @media (max-width: 768px) {
+      .restaurant-block { grid-template-columns: 1fr; }
+      .restaurant-block__media { min-height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="Logos/Logo First Patagonia.png" alt="First Patagonia">
+    </a>
+    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="lodge.html">Lodge</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="programas.html">Programas</a></li>
+      <li><a href="paso-vuriloche.html">Paso Vuriloche</a></li>
+      <li><a href="espiritupionero.html">Espíritu Pionero</a></li>
+      <li><a href="planifica.html">Planifica</a></li>
+      <li>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="nav__cta" target="_blank" rel="noopener">Reservar</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero page-hero--lodge page-hero--video">
+    <div class="page-hero__media">
+      <video id="lodgeHeroVideo" muted playsinline preload="metadata">
+        <source src="assets/lodge.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <span class="page-hero__label" data-i18n="lodge.hero.label">Parque Nacional Vicente Pérez Rosales</span>
+      <h1 class="page-hero__title" data-i18n-html="lodge.hero.title">Lodge<br><em>Petrohué</em></h1>
+      <p class="page-hero__subtitle" data-i18n="lodge.hero.sub">A 150 metros del Lago Todos los Santos, con el Volcán Osorno de fondo. 110 años de hospitalidad familiar.</p>
+    </div>
+  </section>
+
+  <!-- HABITACIONES — Editorial Grid -->
+  <section class="section" style="background:var(--gray-100);" id="habitaciones">
+    <div class="section__inner">
+
+      <!-- Título sección -->
+      <div class="rooms-intro fade-up">
+        <span class="section__label" data-i18n="lodge.rooms.label">Alojamiento</span>
+        <h2 data-i18n-html="lodge.rooms.title">Elige dónde<br><em>despertar mañana</em></h2>
+        <p data-i18n="lodge.rooms.intro">Con vista al bosque nativo o con el lago al frente — cada rincón tiene su propio carácter. Elige el tuyo.</p>
+      </div>
+
+      <!-- Barra Habitaciones / Cabañas / Restaurante -->
+      <div class="rooms-nav" id="roomsNav">
+        <a href="#habitaciones" class="rooms-nav__btn rooms-nav__btn--active" data-rooms-tab>
+          <span class="rooms-nav__label" data-i18n="rooms.hab.label">Alojamiento</span>
+          <span class="rooms-nav__title" data-i18n-html="rooms.hab.title">Habitaciones<br>del Lodge</span>
+          <span class="rooms-nav__sub" data-i18n="rooms.hab.sub">20 habitaciones · Vista al lago y volcán</span>
+        </a>
+        <a href="#cabanas" class="rooms-nav__btn" data-rooms-tab>
+          <span class="rooms-nav__label" data-i18n="rooms.cab.label">Exclusivo</span>
+          <span class="rooms-nav__title" data-i18n-html="rooms.cab.title">Cabañas<br>Frente al Lago</span>
+          <span class="rooms-nav__sub" data-i18n="rooms.cab.sub">4 cabañas · Acceso privado a la playa</span>
+        </a>
+        <a href="#restaurante" class="rooms-nav__btn" data-rooms-tab>
+          <span class="rooms-nav__label" data-i18n="rooms.rest.label">Gastronomía</span>
+          <span class="rooms-nav__title" data-i18n-html="rooms.rest.title">Restaurante<br>Amancay</span>
+          <span class="rooms-nav__sub" data-i18n="rooms.rest.sub">Trucha del lago · Cordero patagónico</span>
+        </a>
+      </div>
+
+      <!-- Standard + Triple -->
+      <div class="rooms-category">
+        <div class="rooms-category__header">
+          <div>
+            <span class="section__label" data-i18n="lodge.std.label">Vista al bosque</span>
+            <h2 style="color:var(--black);" data-i18n-html="lodge.std.title">Habitaciones<br><em>del Lodge</em></h2>
+          </div>
+          <p style="color:var(--gray-600);" data-i18n="lodge.std.desc">Ambiente rústico-sureño con todo el confort. Rodeadas de coihues y bosque nativo patagónico.</p>
+        </div>
+        <div class="rooms-grid--3">
+
+          <div class="room-ec room-ec--std fade-up">
+            <div class="room-ec__img">
+              <img src="assets/hab-matrimonial-std.jpg" alt="Habitación Standard Matrimonial">
+            </div>
+            <div class="room-ec__body">
+              <div class="room-ec__type" data-i18n="room.type.matrimonial">Matrimonial</div>
+              <div class="room-ec__name" data-i18n="room.name.std">Standard</div>
+              <p class="room-ec__desc" data-i18n="room.std.mat.desc">Cama matrimonial con vista al bosque nativo de coihues. La esencia más genuina del Lodge.</p>
+              <div class="room-ec__meta">
+                <span data-i18n="room.meta.1mat">1 cama matrimonial</span>
+                <span data-i18n="room.meta.vbosque">Vista bosque</span>
+                <span data-i18n="room.meta.12p">1–2 personas</span>
+              </div>
+              <a href="https://reservation.gofeels.com/es/room-detail/4318?CLP"
+                 class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="room.btn.book">Reservar</a>
+            </div>
+          </div>
+
+          <div class="room-ec room-ec--std fade-up">
+            <div class="room-ec__img">
+              <img src="assets/hab-twin-std.jpg" alt="Habitación Standard Twin">
+            </div>
+            <div class="room-ec__body">
+              <div class="room-ec__type" data-i18n="room.type.twin">Twin</div>
+              <div class="room-ec__name" data-i18n="room.name.std">Standard</div>
+              <p class="room-ec__desc" data-i18n="room.std.twin.desc">6 habitaciones con dos camas individuales. Ideal para amigos o viajeros que prefieren su propio espacio.</p>
+              <div class="room-ec__meta">
+                <span data-i18n="room.meta.2ind">2 camas individuales</span>
+                <span data-i18n="room.meta.vbosque">Vista bosque</span>
+                <span data-i18n="room.meta.12p">1–2 personas</span>
+              </div>
+              <a href="https://reservation.gofeels.com/es/room-detail/4306?CLP"
+                 class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="room.btn.book">Reservar</a>
+            </div>
+          </div>
+
+          <div class="room-ec room-ec--tri fade-up">
+            <div class="room-ec__img">
+              <!-- IMAGEN: agregar foto Triple cuando esté disponible -->
+            </div>
+            <div class="room-ec__body">
+              <div class="room-ec__type" data-i18n="room.type.familiar">Familiar</div>
+              <div class="room-ec__name" data-i18n="room.name.triple">Triple</div>
+              <p class="room-ec__desc" data-i18n="room.tri.desc">Tres camas individuales y vista al bosque. La opción ideal para familias o grupos de tres.</p>
+              <div class="room-ec__meta">
+                <span data-i18n="room.meta.3ind">3 camas individuales</span>
+                <span data-i18n="room.meta.vbosque">Vista bosque</span>
+                <span data-i18n="room.meta.23p">2–3 personas</span>
+              </div>
+              <a href="https://reservation.gofeels.com/es/room-detail/4321?CLP"
+                 class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="room.btn.book">Reservar</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Superior -->
+      <div class="rooms-category" style="margin-top:3.5rem;">
+        <div class="rooms-category__header">
+          <div>
+            <span class="section__label" data-i18n="lodge.sup.label">Vista al lago · Premium</span>
+            <h2 style="color:var(--black);" data-i18n-html="lodge.sup.title">Habitaciones<br><em>Superiores</em></h2>
+          </div>
+          <p style="color:var(--gray-600);" data-i18n="lodge.sup.desc">Vista directa al Lago Todos los Santos y al Volcán Osorno. Despiertas dentro del paisaje.</p>
+        </div>
+        <div class="rooms-grid--3">
+
+          <div class="room-ec room-ec--sup fade-up">
+            <div class="room-ec__img">
+              <img src="assets/hab-matrimonial-sup.jpg" alt="Habitación Superior King">
+            </div>
+            <div class="room-ec__body">
+              <span class="room-ec__badge" data-i18n="room.badge.popular">Más solicitada</span>
+              <div class="room-ec__type" data-i18n="room.type.king">King · Vista lago</div>
+              <div class="room-ec__name" data-i18n="room.name.supking">Superior King</div>
+              <p class="room-ec__desc" data-i18n="room.sup.king.desc">Cama King con vista panorámica al Lago Todos los Santos y el Volcán Osorno de fondo. 7 habitaciones disponibles. La experiencia completa del Lodge.</p>
+              <div class="room-ec__meta">
+                <span data-i18n="room.meta.king">Cama King</span>
+                <span data-i18n="room.meta.vlago">Vista lago</span>
+                <span data-i18n="room.meta.12p">1–2 personas</span>
+              </div>
+              <a href="https://reservation.gofeels.com/es/room-detail/4319?CLP"
+                 class="btn btn--orange" target="_blank" rel="noopener" data-i18n="room.btn.bookroom">Reservar habitación</a>
+            </div>
+          </div>
+
+          <div class="room-ec room-ec--sup fade-up">
+            <div class="room-ec__img">
+              <img src="assets/hab-twin-sup.jpg" alt="Habitación Superior Twin">
+            </div>
+            <div class="room-ec__body">
+              <div class="room-ec__type" data-i18n="room.type.twinsup">Twin · Vista lago</div>
+              <div class="room-ec__name" data-i18n="room.name.suptwin">Superior Twin</div>
+              <p class="room-ec__desc" data-i18n="room.sup.twin.desc">Dos camas individuales con la misma vista privilegiada al lago. Perfecta para amigos o parejas que prefieren camas separadas sin renunciar al mejor paisaje.</p>
+              <div class="room-ec__meta">
+                <span data-i18n="room.meta.2ind">2 camas individuales</span>
+                <span data-i18n="room.meta.vlago">Vista lago</span>
+                <span data-i18n="room.meta.12p">1–2 personas</span>
+              </div>
+              <a href="https://reservation.gofeels.com/es/room-detail/4317?CLP"
+                 class="btn btn--orange" target="_blank" rel="noopener" data-i18n="room.btn.bookroom">Reservar habitación</a>
+            </div>
+          </div>
+
+          <div class="room-ec room-ec--sup fade-up">
+            <div class="room-ec__img">
+              <img src="assets/hab-suite-superior.jpg" alt="Suite Superior">
+            </div>
+            <div class="room-ec__body">
+              <span class="room-ec__badge" data-i18n="room.badge.suite">Suite</span>
+              <div class="room-ec__type" data-i18n="room.type.suite">Suite · Vista lago</div>
+              <div class="room-ec__name" data-i18n="room.name.suite">Suite Superior</div>
+              <p class="room-ec__desc" data-i18n="room.suite.desc">La habitación más amplia y exclusiva del Lodge. Espacio, luz y la mejor vista al Lago Todos los Santos. Para quienes buscan lo máximo en Petrohué.</p>
+              <div class="room-ec__meta">
+                <span data-i18n="room.meta.king">Cama King</span>
+                <span data-i18n="room.meta.vlago">Vista lago</span>
+                <span data-i18n="room.meta.12p">1–2 personas</span>
+              </div>
+              <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+                 class="btn btn--orange" target="_blank" rel="noopener" data-i18n="room.btn.bookroom">Reservar habitación</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CABAÑAS LACUSTRES -->
+  <section class="section section--dark" id="cabanas">
+    <div class="section__inner">
+      <div class="section__header section__header--center">
+        <span class="section__label" data-i18n="lodge.cab.label">Acceso privado a la playa</span>
+        <h2 data-i18n-html="lodge.cab.title">Cabañas<br><em>Frente al Lago</em></h2>
+        <p style="max-width:520px;margin:1rem auto 0;" data-i18n="lodge.cab.desc">4 cabañas independientes bautizadas con árboles nativos de la Patagonia. Cada una con terraza propia y acceso directo a la playa del Lago Todos los Santos.</p>
+      </div>
+      <div class="cabanas-grid">
+
+        <div class="cabin-ec fade-up">
+          <div class="cabin-ec__img">
+            <img src="assets/cab-tineo.jpg" alt="Cabaña Tineo">
+          </div>
+          <div class="cabin-ec__body">
+            <div class="cabin-ec__tree" data-i18n="cab.tree">Árbol nativo</div>
+            <div class="cabin-ec__name">Tineo</div>
+            <p class="cabin-ec__desc" data-i18n="cab.tineo.desc">Terraza privada sobre el lago. La cabaña más íntima del conjunto.</p>
+            <div class="cabin-ec__cap" data-i18n="cab.tineo.cap">Hasta 4 personas · Vista lago</div>
+            <a href="https://reservation.gofeels.com/es/room-detail/4322?CLP"
+               class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="room.btn.book">Reservar</a>
+          </div>
+        </div>
+
+        <div class="cabin-ec fade-up">
+          <div class="cabin-ec__img">
+            <img src="assets/cab-canelo.jpg" alt="Cabaña Canelo">
+          </div>
+          <div class="cabin-ec__body">
+            <div class="cabin-ec__tree" data-i18n="cab.tree">Árbol nativo</div>
+            <div class="cabin-ec__name">Canelo</div>
+            <p class="cabin-ec__desc" data-i18n="cab.canelo.desc">Rodeada de canelos sagrados. Acceso privado directo a la playa.</p>
+            <div class="cabin-ec__cap" data-i18n="cab.canelo.cap">Hasta 7 personas · Vista lago</div>
+            <a href="https://reservation.gofeels.com/es/room-detail/4323?CLP"
+               class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="room.btn.book">Reservar</a>
+          </div>
+        </div>
+
+        <div class="cabin-ec fade-up">
+          <div class="cabin-ec__img">
+            <img src="assets/cab-arrayan.jpg" alt="Cabaña Arrayán">
+          </div>
+          <div class="cabin-ec__body">
+            <div class="cabin-ec__tree" data-i18n="cab.tree">Árbol nativo</div>
+            <div class="cabin-ec__name">Arrayán</div>
+            <p class="cabin-ec__desc" data-i18n="cab.arrayan.desc">La más espaciosa. Ideal para familias o grupos que quieren el lago para ellos.</p>
+            <div class="cabin-ec__cap" data-i18n="cab.arrayan.cap">Hasta 7 personas · Vista lago</div>
+            <a href="https://reservation.gofeels.com/es/room-detail/4324?CLP"
+               class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="room.btn.book">Reservar</a>
+          </div>
+        </div>
+
+        <div class="cabin-ec fade-up">
+          <div class="cabin-ec__img">
+            <img src="assets/cab-canelo.jpg" alt="Cabaña Ulmo">
+          </div>
+          <div class="cabin-ec__body">
+            <div class="cabin-ec__tree" data-i18n="cab.tree">Árbol nativo</div>
+            <div class="cabin-ec__name">Ulmo</div>
+            <p class="cabin-ec__desc" data-i18n="cab.ulmo.desc">Entre ulmos en flor en verano. El perfume de la Patagonia en cada rincón.</p>
+            <div class="cabin-ec__cap" data-i18n="cab.ulmo.cap">Hasta 8 personas · Lago y bosque</div>
+            <a href="https://reservation.gofeels.com/es/room-detail/4325?CLP"
+               class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="room.btn.book">Reservar</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RESTAURANTE AMANCAY -->
+  <div class="restaurant-block" id="restaurante">
+    <div class="restaurant-block__media">
+      <img src="assets/restaurante.jpg" alt="Restaurante Amancay">
+    </div>
+    <div class="restaurant-block__body">
+      <span class="section__label" data-i18n="rest.label">Gastronomía patagónica</span>
+      <h2 data-i18n-html="rest.title">Restaurante<br><em>Amancay</em></h2>
+      <p data-i18n="rest.desc">Cocina local con ingredientes de la región. Trucha del lago, cordero patagónico, frutos del bosque y vinos del sur de Chile. Abierto también para visitantes externos.</p>
+      <ul class="hours-list">
+        <li><span data-i18n="rest.breakfast">Desayuno</span><span data-i18n="rest.hours1">07:30 — 10:30</span></li>
+        <li><span data-i18n="rest.lunch">Almuerzo</span><span data-i18n="rest.hours2">12:30 — 15:00</span></li>
+        <li><span data-i18n="rest.dinner">Cena</span><span data-i18n="rest.hours3">19:30 — 22:00</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- BIENESTAR -->
+  <section class="section section--dark" id="bienestar">
+    <div class="section__inner">
+      <div class="section__header section__header--center">
+        <span class="section__label" data-i18n="wellness.label">Bienestar</span>
+        <h2 data-i18n-html="wellness.title">El descanso<br><em>que mereces</em></h2>
+        <p style="max-width:480px;margin:1rem auto 0;" data-i18n="wellness.intro">Después de un día en la naturaleza, nada mejor que sumergirse en el calor de las tinajas patagónicas.</p>
+      </div>
+      <div class="wellness-grid" style="margin-top:3rem;">
+        <div class="wellness-card fade-up">
+          <div class="wellness-card__icon">♨️</div>
+          <h4 data-i18n="wellness.tinajas.h">Tinajas</h4>
+          <p data-i18n="wellness.tinajas.p">Hot tubs de madera nativa con agua calentada a leña. Vista al volcán y al bosque.</p>
+        </div>
+        <div class="wellness-card fade-up">
+          <div class="wellness-card__icon">💧</div>
+          <h4 data-i18n="wellness.jacuzzi.h">Jacuzzi</h4>
+          <p data-i18n="wellness.jacuzzi.p">Jacuzzi exterior con vistas panorámicas al lago y la cordillera.</p>
+        </div>
+        <div class="wellness-card fade-up">
+          <div class="wellness-card__icon">🏊</div>
+          <h4 data-i18n="wellness.pool.h">Piscina exterior</h4>
+          <p data-i18n="wellness.pool.p">Piscina al aire libre rodeada de naturaleza patagónica.</p>
+        </div>
+        <div class="wellness-card fade-up">
+          <div class="wellness-card__icon">🧖</div>
+          <h4 data-i18n="wellness.sauna.h">Sauna</h4>
+          <p data-i18n="wellness.sauna.p">Sauna finlandés tradicional para completar la experiencia de bienestar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING BANNER -->
+  <section class="booking-banner">
+    <h2 data-i18n-html="lodge.booking.title">Reserva tu<br><em>estadía en el Lodge</em></h2>
+    <p data-i18n="lodge.booking.desc">Mejor tarifa garantizada reservando directamente con nosotros.</p>
+    <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+       class="btn btn--light" target="_blank" rel="noopener" data-i18n="lodge.booking.btn">Reservar en GoFeels</a>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="Logos/Logo First Patagonia.png" alt="First Patagonia" class="footer__logo">
+          <p data-i18n-html="footer.addr">Ruta 225 Km 58, Petrohué<br>Parque Nacional Vicente Pérez Rosales<br>Chile</p>
+        </div>
+        <nav class="footer__nav">
+          <div class="footer__col">
+            <h5 data-i18n="footer.explore">Explorar</h5>
+            <ul>
+              <li><a href="lodge.html" data-i18n="footer.lodge">Lodge Petrohué</a></li>
+              <li><a href="actividades.html" data-i18n="nav.act">Actividades</a></li>
+              <li><a href="programas.html" data-i18n="nav.prog">Programas</a></li>
+              <li><a href="paso-vuriloche.html" data-i18n="footer.paso">Paso Vuriloche</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footer.us">Nosotros</h5>
+            <ul>
+              <li><a href="espiritupionero.html" data-i18n="footer.pioneer">Espíritu Pionero</a></li>
+              <li><a href="sobre.html" data-i18n="footer.about">Sobre First Patagonia</a></li>
+              <li><a href="planifica.html" data-i18n="footer.plan">Planifica tu viaje</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footer.contact">Contacto</h5>
+            <ul>
+              <li><a href="mailto:reservas@petrohue.com">reservas@petrohue.com</a></li>
+              <li><a href="tel:+56984644870">+56 9 8464 4870</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p data-i18n="footer.copy">© 2025 First Patagonia. Todos los derechos reservados.</p>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="footer.book">Reservar ahora</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Rooms nav — toggle active on click + track on scroll
+    (function() {
+      var btns = document.querySelectorAll('[data-rooms-tab]');
+      var sectionIds = ['habitaciones', 'cabanas', 'restaurante'];
+      var userClicked = false;
+      var clickTimeout;
+
+      function setActive(id) {
+        btns.forEach(function(b) {
+          b.classList.toggle('rooms-nav__btn--active', b.getAttribute('href') === '#' + id);
+        });
+      }
+
+      // Click: mark immediately, pause scroll detection briefly
+      btns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var id = btn.getAttribute('href').replace('#', '');
+          setActive(id);
+          userClicked = true;
+          clearTimeout(clickTimeout);
+          clickTimeout = setTimeout(function() { userClicked = false; }, 1200);
+        });
+      });
+
+      // Scroll: find which section occupies the most of the viewport
+      function onScroll() {
+        if (userClicked) return;
+        var best = null, bestVal = -Infinity;
+        sectionIds.forEach(function(id) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          var r = el.getBoundingClientRect();
+          var visible = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+          if (visible > bestVal) { bestVal = visible; best = id; }
+        });
+        if (best) setActive(best);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+</body>
+</html>

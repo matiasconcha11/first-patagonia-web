@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First Patagonia — Lodge Petrohué, Patagonia Chilena</title>
+  <meta name="description" content="Vive el Espíritu Pionero en Petrohué. Lodge, Paso Vuriloche y experiencias únicas en el Parque Nacional Vicente Pérez Rosales, Patagonia chilena.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="Logos/Logo First Patagonia.png" alt="First Patagonia">
+    </a>
+    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="lodge.html">Lodge</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="programas.html">Programas</a></li>
+      <li><a href="paso-vuriloche.html">Paso Vuriloche</a></li>
+      <li><a href="espiritupionero.html">Espíritu Pionero</a></li>
+      <li><a href="planifica.html">Planifica</a></li>
+      <li>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="nav__cta" target="_blank" rel="noopener">Reservar</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__video-wrap">
+      <video id="heroVideo" muted playsinline preload="metadata">
+        <source src="assets/hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <img src="Logos/Logo First Patagonia.png" alt="First Patagonia" class="hero__logo">
+      <span class="hero__location" data-i18n="hero.location">Petrohué · Patagonia Chilena</span>
+      <h1 class="hero__title" data-i18n-html="hero.title">Espíritu<br><em>Pionero</em></h1>
+      <p class="hero__subtitle" data-i18n-html="hero.sub">Donde la naturaleza no es el escenario.<br>Es la experiencia.</p>
+      <div class="hero__actions">
+        <a href="programas.html" class="btn btn--light" data-i18n="hero.btn1">Descubre tu programa</a>
+        <a href="lodge.html" class="btn btn--ghost" data-i18n="hero.btn2">Ver Lodge</a>
+      </div>
+    </div>
+    <div class="hero__scroll">
+      <span data-i18n="index.scroll">Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO PIONERO -->
+  <section class="manifesto">
+    <div class="manifesto__inner fade-up">
+      <img src="Logos/Logo First Patagonia.png" alt="First Patagonia" class="manifesto__logo">
+      <span class="manifesto__label" data-i18n="manifesto.label">First Patagonia · Espíritu Pionero · 110 años</span>
+      <blockquote class="manifesto__quote" data-i18n-html="manifesto.quote">
+        "No cualquiera<br>tiene <em>alma de pionero.</em><br>
+        Para serlo se necesita algo especial —<br>
+        algo que te impulse a la <em>aventura,<br>exploración</em> y descubrimiento."
+      </blockquote>
+      <cite class="manifesto__author" data-i18n="manifesto.author">— Franz Schirmer, fundador de First Patagonia</cite>
+      <div class="manifesto__bottom">
+        <a href="espiritupionero.html" class="btn btn--ghost" data-i18n="manifesto.btn">Nuestra historia</a>
+      </div>
+      <div class="manifesto__stats">
+        <div class="manifesto__stat">
+          <span class="manifesto__stat-num">110+</span>
+          <span class="manifesto__stat-label" data-i18n-html="stat.label1">Años de historia<br>familiar pionera</span>
+        </div>
+        <div class="manifesto__stat">
+          <span class="manifesto__stat-num">50 km</span>
+          <span class="manifesto__stat-label" data-i18n-html="stat.label2">Travesía Paso<br>Vuriloche · 8 días</span>
+        </div>
+        <div class="manifesto__stat">
+          <span class="manifesto__stat-num">4</span>
+          <span class="manifesto__stat-label" data-i18n-html="stat.label3">Ecosistemas:<br>Lago · Río · Montaña · Bosque</span>
+        </div>
+        <div class="manifesto__stat">
+          <span class="manifesto__stat-num">70</span>
+          <span class="manifesto__stat-label" data-i18n-html="stat.label4">Huéspedes máx.<br>Exclusividad total</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 MOTORES -->
+  <section class="engines">
+    <div class="engines__grid">
+
+      <a href="lodge.html" class="engine-card engine-card--lodge">
+        <div class="engine-card__media engine-card__media--lodge">
+          <video id="lodgeCardVideo" muted playsinline preload="metadata" loop>
+            <source src="assets/lodge.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="engine-card__num">01</div>
+        <div class="engine-card__content">
+          <span class="engine-card__cat" data-i18n="eng.lodge.cat">Alojamiento</span>
+          <h3 data-i18n-html="index.engines.lodge.h3">Lodge<br>Petrohué</h3>
+          <p data-i18n="eng.lodge.desc">20 habitaciones y cabañas lacustres frente al Lago Todos los Santos.</p>
+          <span class="engine-card__link"><span data-i18n="eng.lodge.link">Conocer el Lodge</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <div class="engines__col">
+        <a href="paso-vuriloche.html" class="engine-card engine-card--paso">
+          <div class="engine-card__media engine-card__media--paso">
+            <video id="pasoCardVideo" muted playsinline preload="metadata" loop autoplay>
+              <source src="assets/paso-card.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="engine-card__num">02</div>
+          <div class="engine-card__content">
+            <span class="engine-card__cat" data-i18n="eng.paso.cat">Travesía andina</span>
+            <h3 data-i18n="index.engines.paso.h3">Paso Vuriloche</h3>
+            <p data-i18n="eng.paso.desc">50 km · 8 días · Chile–Argentina</p>
+            <span class="engine-card__link"><span data-i18n="eng.paso.link">Ver la travesía</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </a>
+
+        <a href="programas.html" class="engine-card engine-card--programas">
+          <div class="engine-card__media engine-card__media--programas">
+            <video id="heliCardVideo" muted playsinline preload="metadata">
+              <source src="assets/heli.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="engine-card__num">03</div>
+          <div class="engine-card__content">
+            <span class="engine-card__cat" data-i18n="eng.prog.cat">Experiencias</span>
+            <h3 data-i18n="index.engines.prog.h3">Programas</h3>
+            <p data-i18n="eng.prog.desc">De 2 días a 8. Diseñados para cada tipo de viajero.</p>
+            <span class="engine-card__link"><span data-i18n="eng.prog.link">Ver programas</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ESPIRITU PIONERO BANNER -->
+  <section class="pioneer-banner fade-up">
+    <div class="pioneer-banner__inner">
+      <div class="pioneer-banner__text">
+        <span class="section__label" data-i18n="pioneer.label">5ª generación · Familia Schirmer</span>
+        <h2 data-i18n-html="pioneer.title">Más de 110 años<br>abriendo <em>caminos</em></h2>
+        <p data-i18n="pioneer.desc">Desde el primer refugio en el Paso Vuriloche hasta el lodge que hoy recibes, cada generación ha dejado su huella en este territorio.</p>
+        <a href="espiritupionero.html" class="btn btn--orange" data-i18n="pioneer.btn">Conocer la historia</a>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="pioneer-timeline">
+      <div class="pioneer-timeline__track">
+
+        <!-- SET 1 -->
+        <div class="pioneer-timeline__mile">
+          <div class="pioneer-timeline__top">
+            <span class="pioneer-timeline__year">1914</span>
+            <span class="pioneer-timeline__dot"></span>
+          </div>
+          <p class="pioneer-timeline__desc" data-i18n="timeline.1914">Familia Schirmer llega a la Patagonia Norte</p>
+        </div>
+
+        <div class="pioneer-timeline__mile">
+          <div class="pioneer-timeline__top">
+            <span class="pioneer-timeline__year">1998</span>
+            <span class="pioneer-timeline__dot"></span>
+          </div>
+          <p class="pioneer-timeline__desc" data-i18n="timeline.1998">Franz Schirmer abre el Paso Vuriloche al turismo</p>
+        </div>
+
+        <div class="pioneer-timeline__mile pioneer-timeline__mile--now">
+          <div class="pioneer-timeline__top">
+            <span class="pioneer-timeline__year">2026</span>
+            <span class="pioneer-timeline__dot"></span>
+          </div>
+          <p class="pioneer-timeline__desc" data-i18n="timeline.2026">5ª generación · Matías Schirmer · First Patagonia</p>
+        </div>
+
+        <!-- divider between loops -->
+        <div class="pioneer-timeline__loop-sep"></div>
+
+        <!-- SET 2 — duplicate for seamless loop -->
+        <div class="pioneer-timeline__mile">
+          <div class="pioneer-timeline__top">
+            <span class="pioneer-timeline__year">1914</span>
+            <span class="pioneer-timeline__dot"></span>
+          </div>
+          <p class="pioneer-timeline__desc" data-i18n="timeline.1914">Familia Schirmer llega a la Patagonia Norte</p>
+        </div>
+
+        <div class="pioneer-timeline__mile">
+          <div class="pioneer-timeline__top">
+            <span class="pioneer-timeline__year">1998</span>
+            <span class="pioneer-timeline__dot"></span>
+          </div>
+          <p class="pioneer-timeline__desc" data-i18n="timeline.1998">Franz Schirmer abre el Paso Vuriloche al turismo</p>
+        </div>
+
+        <div class="pioneer-timeline__mile pioneer-timeline__mile--now">
+          <div class="pioneer-timeline__top">
+            <span class="pioneer-timeline__year">2026</span>
+            <span class="pioneer-timeline__dot"></span>
+          </div>
+          <p class="pioneer-timeline__desc" data-i18n="timeline.2026">5ª generación · Matías Schirmer · First Patagonia</p>
+        </div>
+
+        <div class="pioneer-timeline__loop-sep"></div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 TERRENOS -->
+  <section class="terrenos">
+    <div class="terrenos__header fade-up">
+      <h2 data-i18n-html="terrenos.title">Cuatro mundos,<br><em>infinitas rutas</em></h2>
+    </div>
+    <div class="terrenos__grid">
+
+      <a href="actividades.html#lago" class="terreno">
+        <div class="terreno__media terreno__media--lago">
+          <img src="assets/act-kayak-lago.jpg" alt="Kayak en el Lago">
+        </div>
+        <div class="terreno__overlay"></div>
+        <div class="terreno__static">
+          <span class="terreno__tag" data-i18n="terreno.tag">Actividades</span>
+          <h3 data-i18n="terreno.lago">Lago</h3>
+          <span class="terreno__hint"><span data-i18n="terreno.hint">Explorar</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="terreno__reveal">
+          <ul class="terreno__acts-list">
+            <li data-i18n="terreno.lago.li1">Kayak en el lago</li>
+            <li data-i18n="terreno.lago.li2">Navegación panorámica</li>
+            <li data-i18n="terreno.lago.li3">Pesca con mosca</li>
+            <li data-i18n="terreno.lago.li4">Paddleboard al amanecer</li>
+          </ul>
+          <span class="terreno__cta-link"><span data-i18n="terreno.cta">Ver actividades</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="actividades.html#rio" class="terreno">
+        <div class="terreno__media terreno__media--rio">
+          <img src="assets/act-rafting.jpg" alt="Rafting en el Río Petrohué">
+        </div>
+        <div class="terreno__overlay"></div>
+        <div class="terreno__static">
+          <span class="terreno__tag" data-i18n="terreno.tag">Actividades</span>
+          <h3 data-i18n="terreno.rio">Río</h3>
+          <span class="terreno__hint"><span data-i18n="terreno.hint">Explorar</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="terreno__reveal">
+          <ul class="terreno__acts-list">
+            <li data-i18n="terreno.rio.li1">Rafting Clase III/IV</li>
+            <li data-i18n="terreno.rio.li2">Kayak de río</li>
+            <li data-i18n="terreno.rio.li3">Descenso por rápidos</li>
+            <li data-i18n="terreno.rio.li4">Pesca en el Petrohué</li>
+          </ul>
+          <span class="terreno__cta-link"><span data-i18n="terreno.cta">Ver actividades</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="actividades.html#montana" class="terreno">
+        <div class="terreno__media terreno__media--montana">
+          <img src="assets/act-heli.jpg" alt="Helicóptero en la Montaña">
+        </div>
+        <div class="terreno__overlay"></div>
+        <div class="terreno__static">
+          <span class="terreno__tag" data-i18n="terreno.tag">Actividades</span>
+          <h3 data-i18n="terreno.mtn">Montaña</h3>
+          <span class="terreno__hint"><span data-i18n="terreno.hint">Explorar</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="terreno__reveal">
+          <ul class="terreno__acts-list">
+            <li data-i18n="terreno.mtn.li1">Vuelo en helicóptero</li>
+            <li data-i18n="terreno.mtn.li2">Trek Paso Desolación</li>
+            <li data-i18n="terreno.mtn.li3">Escalada en roca</li>
+            <li data-i18n="terreno.mtn.li4">Cumbre Volcán Osorno</li>
+          </ul>
+          <span class="terreno__cta-link"><span data-i18n="terreno.cta">Ver actividades</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="actividades.html#bosque" class="terreno">
+        <div class="terreno__media terreno__media--bosque">
+          <img src="assets/act-bosque.jpg" alt="Bosque Patagónico">
+        </div>
+        <div class="terreno__overlay"></div>
+        <div class="terreno__static">
+          <span class="terreno__tag" data-i18n="terreno.tag">Actividades</span>
+          <h3 data-i18n="terreno.bos">Bosque</h3>
+          <span class="terreno__hint"><span data-i18n="terreno.hint">Explorar</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="terreno__reveal">
+          <ul class="terreno__acts-list">
+            <li data-i18n="terreno.bos.li1">Trek Rincón Los Alerces</li>
+            <li data-i18n="terreno.bos.li2">Avistamiento de fauna</li>
+            <li data-i18n="terreno.bos.li3">Senderismo nativo</li>
+            <li data-i18n="terreno.bos.li4">Fotografía de naturaleza</li>
+          </ul>
+          <span class="terreno__cta-link"><span data-i18n="terreno.cta">Ver actividades</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- PROGRAMS SELECTOR -->
+  <section class="programs-preview">
+    <div class="container">
+      <div class="programs-preview__header fade-up">
+        <h2 data-i18n-html="prog.title">Diseña tu<br><em>experiencia</em></h2>
+        <p data-i18n="prog.desc">Desde escapadas de 2 días hasta expediciones de 8. Encuentra el programa que se adapta a ti.</p>
+      </div>
+
+      <div class="programs-preview__filters">
+        <button class="filter-btn active" data-filter="all" data-i18n="filter.all">Todos</button>
+        <button class="filter-btn" data-filter="relax" data-i18n="filter.relax">Relax</button>
+        <button class="filter-btn" data-filter="aventura" data-i18n="filter.adv">Aventura</button>
+        <button class="filter-btn" data-filter="familia" data-i18n="filter.fam">Familia</button>
+        <button class="filter-btn" data-filter="pareja" data-i18n="filter.cpl">Pareja</button>
+      </div>
+
+      <div class="programs-preview__grid" id="programsGrid">
+
+        <div class="program-card fade-up" data-tags="pareja relax">
+          <div class="program-card__media program-card__media--1">
+            <img src="assets/prog-1.jpg" alt="Escapada Express — Lago">
+          </div>
+          <div class="program-card__body">
+            <span class="program-card__duration" data-i18n="prog.card1.dur">2 Días / 1 Noche</span>
+            <h4 data-i18n="prog.card1.h4">Escapada Express</h4>
+            <p data-i18n="prog.card1.p">Navegación por el lago + tinajas al atardecer. La escapada perfecta para parejas.</p>
+            <a href="https://reservation.gofeels.com/es/package-detail/169?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+               class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="prog.card.btn">Reservar</a>
+          </div>
+        </div>
+
+        <div class="program-card fade-up" data-tags="pareja relax">
+          <div class="program-card__media program-card__media--2">
+            <img src="assets/prog-2.jpg" alt="Relax & Naturaleza — Bosque">
+          </div>
+          <div class="program-card__body">
+            <span class="program-card__duration" data-i18n="prog.card2.dur">2 Días / 1 Noche</span>
+            <h4 data-i18n="prog.card2.h4">Relax & Naturaleza</h4>
+            <p data-i18n="prog.card2.p">Trek Rincón Los Alerces + tinajas al atardecer en el bosque nativo.</p>
+            <a href="https://reservation.gofeels.com/es/package-detail/170?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+               class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="prog.card.btn">Reservar</a>
+          </div>
+        </div>
+
+        <div class="program-card fade-up" data-tags="pareja familia">
+          <div class="program-card__media program-card__media--3">
+            <img src="assets/prog-3.jpg" alt="Sabores de Petrohué — Restaurante Amancay">
+          </div>
+          <div class="program-card__body">
+            <span class="program-card__duration" data-i18n="prog.card3.dur">3 Días / 2 Noches</span>
+            <h4 data-i18n="prog.card3.h4">Sabores de Petrohué</h4>
+            <p data-i18n="prog.card3.p">Gastronomía patagónica en el Restaurante Amancay + bienestar y naturaleza.</p>
+            <a href="https://reservation.gofeels.com/es/package-detail/166?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+               class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="prog.card.btn">Reservar</a>
+          </div>
+        </div>
+
+        <div class="program-card fade-up" data-tags="aventura pareja">
+          <div class="program-card__media program-card__media--4">
+            <img src="assets/prog-4.jpg" alt="Aventura en la Montaña — Trekking">
+          </div>
+          <div class="program-card__body">
+            <span class="program-card__duration" data-i18n="prog.card4.dur">3 Días / 2 Noches</span>
+            <h4 data-i18n="prog.card4.h4">Aventura en la Montaña</h4>
+            <p data-i18n="prog.card4.p">Trek Paso Desolación + kayak en el lago. Para los que van más lejos.</p>
+            <a href="https://reservation.gofeels.com/es/package-detail/167?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+               class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="prog.card.btn">Reservar</a>
+          </div>
+        </div>
+
+        <div class="program-card fade-up" data-tags="aventura">
+          <div class="program-card__media program-card__media--5">
+            <img src="assets/prog-5.jpg" alt="Petrohué Activo — Escalada">
+          </div>
+          <div class="program-card__body">
+            <span class="program-card__duration" data-i18n="prog.card5.dur">3 Días / 2 Noches</span>
+            <h4 data-i18n="prog.card5.h4">Petrohué Activo</h4>
+            <p data-i18n="prog.card5.p">Kayak + 2 trekking. Máxima acción en tres días en el corazón de la Patagonia.</p>
+            <a href="https://reservation.gofeels.com/es/package-detail/168?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+               class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="prog.card.btn">Reservar</a>
+          </div>
+        </div>
+
+        <div class="program-card fade-up" data-tags="relax pareja">
+          <div class="program-card__media program-card__media--6">
+            <img src="assets/prog-6.jpg" alt="Escapada 4 Días — Helicóptero">
+          </div>
+          <div class="program-card__body">
+            <span class="program-card__duration" data-i18n="prog.card6.dur">4 Días / 3 Noches</span>
+            <h4 data-i18n="prog.card6.h4">Escapada 4 Días</h4>
+            <p data-i18n="prog.card6.p">Promo 3x2: kayak + tinajas + lago. Todo incluido para desconectar del todo.</p>
+            <a href="https://reservation.gofeels.com/es/package-detail/165?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+               class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="prog.card.btn">Reservar</a>
+          </div>
+        </div>
+
+        <div class="program-card fade-up" data-tags="aventura">
+          <div class="program-card__media program-card__media--7">
+            <img src="assets/prog-7.jpg" alt="Full Aventura Petrohué — Rafting">
+          </div>
+          <div class="program-card__body">
+            <span class="program-card__duration" data-i18n="prog.card7.dur">4 Días / 3 Noches</span>
+            <h4 data-i18n="prog.card7.h4">Full Aventura Petrohué</h4>
+            <p data-i18n="prog.card7.p">Rafting + trekking + kayak. La experiencia completa para los verdaderos aventureros.</p>
+            <a href="https://reservation.gofeels.com/es/package-detail/171?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+               class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="prog.card.btn">Reservar</a>
+          </div>
+        </div>
+
+        <div class="program-card fade-up" data-tags="relax">
+          <div class="program-card__media program-card__media--8">
+            <img src="assets/prog-8.jpg" alt="Escapada de Pesca — Río Petrohué">
+          </div>
+          <div class="program-card__body">
+            <span class="program-card__duration" data-i18n="prog.card8.dur">4 Días / 3 Noches</span>
+            <h4 data-i18n="prog.card8.h4">Escapada de Pesca</h4>
+            <p data-i18n="prog.card8.p">3 días de pesca en las aguas más puras de Patagonia + all-inclusive + coctelería.</p>
+            <a href="https://reservation.gofeels.com/es/package-detail/172?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7"
+               class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="prog.card.btn">Reservar</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="programs-preview__cta">
+        <a href="programas.html" class="btn btn--outline" data-i18n="prog.see.all">Ver todos los programas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING BANNER -->
+  <section class="booking-banner">
+    <h2 data-i18n-html="booking.title">¿Listo para vivir<br><em>tu aventura?</em></h2>
+    <p data-i18n="booking.desc">Reserva directamente con nosotros y accede a la mejor tarifa disponible.</p>
+    <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+       class="btn btn--light" target="_blank" rel="noopener" data-i18n="booking.btn">Reservar en GoFeels</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="Logos/Logo First Patagonia.png" alt="First Patagonia" class="footer__logo">
+          <p data-i18n-html="footer.addr">Ruta 225 Km 58, Petrohué<br>Parque Nacional Vicente Pérez Rosales<br>Chile</p>
+        </div>
+        <nav class="footer__nav">
+          <div class="footer__col">
+            <h5 data-i18n="footer.explore">Explorar</h5>
+            <ul>
+              <li><a href="lodge.html" data-i18n="footer.lodge">Lodge Petrohué</a></li>
+              <li><a href="actividades.html" data-i18n="nav.act">Actividades</a></li>
+              <li><a href="programas.html" data-i18n="nav.prog">Programas</a></li>
+              <li><a href="paso-vuriloche.html" data-i18n="footer.paso">Paso Vuriloche</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footer.us">Nosotros</h5>
+            <ul>
+              <li><a href="espiritupionero.html" data-i18n="footer.pioneer">Espíritu Pionero</a></li>
+              <li><a href="sobre.html" data-i18n="footer.about">Sobre First Patagonia</a></li>
+              <li><a href="planifica.html" data-i18n="footer.plan">Planifica tu viaje</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footer.contact">Contacto</h5>
+            <ul>
+              <li><a href="mailto:reservas@petrohue.com">reservas@petrohue.com</a></li>
+              <li><a href="tel:+56984644870">+56 9 8464 4870</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p data-i18n="footer.copy">© 2025 First Patagonia. Todos los derechos reservados.</p>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="footer.book">Reservar ahora</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AUDIO TOGGLE -->
+  <button id="audioToggle" class="audio-toggle" aria-label="Activar música">
+    <span class="audio-icon">♩</span>
+    <span class="audio-label">Sonido</span>
+  </button>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paso Vuriloche — First Patagonia</title>
+  <meta name="description" content="La travesía andina más icónica de la Patagonia. 8 días, 50 km, 2.052m de desnivel positivo cruzando los Andes de Chile a Argentina. Creada por Franz Schirmer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .stats-bar {
+      background: var(--orange);
+      padding: 2.5rem clamp(1.5rem,5vw,4rem);
+      display: flex;
+      justify-content: center;
+      gap: clamp(2rem,6vw,6rem);
+      flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat__value {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 3.0vw, 2.25rem);
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1;
+      display: block;
+    }
+    .stat__label {
+      font-size: 0.525rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,242,236,0.65);
+      display: block;
+      margin-top: 0.4rem;
+    }
+    .itinerary-day {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      align-items: start;
+    }
+    .itinerary-day:last-child { border-bottom: none; }
+    .day-number {
+      font-family: var(--font-serif);
+      font-size: 2.25rem;
+      font-weight: 400;
+      color: rgba(200,96,42,0.35);
+      line-height: 1;
+      text-align: right;
+    }
+    .day-content h4 { color: var(--white); margin-bottom: 0.5rem; font-size: 0.825rem; }
+    .day-content p  { color: rgba(245,242,236,0.6); font-size: 0.675rem; }
+    .day-meta {
+      display: flex; gap: 1.5rem; margin-top: 0.75rem; flex-wrap: wrap;
+    }
+    .day-meta span {
+      font-size: 0.525rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(245,242,236,0.35);
+    }
+    .logistics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .logistics-card {
+      padding: 2rem;
+      background: var(--gray-100);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--orange);
+    }
+    .logistics-card h4 { color: var(--black); margin-bottom: 0.75rem; }
+    .logistics-card p, .logistics-card li {
+      font-size: 0.6562rem; color: var(--gray-600); line-height: 1.6;
+    }
+    .logistics-card ul { list-style: none; padding: 0; }
+    .logistics-card li { padding: 0.2rem 0; }
+    .logistics-card li::before {
+      content: '— '; color: var(--orange);
+    }
+    .level-bar {
+      margin: 1.5rem 0;
+    }
+    .level-bar__label {
+      display: flex; justify-content: space-between;
+      font-size: 0.6rem; color: var(--gray-600); margin-bottom: 0.5rem;
+    }
+    .level-bar__track {
+      height: 4px; background: var(--gray-200); border-radius: 2px; overflow: hidden;
+    }
+    .level-bar__fill {
+      height: 100%; background: var(--orange); border-radius: 2px;
+      transition: width 1s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="Logos/Logo First Patagonia.png" alt="First Patagonia">
+    </a>
+    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="lodge.html">Lodge</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="programas.html">Programas</a></li>
+      <li><a href="paso-vuriloche.html">Paso Vuriloche</a></li>
+      <li><a href="espiritupionero.html">Espíritu Pionero</a></li>
+      <li><a href="planifica.html">Planifica</a></li>
+      <li>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="nav__cta" target="_blank" rel="noopener">Reservar</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero page-hero--vuriloche">
+    <div class="page-hero__media">
+      <!-- IMAGEN: <img src="assets/paso-vuriloche-hero.jpg" alt="Paso Vuriloche"> -->
+    </div>
+    <div class="page-hero__overlay"></div>
+    <div class="page-hero__content">
+      <span class="page-hero__label" data-i18n="paso.hero.label">Travesía andina · Chile → Argentina</span>
+      <h1 class="page-hero__title" data-i18n-html="paso.hero.title">Paso<br><em>Vuriloche</em></h1>
+      <p class="page-hero__subtitle" data-i18n="paso.hero.sub">La travesía que Franz Schirmer construyó con sus manos. 8 días cruzando los Andes de chile a Argentina a pie, a caballo y en barco.</p>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat__value">8</span>
+      <span class="stat__label" data-i18n="paso.stat.days">Días</span>
+    </div>
+    <div class="stat">
+      <span class="stat__value">50</span>
+      <span class="stat__label" data-i18n="paso.stat.km">Kilómetros</span>
+    </div>
+    <div class="stat">
+      <span class="stat__value">2.052</span>
+      <span class="stat__label" data-i18n="paso.stat.drop">Metros desnivel+</span>
+    </div>
+    <div class="stat">
+      <span class="stat__value">7/7</span>
+      <span class="stat__label" data-i18n="paso.stat.nights">Noches / Días</span>
+    </div>
+    <div class="stat">
+      <span class="stat__value" data-i18n="paso.stat.val.diff">Alta</span>
+      <span class="stat__label" data-i18n="paso.stat.diff">Dificultad</span>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="section section--dark">
+    <div class="section__inner" style="max-width:760px;margin:0 auto;text-align:center;">
+      <span class="section__label" data-i18n="paso.intro.label">La travesía original</span>
+      <h2 data-i18n-html="paso.intro.title">La ruta que<br><em>lo cambió todo</em></h2>
+      <p style="margin-top:1.5rem;font-size: 0.7875rem;line-height:1.75;" data-i18n="paso.intro.p">Franz Schirmer construyó dos refugios propios a lo largo de esta ruta histórica y la abrió al turismo en 1998. Hoy, su hijo Matías la guía para que otros vivan la misma experiencia transformadora. El Paso Vuriloche no es un trekking. Es un rito de paso.</p>
+    </div>
+  </section>
+
+  <!-- ITINERARIO -->
+  <section class="section section--dark" id="itinerario">
+    <div class="section__inner" style="max-width:860px;margin:0 auto;">
+      <div class="section__header">
+        <span class="section__label" data-i18n="paso.itin.label">Día a día</span>
+        <h2 data-i18n="paso.itin.title">El itinerario</h2>
+      </div>
+
+      <div class="itinerary-day">
+        <div class="day-number">01</div>
+        <div class="day-content">
+          <h4 data-i18n="paso.day1.h4">Llegada a Petrohué Lodge</h4>
+          <p data-i18n="paso.day1.p">Arribo al Lodge. Check-in, briefing con guías, revisión de equipamiento. Cocktail de bienvenida y cena del chef para comenzar la travesía como corresponde.</p>
+          <div class="day-meta">
+            <span>🏨 Petrohué Lodge</span>
+            <span>🍽 Cena incluida</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-day">
+        <div class="day-number">02</div>
+        <div class="day-content">
+          <h4 data-i18n="paso.day2.h4">Trekking Paso Desolación</h4>
+          <p data-i18n="paso.day2.p">16 km con 700 m de ascenso entre el Volcán Osorno y el Cerro La Picada, con vistas panorámicas al Lago Todos los Santos. Regreso al Lodge, tinas calientes y visita al Museo Pioneros.</p>
+          <div class="day-meta">
+            <span>🥾 16 km · 700 m+</span>
+            <span>♨️ Tinas al regreso</span>
+            <span>🏨 Petrohué Lodge</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-day">
+        <div class="day-number">03</div>
+        <div class="day-content">
+          <h4 data-i18n="paso.day3.h4">Petrohué → Cruce Andino → Pampa Linda</h4>
+          <p data-i18n="paso.day3.p">Cruce Chile–Argentina por los Lagos Andinos junto al Monte Tronador (3.491 m.s.n.m). Botes y buses hasta Pampa Linda. Cena y alojamiento en hostería.</p>
+          <div class="day-meta">
+            <span>🛶 Lagos Andinos</span>
+            <span>🏔 Monte Tronador</span>
+            <span>🏨 Hostería Pampa Linda</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-day">
+        <div class="day-number">04</div>
+        <div class="day-content">
+          <h4 data-i18n="paso.day4.h4">Pampa Linda → Refugio Baguales</h4>
+          <p data-i18n="paso.day4.p">La jornada más exigente: 20,5 km con ascenso a 1.450 m.s.n.m hasta la frontera, trámite de aduana y descenso al Refugio Baguales con vistas permanentes al Tronador.</p>
+          <div class="day-meta">
+            <span>🥾 20,5 km</span>
+            <span>📈 1.091 m+ · 1.257 m-</span>
+            <span>🏕 Refugio Baguales</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-day">
+        <div class="day-number">05</div>
+        <div class="day-content">
+          <h4 data-i18n="paso.day5.h4">Refugio Baguales → Refugio Nana Roth</h4>
+          <p data-i18n="paso.day5.p">9,6 km en selva valdiviana con menor dificultad. Llegada al Refugio Nana Roth (360 m.s.n.m) a orillas del Río Esperanza, refugio propio de First Patagonia.</p>
+          <div class="day-meta">
+            <span>🥾 9,6 km</span>
+            <span>📈 373 m+ · 695 m-</span>
+            <span>🏕 Refugio Nana Roth</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-day">
+        <div class="day-number">06</div>
+        <div class="day-content">
+          <h4 data-i18n="paso.day6.h4">Día de descanso en La Junta</h4>
+          <p data-i18n="paso.day6.p">Termas naturales a 80°C. Visita al sitio arqueológico de Santa Bárbara, exploración de las pampas verdes o ascenso al mirador del Volcán Tronador. El cuerpo descansa, los ojos no.</p>
+          <div class="day-meta">
+            <span>♨️ Termas 80°C</span>
+            <span>🏛 Sitio arqueológico Santa Bárbara</span>
+            <span>🌋 Mirador Tronador</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-day">
+        <div class="day-number">07</div>
+        <div class="day-content">
+          <h4 data-i18n="paso.day7.h4">Refugio Nana Roth → Petrohué Lodge</h4>
+          <p data-i18n="paso.day7.p">20 km por el Río Blanco hasta el Lago Todos los Santos. Embarcación de regreso con vistas a los volcanes Osorno, Puntiagudo y Calbuco. Llegada con brindis de cierre. Última noche en el Lodge.</p>
+          <div class="day-meta">
+            <span>🥾 20 km</span>
+            <span>🛶 Embarcación final</span>
+            <span>🥂 Brindis de cierre</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-day">
+        <div class="day-number">08</div>
+        <div class="day-content">
+          <h4 data-i18n="paso.day8.h4">Check-out · Petrohué Lodge</h4>
+          <p data-i18n="paso.day8.p">Desayuno y check-out. Transfer a Puerto Varas o Puerto Montt. Visita opcional a los Saltos del Río Petrohué para cerrar la travesía con el paisaje que lo inició todo.</p>
+          <div class="day-meta">
+            <span>🚐 Transfer Puerto Montt / Puerto Varas</span>
+            <span>🏁 Fin de la travesía</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGÍSTICA -->
+  <section class="section section--gray" id="logistica">
+    <div class="section__inner">
+      <div class="section__header">
+        <span class="section__label" data-i18n="paso.log.label">Antes de partir</span>
+        <h2 style="color:var(--black);" data-i18n-html="paso.log.title">Logística<br><em>&amp; Preparación</em></h2>
+      </div>
+      <div class="logistics-grid">
+        <div class="logistics-card fade-up">
+          <h4 data-i18n="paso.log.fit.h">Nivel físico requerido</h4>
+          <p data-i18n="paso.log.fit.p">Se requiere buena condición física general. No es necesaria experiencia previa en alta montaña, pero sí hábito de caminata.</p>
+          <div class="level-bar">
+            <div class="level-bar__label"><span data-i18n="paso.log.fit.bar1.label">Exigencia física</span><span data-i18n="paso.log.fit.bar1.val">Alta</span></div>
+            <div class="level-bar__track"><div class="level-bar__fill" style="width:80%"></div></div>
+          </div>
+          <div class="level-bar">
+            <div class="level-bar__label"><span data-i18n="paso.log.fit.bar2.label">Dificultad técnica</span><span data-i18n="paso.log.fit.bar2.val">Media</span></div>
+            <div class="level-bar__track"><div class="level-bar__fill" style="width:55%"></div></div>
+          </div>
+        </div>
+        <div class="logistics-card fade-up">
+          <h4 data-i18n="paso.log.inc.h">Qué incluye</h4>
+          <ul>
+            <li data-i18n="paso.log.inc.li1">Guía certificado durante toda la travesía</li>
+            <li data-i18n="paso.log.inc.li2">Todas las comidas (desayuno, almuerzo, cena)</li>
+            <li data-i18n="paso.log.inc.li3">Equipos de camping profesional</li>
+            <li data-i18n="paso.log.inc.li4">Navegaciones en bote</li>
+            <li data-i18n="paso.log.inc.li5">Traslados internos</li>
+            <li data-i18n="paso.log.inc.li6">Alojamiento noches 6 y 7</li>
+            <li data-i18n="paso.log.inc.li7">Seguro de aventura</li>
+          </ul>
+        </div>
+        <div class="logistics-card fade-up">
+          <h4 data-i18n="paso.log.pack.h">Qué llevar</h4>
+          <ul>
+            <li data-i18n="paso.log.pack.li1">Mochila 50–60 L</li>
+            <li data-i18n="paso.log.pack.li2">Botas de trekking impermeables</li>
+            <li data-i18n="paso.log.pack.li3">Ropa de abrigo y lluvia</li>
+            <li data-i18n="paso.log.pack.li4">Saco de dormir (-5°C)</li>
+            <li data-i18n="paso.log.pack.li5">Bastones (recomendado)</li>
+            <li data-i18n="paso.log.pack.li6">Botiquín personal</li>
+            <li data-i18n="paso.log.pack.li7">Pasaporte vigente</li>
+          </ul>
+        </div>
+        <div class="logistics-card fade-up">
+          <h4 data-i18n="paso.log.seas.h">Temporada y salidas</h4>
+          <p data-i18n="paso.log.seas.p1">Temporada: noviembre a abril. Salidas programadas cada 15 días o a pedido para grupos privados.</p>
+          <p style="margin-top:0.75rem;" data-i18n="paso.log.seas.p2">Mínimo 4 participantes · Máximo 12 participantes por grupo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING BANNER -->
+  <section class="booking-banner">
+    <h2 data-i18n-html="paso.booking.title">Acepta el<br><em>llamado del paso</em></h2>
+    <p data-i18n="paso.booking.desc">Plazas limitadas por temporada. Reserva con anticipación para asegurar tu lugar.</p>
+    <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+       class="btn btn--light" target="_blank" rel="noopener" data-i18n="paso.booking.btn">Reservar Paso Vuriloche</a>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="Logos/Logo First Patagonia.png" alt="First Patagonia" class="footer__logo">
+          <p data-i18n-html="footer.addr">Ruta 225 Km 58, Petrohué<br>Parque Nacional Vicente Pérez Rosales<br>Chile</p>
+        </div>
+        <nav class="footer__nav">
+          <div class="footer__col">
+            <h5 data-i18n="footer.explore">Explorar</h5>
+            <ul>
+              <li><a href="lodge.html" data-i18n="footer.lodge">Lodge Petrohué</a></li>
+              <li><a href="actividades.html" data-i18n="nav.act">Actividades</a></li>
+              <li><a href="programas.html" data-i18n="nav.prog">Programas</a></li>
+              <li><a href="paso-vuriloche.html" data-i18n="footer.paso">Paso Vuriloche</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footer.us">Nosotros</h5>
+            <ul>
+              <li><a href="espiritupionero.html" data-i18n="footer.pioneer">Espíritu Pionero</a></li>
+              <li><a href="sobre.html" data-i18n="footer.about">Sobre First Patagonia</a></li>
+              <li><a href="planifica.html" data-i18n="footer.plan">Planifica tu viaje</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h5 data-i18n="footer.contact">Contacto</h5>
+            <ul>
+              <li><a href="mailto:reservas@petrohue.com">reservas@petrohue.com</a></li>
+              <li><a href="tel:+56984644870">+56 9 8464 4870</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p data-i18n="footer.copy">© 2025 First Patagonia. Todos los derechos reservados.</p>
+        <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
+           class="btn btn--sm btn--orange" target="_blank" rel="noopener" data-i18n="footer.book">Reservar ahora</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
