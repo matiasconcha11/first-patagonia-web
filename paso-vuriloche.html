@@ -35,32 +35,90 @@
       display: block;
       margin-top: 0.4rem;
     }
+    /* ---- Itinerary elegant ---- */
+    .itinerary-timeline { position: relative; }
+
     .itinerary-day {
       display: grid;
       grid-template-columns: 80px 1fr;
-      gap: 2rem;
-      padding: 2.5rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      gap: 2.5rem;
+      padding: 2.25rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
       align-items: start;
     }
     .itinerary-day:last-child { border-bottom: none; }
-    .day-number {
-      font-family: var(--font-serif);
-      font-size: 2.25rem;
-      font-weight: 400;
-      color: rgba(200,96,42,0.35);
-      line-height: 1;
-      text-align: right;
+
+    /* Giant faded number */
+    .day-node {
+      padding-top: 0.15rem;
     }
-    .day-content h4 { color: var(--white); margin-bottom: 0.5rem; font-size: 0.825rem; }
-    .day-content p  { color: rgba(245,242,236,0.6); font-size: 0.675rem; }
+    .day-node__num {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      font-weight: 400;
+      color: rgba(232,82,26,0.1);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      display: block;
+      transition: color 0.4s ease;
+    }
+    .itinerary-day:hover .day-node__num {
+      color: rgba(232,82,26,0.22);
+    }
+
+    /* Label */
+    .day-label {
+      display: block;
+      font-size: 0.44rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.4rem;
+      opacity: 0.85;
+    }
+
+    /* Title */
+    .day-content h4 {
+      font-family: var(--font-serif);
+      font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    /* Description */
+    .day-content p {
+      font-size: 0.72rem;
+      line-height: 1.75;
+      color: rgba(245,242,236,0.45);
+      max-width: 560px;
+    }
+
+    /* Stats — single elegant text line */
     .day-meta {
-      display: flex; gap: 1.5rem; margin-top: 0.75rem; flex-wrap: wrap;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-top: 0.9rem;
+      flex-wrap: wrap;
     }
     .day-meta span {
-      font-size: 0.525rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(245,242,236,0.35);
+      font-size: 0.5rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,242,236,0.28);
     }
+    .day-meta span + span::before {
+      content: '·';
+      margin: 0 0.75rem;
+      color: rgba(255,255,255,0.12);
+    }
+    .day-meta span.stat--km   { color: rgba(232,82,26,0.65); }
+    .day-meta span.stat--elev { color: rgba(0,184,169,0.55); }
     .logistics-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -123,7 +181,10 @@
   <!-- HERO -->
   <section class="page-hero page-hero--vuriloche">
     <div class="page-hero__media">
-      <!-- IMAGEN: <img src="assets/paso-vuriloche-hero.jpg" alt="Paso Vuriloche"> -->
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="assets/paso-tronador.mov" type="video/quicktime">
+        <source src="assets/paso-tronador.mov" type="video/mp4">
+      </video>
     </div>
     <div class="page-hero__overlay"></div>
     <div class="page-hero__content">
@@ -174,106 +235,120 @@
         <h2 data-i18n="paso.itin.title">El itinerario</h2>
       </div>
 
-      <div class="itinerary-day">
-        <div class="day-number">01</div>
-        <div class="day-content">
-          <h4 data-i18n="paso.day1.h4">Llegada a Petrohué Lodge</h4>
-          <p data-i18n="paso.day1.p">Arribo al Lodge. Check-in, briefing con guías, revisión de equipamiento. Cocktail de bienvenida y cena del chef para comenzar la travesía como corresponde.</p>
-          <div class="day-meta">
-            <span>🏨 Petrohué Lodge</span>
-            <span>🍽 Cena incluida</span>
-          </div>
-        </div>
-      </div>
+      <div class="itinerary-timeline">
 
-      <div class="itinerary-day">
-        <div class="day-number">02</div>
-        <div class="day-content">
-          <h4 data-i18n="paso.day2.h4">Trekking Paso Desolación</h4>
-          <p data-i18n="paso.day2.p">16 km con 700 m de ascenso entre el Volcán Osorno y el Cerro La Picada, con vistas panorámicas al Lago Todos los Santos. Regreso al Lodge, tinas calientes y visita al Museo Pioneros.</p>
-          <div class="day-meta">
-            <span>🥾 16 km · 700 m+</span>
-            <span>♨️ Tinas al regreso</span>
-            <span>🏨 Petrohué Lodge</span>
+        <div class="itinerary-day">
+          <div class="day-node"><span class="day-node__num">01</span></div>
+          <div class="day-content">
+            <span class="day-label">Llegada</span>
+            <h4 data-i18n="paso.day1.h4">Llegada a Petrohué Lodge</h4>
+            <p data-i18n="paso.day1.p">Arribo al Lodge. Check-in, briefing con guías, revisión de equipamiento. Cocktail de bienvenida y cena del chef para comenzar la travesía como corresponde.</p>
+            <div class="day-meta">
+              <span class="stat--aloj">Petrohué Lodge</span>
+              <span class="stat--aloj">Cena incluida</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="itinerary-day">
-        <div class="day-number">03</div>
-        <div class="day-content">
-          <h4 data-i18n="paso.day3.h4">Petrohué → Cruce Andino → Pampa Linda</h4>
-          <p data-i18n="paso.day3.p">Cruce Chile–Argentina por los Lagos Andinos junto al Monte Tronador (3.491 m.s.n.m). Botes y buses hasta Pampa Linda. Cena y alojamiento en hostería.</p>
-          <div class="day-meta">
-            <span>🛶 Lagos Andinos</span>
-            <span>🏔 Monte Tronador</span>
-            <span>🏨 Hostería Pampa Linda</span>
+        <div class="itinerary-day">
+          <div class="day-node"><span class="day-node__num">02</span></div>
+          <div class="day-content">
+            <span class="day-label">Trek</span>
+            <h4 data-i18n="paso.day2.h4">Trekking Paso Desolación</h4>
+            <p data-i18n="paso.day2.p">16 km con 700 m de ascenso entre el Volcán Osorno y el Cerro La Picada, con vistas panorámicas al Lago Todos los Santos. Regreso al Lodge, tinas calientes y visita al Museo Pioneros.</p>
+            <div class="day-meta">
+              <span class="stat--km">16 km</span>
+              <span class="stat--elev">700 m+</span>
+              <span class="stat--aloj">Tinas al regreso</span>
+              <span class="stat--aloj">Petrohué Lodge</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="itinerary-day">
-        <div class="day-number">04</div>
-        <div class="day-content">
-          <h4 data-i18n="paso.day4.h4">Pampa Linda → Refugio Baguales</h4>
-          <p data-i18n="paso.day4.p">La jornada más exigente: 20,5 km con ascenso a 1.450 m.s.n.m hasta la frontera, trámite de aduana y descenso al Refugio Baguales con vistas permanentes al Tronador.</p>
-          <div class="day-meta">
-            <span>🥾 20,5 km</span>
-            <span>📈 1.091 m+ · 1.257 m-</span>
-            <span>🏕 Refugio Baguales</span>
+        <div class="itinerary-day">
+          <div class="day-node"><span class="day-node__num">03</span></div>
+          <div class="day-content">
+            <span class="day-label">Cruce · Chile → Argentina</span>
+            <h4 data-i18n="paso.day3.h4">Petrohué → Cruce Andino → Pampa Linda</h4>
+            <p data-i18n="paso.day3.p">Cruce Chile–Argentina por los Lagos Andinos junto al Monte Tronador (3.491 m.s.n.m). Botes y buses hasta Pampa Linda. Cena y alojamiento en hostería.</p>
+            <div class="day-meta">
+              <span class="stat--aloj">Lagos Andinos</span>
+              <span class="stat--aloj">Monte Tronador 3.491 m</span>
+              <span class="stat--aloj">Hostería Pampa Linda</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="itinerary-day">
-        <div class="day-number">05</div>
-        <div class="day-content">
-          <h4 data-i18n="paso.day5.h4">Refugio Baguales → Refugio Nana Roth</h4>
-          <p data-i18n="paso.day5.p">9,6 km en selva valdiviana con menor dificultad. Llegada al Refugio Nana Roth (360 m.s.n.m) a orillas del Río Esperanza, refugio propio de First Patagonia.</p>
-          <div class="day-meta">
-            <span>🥾 9,6 km</span>
-            <span>📈 373 m+ · 695 m-</span>
-            <span>🏕 Refugio Nana Roth</span>
+        <div class="itinerary-day">
+          <div class="day-node"><span class="day-node__num">04</span></div>
+          <div class="day-content">
+            <span class="day-label">Jornada más exigente · Frontera</span>
+            <h4 data-i18n="paso.day4.h4">Pampa Linda → Refugio Baguales</h4>
+            <p data-i18n="paso.day4.p">La jornada más exigente: 20,5 km con ascenso a 1.450 m.s.n.m hasta la frontera, trámite de aduana y descenso al Refugio Baguales con vistas permanentes al Tronador.</p>
+            <div class="day-meta">
+              <span class="stat--km">20,5 km</span>
+              <span class="stat--elev">1.091 m+</span>
+              <span class="stat--elev">1.257 m−</span>
+              <span class="stat--aloj">Refugio Baguales</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="itinerary-day">
-        <div class="day-number">06</div>
-        <div class="day-content">
-          <h4 data-i18n="paso.day6.h4">Día de descanso en La Junta</h4>
-          <p data-i18n="paso.day6.p">Termas naturales a 80°C. Visita al sitio arqueológico de Santa Bárbara, exploración de las pampas verdes o ascenso al mirador del Volcán Tronador. El cuerpo descansa, los ojos no.</p>
-          <div class="day-meta">
-            <span>♨️ Termas 80°C</span>
-            <span>🏛 Sitio arqueológico Santa Bárbara</span>
-            <span>🌋 Mirador Tronador</span>
+        <div class="itinerary-day">
+          <div class="day-node"><span class="day-node__num">05</span></div>
+          <div class="day-content">
+            <span class="day-label">Selva Valdiviana</span>
+            <h4 data-i18n="paso.day5.h4">Refugio Baguales → Refugio Nana Roth</h4>
+            <p data-i18n="paso.day5.p">9,6 km en selva valdiviana con menor dificultad. Llegada al Refugio Nana Roth (360 m.s.n.m) a orillas del Río Esperanza, refugio propio de First Patagonia.</p>
+            <div class="day-meta">
+              <span class="stat--km">9,6 km</span>
+              <span class="stat--elev">373 m+</span>
+              <span class="stat--elev">695 m−</span>
+              <span class="stat--aloj">Refugio Nana Roth</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="itinerary-day">
-        <div class="day-number">07</div>
-        <div class="day-content">
-          <h4 data-i18n="paso.day7.h4">Refugio Nana Roth → Petrohué Lodge</h4>
-          <p data-i18n="paso.day7.p">20 km por el Río Blanco hasta el Lago Todos los Santos. Embarcación de regreso con vistas a los volcanes Osorno, Puntiagudo y Calbuco. Llegada con brindis de cierre. Última noche en el Lodge.</p>
-          <div class="day-meta">
-            <span>🥾 20 km</span>
-            <span>🛶 Embarcación final</span>
-            <span>🥂 Brindis de cierre</span>
+        <div class="itinerary-day">
+          <div class="day-node"><span class="day-node__num">06</span></div>
+          <div class="day-content">
+            <span class="day-label">Descanso</span>
+            <h4 data-i18n="paso.day6.h4">Día de descanso en La Junta</h4>
+            <p data-i18n="paso.day6.p">Termas naturales a 80°C. Visita al sitio arqueológico de Santa Bárbara, exploración de las pampas verdes o ascenso al mirador del Volcán Tronador. El cuerpo descansa, los ojos no.</p>
+            <div class="day-meta">
+              <span class="stat--aloj">Termas 80°C</span>
+              <span class="stat--aloj">Sitio arqueológico Santa Bárbara</span>
+              <span class="stat--aloj">Mirador Tronador</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="itinerary-day">
-        <div class="day-number">08</div>
-        <div class="day-content">
-          <h4 data-i18n="paso.day8.h4">Check-out · Petrohué Lodge</h4>
-          <p data-i18n="paso.day8.p">Desayuno y check-out. Transfer a Puerto Varas o Puerto Montt. Visita opcional a los Saltos del Río Petrohué para cerrar la travesía con el paisaje que lo inició todo.</p>
-          <div class="day-meta">
-            <span>🚐 Transfer Puerto Montt / Puerto Varas</span>
-            <span>🏁 Fin de la travesía</span>
+        <div class="itinerary-day">
+          <div class="day-node"><span class="day-node__num">07</span></div>
+          <div class="day-content">
+            <span class="day-label">Trek + Embarcación · Regreso</span>
+            <h4 data-i18n="paso.day7.h4">Refugio Nana Roth → Petrohué Lodge</h4>
+            <p data-i18n="paso.day7.p">20 km por el Río Blanco hasta el Lago Todos los Santos. Embarcación de regreso con vistas a los volcanes Osorno, Puntiagudo y Calbuco. Llegada con brindis de cierre. Última noche en el Lodge.</p>
+            <div class="day-meta">
+              <span class="stat--km">20 km</span>
+              <span class="stat--aloj">Embarcación final</span>
+              <span class="stat--aloj">Brindis de cierre</span>
+            </div>
           </div>
         </div>
+
+        <div class="itinerary-day">
+          <div class="day-node"><span class="day-node__num">08</span></div>
+          <div class="day-content">
+            <span class="day-label">Fin de la travesía</span>
+            <h4 data-i18n="paso.day8.h4">Check-out · Petrohué Lodge</h4>
+            <p data-i18n="paso.day8.p">Desayuno y check-out. Transfer a Puerto Varas o Puerto Montt. Visita opcional a los Saltos del Río Petrohué para cerrar la travesía con el paisaje que lo inició todo.</p>
+            <div class="day-meta">
+              <span class="stat--aloj">Transfer Puerto Montt / Puerto Varas</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -335,8 +410,7 @@
   <section class="booking-banner">
     <h2 data-i18n-html="paso.booking.title">Acepta el<br><em>llamado del paso</em></h2>
     <p data-i18n="paso.booking.desc">Plazas limitadas por temporada. Reserva con anticipación para asegurar tu lugar.</p>
-    <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
-       class="btn btn--light" target="_blank" rel="noopener" data-i18n="paso.booking.btn">Reservar Paso Vuriloche</a>
+    <button class="btn btn--light" onclick="document.getElementById('reservaModal').classList.add('open')">Reservar Paso Vuriloche</button>
   </section>
 
   <footer class="footer">
@@ -380,6 +454,221 @@
       </div>
     </div>
   </footer>
+
+  <!-- MODAL PRE-RESERVA -->
+  <div id="reservaModal" class="rmodal">
+    <div class="rmodal__backdrop" onclick="document.getElementById('reservaModal').classList.remove('open')"></div>
+    <div class="rmodal__box">
+      <button class="rmodal__close" onclick="document.getElementById('reservaModal').classList.remove('open')" aria-label="Cerrar">×</button>
+      <div class="rmodal__header">
+        <span class="rmodal__label">Paso Vuriloche · 8 días</span>
+        <h3 class="rmodal__title">Consulta de reserva</h3>
+        <p class="rmodal__sub">Completa el formulario y te contactaremos con disponibilidad y tarifas en menos de 24 horas.</p>
+      </div>
+      <form id="reservaForm" class="rmodal__form" onsubmit="enviarReserva(event)">
+
+        <div class="rform__row">
+          <div class="rform__field">
+            <label>Nombre completo *</label>
+            <input type="text" name="nombre" required placeholder="Franz Schirmer">
+          </div>
+          <div class="rform__field">
+            <label>Email *</label>
+            <input type="email" name="email" required placeholder="tu@email.com">
+          </div>
+        </div>
+
+        <div class="rform__row">
+          <div class="rform__field">
+            <label>Fecha tentativa de inicio *</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+              <select name="mes" required>
+                <option value="" disabled selected>Mes</option>
+                <option>Noviembre</option>
+                <option>Diciembre</option>
+                <option>Enero</option>
+                <option>Febrero</option>
+                <option>Marzo</option>
+                <option>Abril</option>
+              </select>
+              <select name="anio" required>
+                <option value="" disabled selected>Año</option>
+                <option>2025</option>
+                <option>2026</option>
+                <option>2027</option>
+              </select>
+            </div>
+          </div>
+          <div class="rform__field">
+            <label>Cantidad de personas *</label>
+            <select name="personas" required>
+              <option value="" disabled selected>Seleccionar</option>
+              <option>1 persona</option>
+              <option>2 personas</option>
+              <option>3 personas</option>
+              <option>4 personas</option>
+              <option>5 a 8 personas</option>
+              <option>9 a 12 personas</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="rform__row">
+          <div class="rform__field">
+            <label>Condición física *</label>
+            <select name="condicion" required>
+              <option value="" disabled selected>Seleccionar</option>
+              <option>Buena — camino regularmente</option>
+              <option>Muy buena — hago deporte 3+ días / semana</option>
+              <option>Atlética — entreno de manera intensa</option>
+            </select>
+          </div>
+          <div class="rform__field">
+            <label>Experiencia en trekking *</label>
+            <select name="experiencia" required>
+              <option value="" disabled selected>Seleccionar</option>
+              <option>Primera travesía de varios días</option>
+              <option>1 a 3 travesías previas</option>
+              <option>Trekker experimentado</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="rform__field rform__field--full">
+          <label>País de origen</label>
+          <input type="text" name="pais" placeholder="Chile, Argentina, Francia…">
+        </div>
+
+        <div class="rform__field rform__field--full">
+          <label>Comentarios o preguntas</label>
+          <textarea name="comentarios" rows="3" placeholder="Restricciones alimentarias, lesiones previas, preguntas sobre el equipo…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--orange rmodal__submit">Enviar consulta →</button>
+      </form>
+    </div>
+  </div>
+
+  <style>
+    .rmodal {
+      position: fixed; inset: 0; z-index: 900;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .rmodal.open { opacity: 1; pointer-events: all; }
+    .rmodal__backdrop {
+      position: absolute; inset: 0;
+      background: rgba(5,5,5,0.88);
+      backdrop-filter: blur(6px);
+    }
+    .rmodal__box {
+      position: relative; z-index: 1;
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.08);
+      width: min(680px, 94vw);
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 3rem;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    .rmodal.open .rmodal__box { transform: translateY(0); }
+    .rmodal__close {
+      position: absolute; top: 1.25rem; right: 1.5rem;
+      font-size: 1.5rem; color: rgba(245,242,236,0.4);
+      cursor: pointer; line-height: 1;
+      transition: color 0.2s;
+    }
+    .rmodal__close:hover { color: var(--white); }
+    .rmodal__header { margin-bottom: 2rem; }
+    .rmodal__label {
+      font-size: 0.5rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--orange); display: block; margin-bottom: 0.5rem;
+    }
+    .rmodal__title {
+      font-family: var(--font-serif); font-size: 1.8rem;
+      color: var(--white); font-weight: 400; margin-bottom: 0.5rem;
+    }
+    .rmodal__sub {
+      font-size: 0.75rem; color: rgba(245,242,236,0.45); line-height: 1.6;
+    }
+    .rmodal__form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .rform__row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    }
+    @media (max-width: 540px) { .rform__row { grid-template-columns: 1fr; } }
+    .rform__field { display: flex; flex-direction: column; gap: 0.45rem; }
+    .rform__field--full { grid-column: 1 / -1; }
+    .rform__field label {
+      font-size: 0.5rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(245,242,236,0.45);
+    }
+    .rform__field input,
+    .rform__field select,
+    .rform__field textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      padding: 0.75rem 1rem;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .rform__field input::placeholder,
+    .rform__field textarea::placeholder { color: rgba(245,242,236,0.2); }
+    .rform__field input:focus,
+    .rform__field select:focus,
+    .rform__field textarea:focus { border-color: rgba(232,82,26,0.6); }
+    .rform__field select option { background: #111; color: var(--white); }
+    .rform__field textarea { resize: vertical; min-height: 80px; }
+    .rmodal__submit { margin-top: 0.5rem; align-self: flex-start; }
+  </style>
+
+  <script>
+  function enviarReserva(e) {
+    e.preventDefault();
+    const f = e.target;
+    const nombre     = f.nombre.value;
+    const email      = f.email.value;
+    const fecha      = f.mes.value + ' ' + f.anio.value;
+    const personas   = f.personas.value;
+    const condicion  = f.condicion.value;
+    const experiencia= f.experiencia.value;
+    const pais       = f.pais.value || 'No especificado';
+    const comentarios= f.comentarios.value || 'Ninguno';
+
+    const cuerpo = [
+      'CONSULTA DE RESERVA — PASO VURILOCHE',
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+      '',
+      'Nombre:          ' + nombre,
+      'Email:           ' + email,
+      'País de origen:  ' + pais,
+      '',
+      'Fecha tentativa: ' + fecha,
+      'Personas:        ' + personas,
+      '',
+      'Condición física:    ' + condicion,
+      'Experiencia previa:  ' + experiencia,
+      '',
+      'Comentarios:',
+      comentarios,
+      '',
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+      'Enviado desde firstpatagonia.com'
+    ].join('\n');
+
+    const asunto = encodeURIComponent('Consulta Paso Vuriloche — ' + nombre);
+    const body   = encodeURIComponent(cuerpo);
+
+    window.location.href = 'mailto:expediciones@petrohue.com?subject=' + asunto + '&body=' + body;
+    document.getElementById('reservaModal').classList.remove('open');
+  }
+  </script>
 
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>

@@ -537,19 +537,21 @@ const WHATSAPP = 'https://wa.me/56984644870';
 })();
 
 /* --- Shared smooth scroll utility --- */
+let _scrollRafId = null;
 function smoothScrollTo(targetY, duration) {
+  if (_scrollRafId) { cancelAnimationFrame(_scrollRafId); _scrollRafId = null; }
   const start    = window.scrollY;
   const distance = targetY - start;
   let startTime  = null;
-  // easeInOutSine — la más fluida y orgánica
   const ease = t => -(Math.cos(Math.PI * t) - 1) / 2;
   function step(ts) {
     if (!startTime) startTime = ts;
     const progress = Math.min((ts - startTime) / duration, 1);
     window.scrollTo(0, start + distance * ease(progress));
-    if (progress < 1) requestAnimationFrame(step);
+    if (progress < 1) _scrollRafId = requestAnimationFrame(step);
+    else _scrollRafId = null;
   }
-  requestAnimationFrame(step);
+  _scrollRafId = requestAnimationFrame(step);
 }
 
 /* --- Activity terrain tabs --- */
@@ -567,9 +569,6 @@ function smoothScrollTo(targetY, duration) {
       const panel = document.getElementById(tab.dataset.terrain);
       if (panel) {
         panel.classList.add('active');
-        // Scroll suave hasta justo debajo del terrain-nav
-        const navBottom = nav ? nav.getBoundingClientRect().bottom + window.scrollY : window.scrollY;
-        smoothScrollTo(navBottom, 1800);
       }
     });
   });
@@ -594,3 +593,156 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+/* --- Scroll Rail --- */
+(function initScrollRail() {
+  const sections = Array.from(document.querySelectorAll('section')).filter(s => s.offsetHeight > 50);
+  if (sections.length < 2) return;
+
+  const rail = document.createElement('div');
+  rail.className = 'scroll-rail';
+  document.body.appendChild(rail);
+
+  const totalH = sections.reduce((acc, s) => acc + s.offsetHeight, 0);
+
+  const segs = sections.map(section => {
+    const seg  = document.createElement('div');
+    seg.className = 'scroll-rail__seg';
+    seg.style.setProperty('--seg-flex', String((section.offsetHeight / totalH) * sections.length));
+
+    const fill = document.createElement('div');
+    fill.className = 'scroll-rail__seg-fill';
+
+    const dot  = document.createElement('div');
+    dot.className = 'scroll-rail__dot';
+
+    seg.appendChild(fill);
+    seg.appendChild(dot);
+    rail.appendChild(seg);
+    return { section, fill, seg };
+  });
+
+  function update() {
+    const sy   = window.scrollY;
+    const vh   = window.innerHeight;
+    segs.forEach(({ section, fill, seg }) => {
+      const top  = section.offsetTop;
+      const h    = section.offsetHeight;
+      const pct  = Math.max(0, Math.min(1, (sy + vh - top) / (h + vh)));
+      fill.style.height = (pct * 100) + '%';
+      seg.classList.toggle('active', sy + vh * 0.5 >= top && sy + vh * 0.5 < top + h);
+    });
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update,  { passive: true });
+  update();
+})();
+
+/* --- Lead Popup (45s, una vez cada 7 días) --- */
+(function initLeadPopup() {
+  const STORAGE_KEY   = 'fp_lead_shown';
+  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/firstpatagonia8@gmail.com';
+
+  const lastShown = localStorage.getItem(STORAGE_KEY);
+  if (lastShown && Date.now() - parseInt(lastShown) < 7 * 24 * 60 * 60 * 1000) return;
+
+  const el = document.createElement('div');
+  el.innerHTML = `
+    <div id="leadPopup" class="lead-popup">
+      <div class="lead-popup__backdrop" id="leadBackdrop"></div>
+      <div class="lead-popup__box">
+        <div class="lead-popup__stripe"></div>
+        <div class="lead-popup__body">
+          <button class="lead-popup__close" id="leadClose" aria-label="Cerrar">×</button>
+
+          <div id="leadFormWrap">
+            <span class="lead-popup__eyebrow">First Patagonia · Petrohué</span>
+            <h3 class="lead-popup__title">Vive la Patagonia<br><em style="color:var(--teal);font-style:normal;">desde adentro</em></h3>
+            <p class="lead-popup__desc">Déjanos tu correo y te enviamos información sobre nuestros programas, fechas disponibles y novedades de la temporada.</p>
+            <form class="lead-popup__form" id="leadForm" novalidate>
+              <div class="lead-popup__row">
+                <div class="lead-popup__field">
+                  <label>Nombre *</label>
+                  <input type="text" name="nombre" placeholder="Tu nombre">
+                </div>
+                <div class="lead-popup__field">
+                  <label>Email *</label>
+                  <input type="email" name="email" placeholder="tu@email.com" id="leadEmail">
+                </div>
+              </div>
+              <div class="lead-popup__row">
+                <div class="lead-popup__field">
+                  <label>País</label>
+                  <input type="text" name="pais" placeholder="Chile, Argentina…">
+                </div>
+                <div class="lead-popup__field">
+                  <label>¿Qué te interesa?</label>
+                  <select name="interes">
+                    <option value="" disabled selected>Seleccionar</option>
+                    <option>Paso Vuriloche</option>
+                    <option>Lodge Petrohué</option>
+                    <option>Actividades y excursiones</option>
+                    <option>Programas todo incluido</option>
+                    <option>Solo explorando</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit" class="btn btn--orange lead-popup__submit">Quiero más información →</button>
+              <p class="lead-popup__legal">Sin spam. Puedes darte de baja en cualquier momento.</p>
+            </form>
+          </div>
+
+          <div id="leadSuccess" class="lead-popup__success">
+            <span class="lead-popup__eyebrow">¡Gracias!</span>
+            <h3 class="lead-popup__title">Te tenemos en el radar</h3>
+            <p class="lead-popup__success-msg" style="margin-top:1rem;">Pronto recibirás información sobre nuestros programas y las mejores fechas para vivir la Patagonia Norte.<br><br>Si tienes una consulta urgente escríbenos a<br><strong style="color:var(--white);">reservas@petrohue.com</strong></p>
+          </div>
+
+        </div>
+      </div>
+    </div>`;
+  document.body.appendChild(el);
+
+  const popup    = document.getElementById('leadPopup');
+  const form     = document.getElementById('leadForm');
+  const formWrap = document.getElementById('leadFormWrap');
+  const success  = document.getElementById('leadSuccess');
+
+  function close() {
+    popup.classList.remove('open');
+    localStorage.setItem(STORAGE_KEY, Date.now().toString());
+  }
+
+  document.getElementById('leadClose').addEventListener('click', close);
+  document.getElementById('leadBackdrop').addEventListener('click', close);
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const emailInput = document.getElementById('leadEmail');
+    const emailVal   = emailInput.value.trim();
+    if (!emailVal || !emailVal.includes('@')) {
+      emailInput.style.borderColor = 'rgba(232,82,26,0.8)';
+      emailInput.focus();
+      return;
+    }
+    emailInput.style.borderColor = '';
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Enviando…';
+    btn.disabled = true;
+    const data = new FormData(form);
+    data.append('fuente', window.location.href);
+    try {
+      await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+    } catch (_) {}
+    formWrap.style.display = 'none';
+    success.classList.add('show');
+    localStorage.setItem(STORAGE_KEY, Date.now().toString());
+  });
+
+  setTimeout(() => popup.classList.add('open'), 45000);
+})();
