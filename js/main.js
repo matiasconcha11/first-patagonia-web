@@ -1,5 +1,6 @@
 /* ============================================================
    FIRST PATAGONIA — Main JS
+   Deploys via Vercel + GitHub integration
    ============================================================ */
 
 const GOFEELS = 'https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms';
