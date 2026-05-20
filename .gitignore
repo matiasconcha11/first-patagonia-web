@@ -23,3 +23,9 @@ Vision de la pagina/
 # Temporal
 /tmp/
 serve.py
+
+# Vercel
+.vercel/
+
+# Carpeta local de videos sin comprimir
+_src/
