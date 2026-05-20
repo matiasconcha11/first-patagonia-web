@@ -254,11 +254,7 @@ em { font-style: normal; font-weight: 300; }
 
 .hero__video-wrap {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(74vw, 74vh);
-  height: min(74vw, 74vh);
+  inset: 0;
   overflow: hidden;
 }
 
