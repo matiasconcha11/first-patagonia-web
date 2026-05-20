@@ -295,8 +295,8 @@ const WHATSAPP = 'https://wa.me/56984644870';
   const video = document.getElementById('heroVideo');
   if (!video) return;
 
-  const START = 53;
-  const END   = 75;
+  const START = 0;
+  const END   = 999;
 
   video.addEventListener('loadedmetadata', () => {
     video.currentTime = START;
@@ -316,8 +316,8 @@ const WHATSAPP = 'https://wa.me/56984644870';
 
 /* --- Lodge videos: loop between 4s and 12s --- */
 (function initLodgeVideos() {
-  const START = 6;
-  const END   = 12;
+  const START = 0;
+  const END   = 999;
 
   ['lodgeCardVideo', 'lodgeHeroVideo'].forEach(id => {
     const v = document.getElementById(id);
@@ -343,9 +343,9 @@ const WHATSAPP = 'https://wa.me/56984644870';
   const v = document.getElementById('heliCardVideo');
   if (!v) return;
 
-  const START    = 17;
-  const POS_FROM = 55;   /* % al inicio — lago y hotel */
-  const POS_TO   = 5;    /* % al final  — cerros y cumbres */
+  const START    = 0;
+  const POS_FROM = 55;
+  const POS_TO   = 5;
 
   let currentPos = POS_FROM;
   let rafId;
@@ -370,7 +370,7 @@ const WHATSAPP = 'https://wa.me/56984644870';
 
   function tick() {
     if (!v.paused && !v.ended && v.duration) {
-      if (!fading && v.currentTime >= v.duration - 3) {
+      if (!fading && v.currentTime >= v.duration - 0.5) {
         doLoop();
       }
 
@@ -401,7 +401,7 @@ const WHATSAPP = 'https://wa.me/56984644870';
 (function initPasoVideo() {
   const v = document.getElementById('pasoCardVideo');
   if (!v) return;
-  const START = 1;
+  const START = 0;
   v.addEventListener('loadedmetadata', () => {
     v.currentTime = START;
     v.play().catch(() => {});
