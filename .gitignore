@@ -6,19 +6,6 @@
 .AppleDouble
 .LSOverride
 
-# Videos (demasiado grandes para git — mantener en local)
-*.mp4
-*.MP4
-*.mov
-*.MOV
-assets/heli.mp4
-assets/hero.mp4
-assets/lago-sunset.mp4
-assets/lodge.mp4
-assets/paso-card.mp4
-assets/vuriloche.mp4
-assets/vuriloche.mov
-
 # Carpetas de origen (solo para producción local)
 Imagnes /
 FULL VIDEOS  FIR$T PATAGONIA VERTICAL.mp4

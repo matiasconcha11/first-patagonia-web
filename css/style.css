@@ -683,9 +683,9 @@ em { font-style: normal; font-weight: 300; }
   object-fit: cover;
   object-position: center 15%;
 }
-.engine-card__media--paso video {
-  object-fit: contain;
-  object-position: center center;
+.engine-card__media--paso img {
+  object-fit: cover;
+  object-position: center 30%;
 }
 
 /* Giant background number */

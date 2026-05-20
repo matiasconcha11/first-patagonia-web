@@ -110,7 +110,7 @@
       'prog.exp.title':    'Más allá del<br><em>horizonte</em>',
       'prog.exp.desc':     'Para los que no les basta con llegar. Para los que necesitan cruzar.',
       'prog.paso.cat':     'Travesía andina',
-      'prog.paso.desc':    'La travesía que creó Franz Schirmer. 8 días cruzando los Andes de Chile a Argentina a pie, a caballo y en barco.',
+      'prog.paso.desc':    'Una ruta con más de 18.500 años de historia. 8 días cruzando los Andes de Argentina a Chile a pie, a caballo y en barco.',
       'prog.paso.btn':     'Ver travesía →',
       'prog.tronador.desc':'80 kilómetros rodeando el Volcán Tronador a través de los Andes. Una de las rutas de trail running más espectaculares del mundo.',
       'prog.tronador.btn': 'Reservar →',
