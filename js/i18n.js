@@ -27,7 +27,7 @@
       'hero.btn2':     'Ver Lodge',
 
       /* Manifesto */
-      'manifesto.label':  'First Patagonia · Espíritu Pionero · 110 años',
+      'manifesto.label':  'First Patagonia · Espíritu Pionero · 115 años',
       'manifesto.quote':  '"No cualquiera<br>tiene <em>alma de pionero.</em><br>Para serlo se necesita algo especial —<br>algo que te impulse a la <em>aventura,<br>exploración</em> y descubrimiento."',
       'manifesto.author': '— Franz Schirmer, fundador de First Patagonia',
       'manifesto.btn':    'Nuestra historia',
@@ -49,7 +49,7 @@
 
       /* Pioneer banner */
       'pioneer.label': '5ª generación · Familia Schirmer',
-      'pioneer.title': 'Más de 110 años<br>abriendo <em>caminos</em>',
+      'pioneer.title': 'Más de 115 años<br>abriendo <em>caminos</em>',
       'pioneer.desc':  'Desde el primer refugio en el Paso Vuriloche hasta el lodge que hoy recibes, cada generación ha dejado su huella en este territorio.',
       'pioneer.btn':   'Conocer la historia',
 
@@ -152,7 +152,7 @@
       'paso.booking.btn':   'Reservar Paso Vuriloche',
 
       /* ── espiritupionero.html ── */
-      'epic.hero.label':  '110 años · 5ª generación familiar',
+      'epic.hero.label':  '115 años · 5ª generación familiar',
       'epic.hero.title':  'Espíritu<br><em>Pionero</em>',
       'epic.hero.sub':    'No cualquiera tiene alma de pionero. ¿La tienes tú?',
       'epic.hist.label':  'La historia',
@@ -305,7 +305,7 @@
       /* ── lodge.html — missing keys ── */
       'lodge.hero.label':   'Parque Nacional Vicente Pérez Rosales',
       'lodge.hero.title':   'Lodge<br><em>Petrohué</em>',
-      'lodge.hero.sub':     'A 150 metros del Lago Todos los Santos, con el Volcán Osorno de fondo. 110 años de hospitalidad familiar.',
+      'lodge.hero.sub':     'A 150 metros del Lago Todos los Santos, con el Volcán Osorno de fondo. 115 años de hospitalidad familiar.',
       'lodge.rooms.label':  'Alojamiento',
       'lodge.rooms.title':  'Elige dónde<br><em>despertar mañana</em>',
       'lodge.rooms.intro':  'Con vista al bosque nativo o con el lago al frente — cada rincón tiene su propio carácter. Elige el tuyo.',
@@ -512,7 +512,7 @@
       'epic.mus.p2':        'Artefactos originales, fotografías históricas, mapas de exploración y relatos de primera mano que dan vida al concepto del espíritu pionero.',
       'epic.val1.p':        'Sin postureo. Sin filtros. La Patagonia tal como es: cruda, vasta e impredecible. Nuestras experiencias son reales.',
       'epic.val2.p':        'Cada ruta, cada sendero, cada laguna tiene algo que descubrir. Guiamos para que el viajero encuentre su propia Patagonia.',
-      'epic.val3.p':        'Somos custodios de un patrimonio natural e histórico de 110 años. Lo que heredamos, lo devolvemos en mejores condiciones.',
+      'epic.val3.p':        'Somos custodios de un patrimonio natural e histórico de 115 años. Lo que heredamos, lo devolvemos en mejores condiciones.',
       'epic.val4.p':        'First Patagonia es parte del tejido social de Petrohué. Trabajamos con guías locales, productos locales y gente local.',
 
       /* ── planifica.html — missing keys ── */
