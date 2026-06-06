@@ -11,7 +11,7 @@ const WHATSAPP = 'https://wa.me/56984644870';
    ============================================================ */
 (function injectWhatsApp() {
   const wa = document.createElement('a');
-  wa.href = WHATSAPP + '?text=%C2%A1Hola%21%20Quiero%20vivir%20la%20Patagonia%20Norte%20con%20First%20Patagonia%20%F0%9F%8F%94%EF%B8%8F%20%C2%BFCu%C3%A1ndo%20podemos%20comenzar%20la%20aventura%3F';
+  wa.href = WHATSAPP + '?text=' + encodeURIComponent('¡Hola! Me interesa visitar First Patagonia 🏔️ ¿Pueden orientarme con las opciones disponibles y fechas?');
   wa.className = 'whatsapp-btn';
   wa.target = '_blank';
   wa.rel = 'noopener noreferrer';
