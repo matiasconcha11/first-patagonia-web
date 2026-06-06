@@ -11,7 +11,7 @@ const WHATSAPP = 'https://wa.me/56984644870';
    ============================================================ */
 (function injectWhatsApp() {
   const wa = document.createElement('a');
-  wa.href = WHATSAPP + '?text=' + encodeURIComponent('¡Hola! Quiero escaparme a Petrohué con First Patagonia 🏔️ ¿Me ayudan a armar la experiencia perfecta para mí?');
+  wa.href = WHATSAPP + '?text=' + encodeURIComponent('¡Hola! Me gustaría vivir la experiencia Petrohué con First Patagonia 🏔️ ¿Qué me recomiendan?');
   wa.className = 'whatsapp-btn';
   wa.target = '_blank';
   wa.rel = 'noopener noreferrer';
