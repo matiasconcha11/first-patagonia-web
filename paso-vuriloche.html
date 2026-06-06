@@ -159,17 +159,17 @@
 
   <nav class="nav" id="nav">
     <a href="index.html" class="nav__logo">
-      <img src="Logos/Logo First Patagonia.png" alt="First Patagonia">
+      <img src="Logos/First Patagonia 2 transparent.png" alt="First Patagonia">
     </a>
     <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav__links" id="navLinks">
       <li><a href="lodge.html">Lodge</a></li>
-      <li><a href="actividades.html">Actividades</a></li>
-      <li><a href="programas.html">Programas</a></li>
       <li><a href="paso-vuriloche.html">Paso Vuriloche</a></li>
-      <li><a href="espiritupionero.html">Espíritu Pionero</a></li>
+      <li><a href="programas.html">Programas</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="espiritupionero.html">Historia</a></li>
       <li><a href="planifica.html">Planifica</a></li>
       <li>
         <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
@@ -200,7 +200,7 @@
       <span class="stat__label" data-i18n="paso.stat.days">Días</span>
     </div>
     <div class="stat">
-      <span class="stat__value">50</span>
+      <span class="stat__value">51</span>
       <span class="stat__label" data-i18n="paso.stat.km">Kilómetros</span>
     </div>
     <div class="stat">
@@ -208,11 +208,11 @@
       <span class="stat__label" data-i18n="paso.stat.drop">Metros desnivel+</span>
     </div>
     <div class="stat">
-      <span class="stat__value">7/7</span>
+      <span class="stat__value">7N/8D</span>
       <span class="stat__label" data-i18n="paso.stat.nights">Noches / Días</span>
     </div>
     <div class="stat">
-      <span class="stat__value" data-i18n="paso.stat.val.diff">Alta</span>
+      <span class="stat__value" data-i18n="paso.stat.val.diff">Media</span>
       <span class="stat__label" data-i18n="paso.stat.diff">Dificultad</span>
     </div>
   </div>
@@ -349,6 +349,13 @@
         </div>
 
       </div>
+
+      <div class="itinerary-cta fade-up">
+        <div class="itinerary-cta__line"></div>
+        <button class="btn btn--orange itinerary-cta__btn" onclick="document.getElementById('reservaModal').classList.add('open')" data-i18n="paso.cta.btn">Reservar Paso Vuriloche</button>
+        <p class="itinerary-cta__note" data-i18n="paso.cta.note">Salidas programadas · Grupos privados · Temporada nov–abr</p>
+      </div>
+
     </div>
   </section>
 
@@ -431,7 +438,7 @@
           <div class="footer__col">
             <h5 data-i18n="footer.us">Nosotros</h5>
             <ul>
-              <li><a href="espiritupionero.html" data-i18n="footer.pioneer">Espíritu Pionero</a></li>
+              <li><a href="espiritupionero.html" data-i18n="footer.pioneer">Historia</a></li>
               <li><a href="sobre.html" data-i18n="footer.about">Sobre First Patagonia</a></li>
               <li><a href="planifica.html" data-i18n="footer.plan">Planifica tu viaje</a></li>
             </ul>
@@ -491,9 +498,11 @@
               </select>
               <select name="anio" required>
                 <option value="" disabled selected>Año</option>
-                <option>2025</option>
                 <option>2026</option>
                 <option>2027</option>
+                <option>2028</option>
+                <option>2029</option>
+                <option>2030</option>
               </select>
             </div>
           </div>
@@ -548,6 +557,29 @@
   </div>
 
   <style>
+    .itinerary-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 4rem 0 2rem;
+      text-align: center;
+    }
+    .itinerary-cta__line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, rgba(245,242,236,0.25));
+    }
+    .itinerary-cta__btn {
+      letter-spacing: 0.12em;
+    }
+    .itinerary-cta__note {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,242,236,0.35);
+      margin: 0;
+    }
     .rmodal {
       position: fixed; inset: 0; z-index: 900;
       display: flex; align-items: center; justify-content: center;
@@ -627,44 +659,57 @@
   </style>
 
   <script>
-  function enviarReserva(e) {
+  async function enviarReserva(e) {
     e.preventDefault();
-    const f = e.target;
-    const nombre     = f.nombre.value;
-    const email      = f.email.value;
-    const fecha      = f.mes.value + ' ' + f.anio.value;
-    const personas   = f.personas.value;
-    const condicion  = f.condicion.value;
-    const experiencia= f.experiencia.value;
-    const pais       = f.pais.value || 'No especificado';
-    const comentarios= f.comentarios.value || 'Ninguno';
+    const f   = e.target;
+    const btn = f.querySelector('button[type="submit"]');
 
-    const cuerpo = [
-      'CONSULTA DE RESERVA — PASO VURILOCHE',
-      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-      '',
-      'Nombre:          ' + nombre,
-      'Email:           ' + email,
-      'País de origen:  ' + pais,
-      '',
-      'Fecha tentativa: ' + fecha,
-      'Personas:        ' + personas,
-      '',
-      'Condición física:    ' + condicion,
-      'Experiencia previa:  ' + experiencia,
-      '',
-      'Comentarios:',
-      comentarios,
-      '',
-      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-      'Enviado desde firstpatagonia.com'
-    ].join('\n');
+    const nombre      = f.nombre.value;
+    const email       = f.email.value;
+    const fecha       = f.mes.value + ' ' + f.anio.value;
+    const personas    = f.personas.value;
+    const condicion   = f.condicion.value;
+    const experiencia = f.experiencia.value;
+    const pais        = f.pais.value || 'No especificado';
+    const comentarios = f.comentarios.value || 'Ninguno';
 
-    const asunto = encodeURIComponent('Consulta Paso Vuriloche — ' + nombre);
-    const body   = encodeURIComponent(cuerpo);
+    btn.disabled     = true;
+    btn.textContent  = 'Enviando...';
 
-    window.location.href = 'mailto:expediciones@petrohue.com?subject=' + asunto + '&body=' + body;
-    document.getElementById('reservaModal').classList.remove('open');
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/reservas@petrohue.com', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject:           'Consulta Paso Vuriloche — ' + nombre,
+          _template:          'table',
+          Nombre:             nombre,
+          Email:              email,
+          'País de origen':   pais,
+          'Fecha tentativa':  fecha,
+          Personas:           personas,
+          'Condición física': condicion,
+          'Experiencia previa': experiencia,
+          Comentarios:        comentarios
+        })
+      });
+
+      if (res.ok) {
+        document.querySelector('.rmodal__box').innerHTML = `
+          <div style="padding:3rem 2.5rem;text-align:center;">
+            <span style="display:block;font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal);margin-bottom:1.25rem;">Consulta enviada</span>
+            <h3 style="color:var(--white);margin-bottom:1rem;">¡Gracias, ${nombre}!</h3>
+            <p style="color:rgba(245,242,236,0.6);max-width:380px;margin:0 auto 2rem;">Te contactaremos en menos de 24 horas con disponibilidad y tarifas para tu fecha.</p>
+            <button class="btn btn--ghost" onclick="document.getElementById('reservaModal').classList.remove('open')">Cerrar</button>
+          </div>`;
+      } else {
+        throw new Error();
+      }
+    } catch {
+      btn.disabled    = false;
+      btn.textContent = 'Enviar consulta →';
+      alert('Hubo un error al enviar. Por favor escríbenos directamente a reservas@petrohue.com');
+    }
   }
   </script>
 

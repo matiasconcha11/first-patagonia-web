@@ -402,7 +402,7 @@ const WHATSAPP = 'https://wa.me/56984644870';
 (function initPasoVideo() {
   const v = document.getElementById('pasoCardVideo');
   if (!v) return;
-  const START = 0;
+  const START = 2;
   v.addEventListener('loadedmetadata', () => {
     v.currentTime = START;
     v.play().catch(() => {});

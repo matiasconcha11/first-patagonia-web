@@ -104,7 +104,9 @@
       justify-content: space-between;
     }
     .expedition-card__content h3 { color: var(--white); margin-bottom: 0.75rem; font-size: clamp(1.2rem, 2.25vw, 1.875rem); }
-    .expedition-card__content p { color: rgba(245,242,236,0.75); margin-bottom: 1.5rem; }
+    .expedition-card__content p { color: rgba(245,242,236,0.75); margin-bottom: 1.75rem; }
+    .expedition-card__content .btn { display: inline-block; margin-bottom: 0; }
+    .expedition-stats { margin-top: 0; }
     .expedition-stats {
       display: flex;
       gap: 2rem;
@@ -157,17 +159,17 @@
 
   <nav class="nav" id="nav">
     <a href="index.html" class="nav__logo">
-      <img src="Logos/Logo First Patagonia.png" alt="First Patagonia">
+      <img src="Logos/First Patagonia 2 transparent.png" alt="First Patagonia">
     </a>
     <button class="nav__toggle" id="navToggle" aria-label="Abrir menú">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav__links" id="navLinks">
       <li><a href="lodge.html">Lodge</a></li>
-      <li><a href="actividades.html">Actividades</a></li>
-      <li><a href="programas.html">Programas</a></li>
       <li><a href="paso-vuriloche.html">Paso Vuriloche</a></li>
-      <li><a href="espiritupionero.html">Espíritu Pionero</a></li>
+      <li><a href="programas.html">Programas</a></li>
+      <li><a href="actividades.html">Actividades</a></li>
+      <li><a href="espiritupionero.html">Historia</a></li>
       <li><a href="planifica.html">Planifica</a></li>
       <li>
         <a href="https://reservation.gofeels.com/es/reservation/?CLP&token=c1b1d4d2-d466-4219-bd31-54ea0eeb95b7&rooms"
@@ -201,7 +203,7 @@
 
         <a href="paso-vuriloche.html" class="expedition-card">
           <div class="expedition-card__media" style="background:#0c141e;">
-            <video autoplay muted loop playsinline>
+            <video id="pasoCardVideo" autoplay muted loop playsinline>
               <source src="assets/paso-card.mp4" type="video/mp4">
             </video>
           </div>
@@ -209,21 +211,23 @@
             <div>
               <span class="section__label" data-i18n="prog.paso.cat">Travesía andina</span>
               <h3>Paso Vuriloche</h3>
-              <p data-i18n="prog.paso.desc">La travesía que creó Franz Schirmer. 8 días cruzando los Andes de Chile a Argentina a pie, a caballo y en barco.</p>
-              <div class="expedition-stats">
-                <span><span data-i18n="exp.stat.dur">Duración</span><strong>8 días</strong></span>
-                <span><span data-i18n="exp.stat.dist">Distancia</span><strong>50 km</strong></span>
-                <span><span data-i18n="exp.stat.drop">Desnivel</span><strong>2.052 m+</strong></span>
-                <span><span data-i18n="exp.stat.diff">Dificultad</span><strong data-i18n="prog.exp.paso.diff">Alta</strong></span>
-              </div>
+              <p data-i18n="prog.paso.desc">Franz Schirmer abrió esta ruta milenaria al turismo en 1998. 8 días cruzando los Andes de Chile a Argentina a pie, a caballo y en barco.</p>
+              <span class="btn btn--ghost" data-i18n="prog.paso.btn">Ver travesía →</span>
             </div>
-            <span class="btn btn--ghost" data-i18n="prog.paso.btn">Ver travesía →</span>
+            <div class="expedition-stats">
+              <span><span data-i18n="exp.stat.dur">Duración</span><strong>8 días</strong></span>
+              <span><span data-i18n="exp.stat.dist">Distancia</span><strong>51 km</strong></span>
+              <span><span data-i18n="exp.stat.drop">Desnivel</span><strong>2.052 m+</strong></span>
+              <span><span data-i18n="exp.stat.diff">Dificultad</span><strong data-i18n="prog.exp.paso.diff">Media</strong></span>
+            </div>
           </div>
         </a>
 
         <div class="expedition-card">
-          <div class="expedition-card__media" style="background: linear-gradient(160deg, #1a0a0a 0%, #3d1a1a 50%, #6b3030 100%);">
-            <!-- IMAGEN: <img src="assets/tronador-360.jpg" alt="Tronador 360 Trail Running"> -->
+          <div class="expedition-card__media" style="background:#1a0a0a;">
+            <video autoplay muted loop playsinline>
+              <source src="assets/tronador-360.mp4" type="video/mp4">
+            </video>
           </div>
           <div class="expedition-card__content">
             <div>
@@ -482,7 +486,7 @@
           <div class="footer__col">
             <h5 data-i18n="footer.us">Nosotros</h5>
             <ul>
-              <li><a href="espiritupionero.html" data-i18n="footer.pioneer">Espíritu Pionero</a></li>
+              <li><a href="espiritupionero.html" data-i18n="footer.pioneer">Historia</a></li>
               <li><a href="sobre.html" data-i18n="footer.about">Sobre First Patagonia</a></li>
               <li><a href="planifica.html" data-i18n="footer.plan">Planifica tu viaje</a></li>
             </ul>
