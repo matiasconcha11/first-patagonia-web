@@ -131,7 +131,7 @@
       /* ── paso-vuriloche.html ── */
       'paso.hero.label':  'Travesía andina · Chile → Argentina',
       'paso.hero.title':  'Paso<br><em>Vuriloche</em>',
-      'paso.hero.sub':    'La travesía que Franz Schirmer construyó con sus manos. 8 días cruzando los Andes de chile a Argentina a pie, a caballo y en barco.',
+      'paso.hero.sub':    'Una ruta con más de 18.500 años de historia. Franz Schirmer construyó los refugios que hoy la hacen posible. 8 días cruzando los Andes de Chile a Argentina a pie, a caballo y en barco.',
       'paso.stat.days':   'Días',
       'paso.stat.km':     'Kilómetros',
       'paso.stat.drop':   'Metros desnivel+',
@@ -679,7 +679,7 @@
       'hero.btn1':     'Discover your program',
       'hero.btn2':     'View Lodge',
 
-      'manifesto.label':  'First Patagonia · Pioneer Spirit · 110 years',
+      'manifesto.label':  'First Patagonia · Pioneer Spirit · 115 years',
       'manifesto.quote':  '"Not everyone<br>has the <em>soul of a pioneer.</em><br>To be one you need something special —<br>something that drives you to <em>adventure,<br>exploration</em> and discovery."',
       'manifesto.author': '— Franz Schirmer, founder of First Patagonia',
       'manifesto.btn':    'Our story',
@@ -1315,7 +1315,7 @@
       'hero.btn1':     'Programm entdecken',
       'hero.btn2':     'Lodge ansehen',
 
-      'manifesto.label':  'First Patagonia · Pioniergeist · 110 Jahre',
+      'manifesto.label':  'First Patagonia · Pioniergeist · 115 Jahre',
       'manifesto.quote':  '"Nicht jeder<br>hat die <em>Seele eines Pioniers.</em><br>Dafür braucht man etwas Besonderes —<br>etwas, das einen zu <em>Abenteuer,<br>Erkundung</em> und Entdeckung treibt."',
       'manifesto.author': '— Franz Schirmer, Gründer von First Patagonia',
       'manifesto.btn':    'Unsere Geschichte',

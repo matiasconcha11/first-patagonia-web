@@ -2,9 +2,6 @@
    FIRST PATAGONIA — Design System
    ============================================================ */
 
-/* TEST: Monument Extended desde CDN */
-@import url('https://fonts.cdnfonts.com/css/monument-extended');
-
 /* --- Variables --- */
 :root {
   --orange:      #E8521A;
@@ -20,8 +17,8 @@
   --gray-600:    #66625F;
   --gray-800:    #2E2C2A;
 
-  --font-serif:  'Monument Extended', 'Cormorant Garamond', Georgia, serif;
-  --font-sans:   'Monument Extended', 'Jost', system-ui, sans-serif;
+  --font-serif:  'Cormorant Garamond', Georgia, serif;
+  --font-sans:   'Jost', system-ui, sans-serif;
 
   --nav-h:       90px;
   --radius:      2px;
