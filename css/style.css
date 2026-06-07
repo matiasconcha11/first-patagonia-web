@@ -1813,6 +1813,19 @@ em { font-style: normal; font-weight: 300; }
 }
 .footer__col a:hover { color: var(--white); }
 
+.footer__social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+.footer__social a {
+  color: rgba(245,242,236,0.45);
+  transition: color var(--transition);
+  display: flex;
+  align-items: center;
+}
+.footer__social a:hover { color: var(--orange); }
+
 .footer__bottom {
   display: flex;
   align-items: center;
