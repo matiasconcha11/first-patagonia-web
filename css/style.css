@@ -23,7 +23,7 @@
   --font-serif:  'Bebas Neue', sans-serif;
   --font-sans:   'Source Sans 3', system-ui, sans-serif;
 
-  --nav-h:       90px;
+  --nav-h:       110px;
   --radius:      2px;
   --transition:  0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -44,12 +44,12 @@ ul { list-style: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
 /* --- Typography --- */
-h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.0; font-weight: 400; letter-spacing: 0.03em; text-transform: uppercase; }
-h1 { font-size: clamp(3rem, 8vw, 7.5rem); }
-h2 { font-size: clamp(2rem, 5vw, 4.5rem); }
-h3 { font-size: clamp(1.4rem, 2.75vw, 2.5rem); }
-h4 { font-size: clamp(0.95rem, 1.6vw, 1.3rem); }
-p  { font-family: var(--font-sans); font-size: 1rem; line-height: 1.75; color: var(--gray-600); font-weight: 300; }
+h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.0; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; }
+h1 { font-size: clamp(4rem, 10vw, 10rem); }
+h2 { font-size: clamp(2.6rem, 6vw, 6rem); }
+h3 { font-size: clamp(1.8rem, 3.5vw, 3.5rem); }
+h4 { font-size: clamp(1.1rem, 2vw, 1.8rem); }
+p  { font-family: var(--font-sans); font-size: 1.05rem; line-height: 1.8; color: var(--gray-600); font-weight: 300; }
 em { font-style: normal; font-weight: 300; }
 
 /* Teal italics in dark contexts — adds visual punch */
@@ -136,9 +136,9 @@ em { font-style: normal; font-weight: 300; }
   gap: 1.75rem;
 }
 .nav__links a {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(245, 242, 236, 0.85);
   transition: color var(--transition);
