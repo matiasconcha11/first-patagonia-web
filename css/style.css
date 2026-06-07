@@ -49,7 +49,7 @@ h1 { font-size: clamp(4rem, 10vw, 10rem); }
 h2 { font-size: clamp(2.6rem, 6vw, 6rem); }
 h3 { font-size: clamp(1.8rem, 3.5vw, 3.5rem); }
 h4 { font-size: clamp(1.1rem, 2vw, 1.8rem); }
-p  { font-family: var(--font-sans); font-size: 1.25rem; line-height: 1.85; color: var(--gray-600); font-weight: 300; }
+p  { font-family: var(--font-sans); font-size: 2.5rem; line-height: 1.85; color: var(--gray-600); font-weight: 300; }
 em { font-style: normal; font-weight: 300; }
 
 /* Teal italics in dark contexts — adds visual punch */
