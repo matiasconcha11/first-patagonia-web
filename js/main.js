@@ -166,6 +166,19 @@ const WHATSAPP = 'https://wa.me/56984644870';
   }, { once: true });
 })();
 
+/* --- Nav active page --- */
+(function markActivePage() {
+  var page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav__links a').forEach(function(a) {
+    var href = a.getAttribute('href');
+    if (href && href !== '#' && !a.classList.contains('nav__cta')) {
+      if (page === href || (page === '' && href === 'index.html')) {
+        a.classList.add('nav--active');
+      }
+    }
+  });
+})();
+
 /* --- Nav scroll --- */
 (function initNav() {
   const nav    = document.getElementById('nav');

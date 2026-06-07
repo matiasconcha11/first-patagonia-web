@@ -27,6 +27,9 @@
   --transition:  0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* --- FOUC prevention --- */
+.i18n-loading body { visibility: hidden; }
+
 /* --- Reset --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -144,6 +147,11 @@ em { font-style: normal; font-weight: 300; }
   white-space: nowrap;
 }
 .nav__links a:hover { color: var(--white); }
+.nav__links a.nav--active {
+  color: var(--white);
+  border-bottom: 1px solid var(--orange);
+  padding-bottom: 2px;
+}
 
 .nav__cta {
   background: var(--orange) !important;
