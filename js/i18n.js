@@ -2169,4 +2169,9 @@
     init();
   }
 
+  /* Fallback: if i18n fails to load, reveal body after 1.5s */
+  setTimeout(function() {
+    document.documentElement.classList.remove('i18n-loading');
+  }, 1500);
+
 })();
