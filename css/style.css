@@ -3,6 +3,7 @@
    ============================================================ */
 
 @import url('https://fonts.cdnfonts.com/css/monument-extended');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
 
 /* --- Variables --- */
 :root {
@@ -19,8 +20,9 @@
   --gray-600:    #66625F;
   --gray-800:    #2E2C2A;
 
-  --font-serif:  'Monument Extended', 'Cormorant Garamond', Georgia, serif;
-  --font-sans:   'Monument Extended', 'Jost', system-ui, sans-serif;
+  --font-display: 'Monument Extended', sans-serif;
+  --font-serif:   'Cormorant Garamond', Georgia, serif;
+  --font-sans:    'Jost', system-ui, sans-serif;
 
   --nav-h:       90px;
   --radius:      2px;
@@ -35,6 +37,7 @@ body {
   background: var(--white);
   color: var(--gray-800);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 img { display: block; max-width: 100%; }
@@ -43,13 +46,14 @@ ul { list-style: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
 /* --- Typography --- */
-h1, h2, h3, h4 { font-family: var(--font-serif); line-height: 1.05; font-weight: 400; letter-spacing: -0.01em; }
-h1 { font-size: clamp(2.6rem, 6.75vw, 6rem); font-weight: 400; }
-h2 { font-size: clamp(1.65rem, 4.1vw, 3.4rem); font-weight: 400; }
-h3 { font-size: clamp(1.2rem, 2.25vw, 1.8rem); font-weight: 400; }
-h4 { font-size: clamp(0.85rem, 1.5vw, 1.1rem); font-weight: 500; }
-p  { font-size: 1rem; line-height: 1.75; color: var(--gray-600); font-weight: 300; }
-em { font-style: normal; font-weight: 300; }
+h1, h2 { font-family: var(--font-display); line-height: 1.05; font-weight: 400; letter-spacing: -0.01em; }
+h3, h4 { font-family: var(--font-serif); line-height: 1.15; font-weight: 400; letter-spacing: 0; }
+h1 { font-size: clamp(2.6rem, 6.75vw, 6rem); }
+h2 { font-size: clamp(1.65rem, 4.1vw, 3.4rem); }
+h3 { font-size: clamp(1.35rem, 2.5vw, 2.2rem); }
+h4 { font-size: clamp(0.9rem, 1.5vw, 1.15rem); font-weight: 500; }
+p  { font-family: var(--font-sans); font-size: 1rem; line-height: 1.75; color: var(--gray-600); font-weight: 300; }
+em { font-style: italic; font-weight: 300; }
 
 /* Teal italics in dark contexts — adds visual punch */
 .section--dark em,
