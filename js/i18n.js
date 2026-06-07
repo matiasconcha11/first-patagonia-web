@@ -242,7 +242,7 @@
       /* ── Shared footer / nav (pages missing data-i18n) ── */
       'footer.lodge':   'Lodge Petrohué',
       'footer.paso':    'Paso Vuriloche',
-      'footer.pioneer': 'Espíritu Pionero',
+      'footer.pioneer': 'Historia',
       'footer.sobre':   'Sobre First Patagonia',
       'footer.plantrip':'Planifica tu viaje',
       'footer.addr':    'Ruta 225 Km 58, Petrohué<br>Parque Nacional Vicente Pérez Rosales<br>Chile',
@@ -884,7 +884,7 @@
       /* ── Shared footer / nav ── */
       'footer.lodge':   'Lodge Petrohué',
       'footer.paso':    'Paso Vuriloche',
-      'footer.pioneer': 'Pioneer Spirit',
+      'footer.pioneer': 'History',
       'footer.sobre':   'About First Patagonia',
       'footer.plantrip':'Plan your trip',
       'footer.addr':    'Route 225 Km 58, Petrohué<br>Vicente Pérez Rosales National Park<br>Chile',
@@ -1520,7 +1520,7 @@
       /* ── Shared footer / nav ── */
       'footer.lodge':   'Lodge Petrohué',
       'footer.paso':    'Paso Vuriloche',
-      'footer.pioneer': 'Pioniergeist',
+      'footer.pioneer': 'Geschichte',
       'footer.sobre':   'Über First Patagonia',
       'footer.plantrip':'Reise planen',
       'footer.addr':    'Ruta 225 Km 58, Petrohué<br>Nationalpark Vicente Pérez Rosales<br>Chile',
