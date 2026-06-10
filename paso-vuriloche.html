@@ -453,7 +453,7 @@
           <div class="footer__col">
             <h5 data-i18n="footer.contact">Contacto</h5>
             <ul>
-              <li><a href="mailto:reservas@petrohue.com">reservas@petrohue.com</a></li>
+              <li><a href="mailto:expediciones@petrohue.com">expediciones@petrohue.com</a></li>
               <li><a href="tel:+56984644870">+56 9 8464 4870</a></li>
             </ul>
             <div class="footer__social">
@@ -692,7 +692,7 @@
     btn.textContent  = 'Enviando...';
 
     try {
-      const res = await fetch('https://formsubmit.co/ajax/reservas@petrohue.com', {
+      const res = await fetch('https://formsubmit.co/ajax/expediciones@petrohue.com', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
@@ -723,7 +723,7 @@
     } catch {
       btn.disabled    = false;
       btn.textContent = 'Enviar consulta →';
-      alert('Hubo un error al enviar. Por favor escríbenos directamente a reservas@petrohue.com');
+      alert('Hubo un error al enviar. Por favor escríbenos directamente a expediciones@petrohue.com');
     }
   }
   </script>
