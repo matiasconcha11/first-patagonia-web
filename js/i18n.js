@@ -196,6 +196,7 @@
       'paso.booking.title': 'Acepta el<br><em>llamado del paso</em>',
       'paso.booking.desc':  'Plazas limitadas por temporada. Reserva con anticipación para asegurar tu lugar.',
       'paso.booking.btn':   'Reservar Paso Vuriloche',
+      'paso.booking.email': 'O escríbenos directamente a <a href="mailto:expediciones@petrohue.com" style="color:inherit;text-decoration:underline;">expediciones@petrohue.com</a>',
 
       /* ── espiritupionero.html ── */
       'epic.hero.label':  '115 años · 5ª generación familiar',
@@ -886,6 +887,7 @@
       'paso.booking.title': 'Accept the<br><em>call of the pass</em>',
       'paso.booking.desc':  'Limited spots per season. Book in advance to secure your place.',
       'paso.booking.btn':   'Book Paso Vuriloche',
+      'paso.booking.email': 'Or write to us directly at <a href="mailto:expediciones@petrohue.com" style="color:inherit;text-decoration:underline;">expediciones@petrohue.com</a>',
 
       /* ── espiritupionero.html ── */
       'epic.hero.label':  '110 years · 5th family generation',
@@ -1569,6 +1571,7 @@
       'paso.booking.title': 'Nimm den<br><em>Ruf des Passes an</em>',
       'paso.booking.desc':  'Begrenzte Plätze pro Saison. Frühzeitig buchen, um deinen Platz zu sichern.',
       'paso.booking.btn':   'Paso Vuriloche buchen',
+      'paso.booking.email': 'Oder schreib uns direkt an <a href="mailto:expediciones@petrohue.com" style="color:inherit;text-decoration:underline;">expediciones@petrohue.com</a>',
 
       /* ── espiritupionero.html ── */
       'epic.hero.label':  '110 Jahre · 5. Familiengeneration',
