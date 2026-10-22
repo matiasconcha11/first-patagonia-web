@@ -313,13 +313,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     /* ---- Responsive ---- */
     @media (max-width: 768px) {
-      /* En movil la cinta se endereza y pasa a barra bajo la nav.
-         Va arriba y no abajo por dos razones: el precio queda visible sin
-         hacer scroll (el trafico llega de redes), y abajo chocaba con el
-         boton flotante de WhatsApp. */
+      /* En movil la cinta se endereza y baja al PIE del hero.
+         Antes iba bajo la nav y tapaba el Tronador, que es la imagen que
+         vende (Matias, 22-oct). Al pie cae sobre la roca, no sobre la cumbre,
+         y el precio se sigue viendo sin hacer scroll.
+         El padding izquierdo deja libre el boton flotante de WhatsApp. */
       .price-ribbon {
         left: 0; right: 0;
-        top: var(--nav-h); bottom: auto;
+        bottom: 0; top: auto;
         width: auto; height: auto;
         overflow: visible;
       }
@@ -328,8 +329,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         left: auto; top: auto;
         width: 100%;
         transform: none;
-        padding: 0.85rem 1rem 0.95rem;
         box-shadow: none;
+        text-align: right;
+        padding: 0.5rem 0.95rem 0.6rem 5.2rem;
+      }
+      .price-ribbon__label {
+        display: inline;
+        font-size: 0.44rem;
+        margin-right: 0.45rem;
+        vertical-align: 0.22em;
+      }
+      .price-ribbon__value { display: inline; font-size: 1.08rem; margin: 0; }
+      .price-ribbon__unit  { font-size: 0.39rem; letter-spacing: 0.12em; margin-top: 0.15rem; }
+      .price-ribbon__incl  {
+        display: block;
+        border: 0;
+        margin: 0.1rem 0 0;
+        padding: 0;
+        font-size: 0.39rem;
+        letter-spacing: 0.12em;
       }
       .salida {
         grid-template-columns: 1fr;
